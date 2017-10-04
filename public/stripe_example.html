@@ -6,7 +6,6 @@
     <!-- Generates a token sends server, doesn't charge -->
     <!-- Use example card number to test: https://stripe.com/docs/testing -->
     <form action="/charge" method="post">
-    Pay $5 deposit:
     <script
         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
         data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
@@ -19,4 +18,6 @@
     </script>
     <br><br>
     </form>
+    $5 will be charged and immediately be refunded, result will show in JSON.
+    Use example card number number 4242424242424242 to test.
 </body>
