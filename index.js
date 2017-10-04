@@ -37,12 +37,14 @@ app.use((req, res, next) =>
     next();
 });
 
+app.use(urlencodedParser);
 app.use(helmet());
 app.use(express.static('public')); // to serve static files
 
 // Routers
-app.use('/', require('./routes/home'));
-app.use('*', require('./routes/404'));
+app.use('/',       require('./routes/home'));
+app.use('/charge', require('./routes/charge'));
+app.use('*',       require('./routes/404'));
 
 // <---------- Middlewares ends ------------
 
