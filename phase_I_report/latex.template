@@ -260,9 +260,9 @@ $endif$
 \renewcommand{\headrulewidth}{0pt}
 \fancyhead[L]{}
 \fancyhead[R]{}
-\fancyhead[C]{\begin{tabular}{| p{11.25cm} | p{3.5cm} |}\hline$projectname$ & Version: $version$ \\ \hline Sofware Requirements Specification  & Date: $date$ \\ \hline \multicolumn{2}{|l|}{$documentidentifier$} \\ \hline \end{tabular}}
+\fancyhead[C]{\begin{tabular}{| p{11.25cm} | p{3.5cm} |}\hline $projectname$ & Version: $version$ \\ \hline Sofware Requirements Specification  & Date: $date$ \\ \hline \multicolumn{2}{|l|}{$documentidentifier$} \\ \hline \end{tabular}}
 \lfoot{$bottomleft$}
-\cfoot{©$companyname$, 2017}
+\cfoot{© $companyname$, 2017}
 \rfoot{Page \thepage}
 
 % -------------------------------
@@ -285,7 +285,7 @@ Date & Version & Description & Author \\ \hline
  % <----TO-EDIT--
  % <----BELOW----
 
- <dd/mm/yy> & <x.x> & <details> & <name> \\ \hline
+ 12/OCT/17 & 0.1 & First overall requirement specification for Turk System & <name> \\ \hline
  &  &  &  \\ \hline
  &  &  & \\ \hline
 
