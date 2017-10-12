@@ -18,9 +18,15 @@
   },
   "homepage": "https://github.com/dxwc/csc322-software-engineering-turk-system#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "express-session": "^1.15.6",
     "helmet": "^3.8.1",
+    "jquery": "^3.2.1",
+    "mongoose": "^4.12.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "stripe": "^5.1.0"
   }
 }
