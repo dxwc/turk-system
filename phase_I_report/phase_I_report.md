@@ -191,14 +191,14 @@ main
 ### Use Case: Client Rate Developer
 #### Brief Description
 
-+ Client can rate the developer's work after he has recieved
++ Client can rate the developer's work after he has received
 
 #### Initial Step-By-Step Description
 
 1. Client follows login button/link present on most page views including
 main
 2. Client is asked to rate the delivered product and sends the ratings to super-user
-3. Super-user follows accordinly to the clients ratings if the ratings are good the developer
+3. Super-user follows accordingly to the clients ratings if the ratings are good the developer
 gets money else the super-user discuss with the client
 
 ### Use Case: Send complain message to the super-user
@@ -211,7 +211,7 @@ gets money else the super-user discuss with the client
 1. Visitor follow login button/link present on most page views including
 main
 2. The visitor will write and send the complain to a super-user
-3. Super-user will review the complain and decide on the punishment accordinly to the severity
+3. Super-user will review the complain and decide on the punishment accordingly to the severity
 
 ### Use Case: View account closing status information
 #### Brief Description
@@ -222,7 +222,21 @@ main
 
 1. Visitor follow login button/link present on most page views including
 main
-2. If the account was submittd to be cancelled it will display account has been terminated
+2. If the account was submitted to be canceled it will display account has been terminated
+
+### Use Case: Bid on any demand with promised timeline and money
+#### Brief Description
+
++ Developer bids on any demand posted by a client.
+
+#### Initial Step-By-Step Description
+
+1. Developer follows login button/link present on most page views including
+   main
+2. Developer searches list of demands
+3. Developer finds demand that matches his desired timeline and money
+4. Developer bids on chosen demand
+
 
 ##3.2 Supplementary Requirements
 
