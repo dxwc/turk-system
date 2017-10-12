@@ -135,10 +135,58 @@ session cookie support to connect to the system.
     + On blacklist error: abort, show reason
 
 
-### Use Case: <UC>
+### Use Case: Add profile details
+#### Brief Description
+
++ Submit details including an about me, resume, profile photo, interests,
+  business credentials or sample work.
+
+#### Initial Step-By-Step Description
+
+1. Visitor follow login button/link present on most page views including
+   main
+2. Visitor enters the username/userID and logs in to the temporary account.
+3. Visitor fills the details about her/himself which includes a about me, resume
+  upload, picture upload, interests, business credentials or sample work.
+4. Visitor updates the entered information.
+
+### Use Case: View application status
+#### Brief Description
+
++ Vistor can view their current application status information.
+
+#### Initial Step-By-Step Description
+
+1. Visitor follow login button/link present on most page views including
+   main
+2. Visitor enters the username/userID and logs in to the temporary account.
+3. Visitor views the application status on their login page.
+
+[comment]: <> (Developer Use Cases)
+
+### Use Case: Quit from the system
 #### Brief Description
 #### Initial Step-By-Step Description
 
+### Use Case: Bid on any demand wth promised timeline and money
+#### Brief Description
+#### Initial Step-By-Step Description
+
+### Use Case: Submit delivered system
+#### Brief Description
+#### Initial Step-By-Step Description
+
+### Use Case: Rate Client
+#### Brief Description
+#### Initial Step-By-Step Description
+
+### Use Case: Send protesting message to the superuser
+#### Brief Description
+#### Initial Step-By-Step Description
+
+### Use Case: View account closing status information
+#### Brief Description
+#### Initial Step-By-Step Description
 
 ##3.2 Supplementary Requirements
 
