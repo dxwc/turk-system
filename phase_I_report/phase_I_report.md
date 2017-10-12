@@ -226,4 +226,17 @@ main
 
 ##3.2 Supplementary Requirements
 
+In order to ensure that the system can be long-term, safe, stable, reliable and efficient operation, the Turk system should meet the requirements below.
+
+1. The accuracy and timeliness of the system processing
+The accurate and timely treatment is necessary to the performance of the system. The system may be subject to current and future workload so this needs should be taken into consideration in the system design and development process. In addition the system capacity and response time needs to meet the demand of user information and request processing.
+2. Open system and system scalability
+The Turk system in the development process, should fully consider the future scalability. The system needs to adjust and expand functions to provide adequate usage. In order to get this, not only should the system be an open system but it also needs to meet certain specifications. Through the software of repair, replace the complete system upgrade and update.
+3. Easy to use and easy to maintain system
+Turk system is to directly face the user which might not be very familiar with computer. This requires the system to be able to provide friendly user interface and an easy to use interface. To achieve this, the system should try to use different languages for different regions of people. A use problem may arise, so need to have enough help online, and shorten the process of system user familiar.
+
 #4. Supporting Information
+
+This Software Requirements Specification includes:
+
+• Table of Contents
