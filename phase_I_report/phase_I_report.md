@@ -58,6 +58,10 @@ Isatou Sanneh provided sample phase I report.
 
 ##1.5 Overview
 
+The next chapter, the Overall Description section, of this document will give an overview of the functionality of the product. It describes the informal requirements and is used to establish a context for the technical requirements specification in the next chapter.
+The third chapter, Specific Requirements, of this document describes in technical terms the details of the functionality of the product.
+Both sections of the document describe the same software product.
+
 #2. Overall Description
 
 ##2.1 Use-Case Model Survey
@@ -166,9 +170,17 @@ session cookie support to connect to the system.
 
 ### Use Case: Quit from the system
 #### Brief Description
+
++ Visitor can choose to quit from the system by filing the quit demand to the super-user
+
 #### Initial Step-By-Step Description
 
-### Use Case: Bid on any demand wth promised timeline and money
+1. Visitor follow login button/link present on most page views including
+main
+2. Visitor files the quit demand
+3. Visitor sends it to the super-user
+
+### Use Case: Bid on any demand with promised timeline and money
 #### Brief Description
 #### Initial Step-By-Step Description
 
@@ -176,17 +188,41 @@ session cookie support to connect to the system.
 #### Brief Description
 #### Initial Step-By-Step Description
 
-### Use Case: Rate Client
+### Use Case: Client Rate Developer
 #### Brief Description
+
++ Client can rate the developer's work after he has recieved
+
 #### Initial Step-By-Step Description
 
-### Use Case: Send protesting message to the superuser
+1. Client follows login button/link present on most page views including
+main
+2. Client is asked to rate the delivered product and sends the ratings to super-user
+3. Super-user follows accordinly to the clients ratings if the ratings are good the developer
+gets money else the super-user discuss with the client
+
+### Use Case: Send complain message to the super-user
 #### Brief Description
+
++ Visitor can send a complain message to the super-user
+
 #### Initial Step-By-Step Description
+
+1. Visitor follow login button/link present on most page views including
+main
+2. The visitor will write and send the complain to a super-user
+3. Super-user will review the complain and decide on the punishment accordinly to the severity
 
 ### Use Case: View account closing status information
 #### Brief Description
+
++ Visitor can see if their account has been closed
+
 #### Initial Step-By-Step Description
+
+1. Visitor follow login button/link present on most page views including
+main
+2. If the account was submittd to be cancelled it will display account has been terminated
 
 ##3.2 Supplementary Requirements
 
