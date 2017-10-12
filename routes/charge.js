@@ -22,7 +22,7 @@ router.post('/charge', (req, res) =>
     // Charging example:
 
     let amount = 500; // $5.00
-    stripe.customers.create // TODO: Charge in admin panel after acceptace
+    stripe.customers.create // token is only valid for few minutes, must charge
     (
         {
             email: req.body.stripeEmail,
@@ -43,7 +43,28 @@ router.post('/charge', (req, res) =>
     })
     .then((charge) =>
     {
-        res.json(charge);
+        // res.json(charge);// charge result // stop here if only charge
+
+        // Example refund promise:
+        return new Promise((resolve, reject) =>
+        {
+            stripe.refunds.create
+            (
+                {
+                    charge: charge.id,
+                    amount: 500,
+                },
+                (err, refund) =>
+                {
+                    if(err) reject(err);
+                    else resolve(refund);
+                }
+            );
+        });
+    })
+    .then((refund) => // delete this block for charge only
+    {
+        res.json(refund); // refund result
     })
     .catch((err) =>
     {
