@@ -65,10 +65,7 @@ Isatou Sanneh provided sample phase I report.
 Use case diagram follows, use cases will be explained in more detailed in
 later section.
 
-![](./img/cut_1.png)
-![](./img/cut_2.png)
-![](./img/cut_3.png)
-![](./img/cut_4.png)
+![](./img/draw_io_UML.png)
 
 The types of users are Super User, Client, Developer and visitor.
 
