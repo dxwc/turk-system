@@ -211,19 +211,19 @@ A brief summery of the users are:
 
 #### Initial Step-By-Step Description
 
-### Use Case: Hires a bidding developer
+### Use Case: Hires a biding developer
 #### Diagram:
 ![](./img/Hire_dev.png){#id .class width=400px}
 
 #### Brief Descripton
 
-+ Client can choose between one of the bidding developers to hire
++ Client can choose between one of the biding developers to hire
 
 #### Initial Step-By-Step Description
 
 1. Be logged in as client with completed profile
-2. Client will choose one from the list of all the bidding developers
-    1. Half of the bidding price will be transferred from the client to the
+2. Client will choose one from the list of all the biding developers
+    1. Half of the biding price will be transferred from the client to the
       winning developer
 
 + Developer will be able to view the required project deadline and review the 
