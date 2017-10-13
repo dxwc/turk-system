@@ -200,16 +200,32 @@ A brief summery of the users are:
 
 #### Brief Descripton
 
++ Super User will be able to view the credential of applicants
+
 #### Initial Step-By-Step Description
+
+1. Super User will review the list of new applicants and select one of the 
+  applicants
+2. Super User can decide if they want to accept/reject the applicant based on
+  the system policy
+3. Super User must write one line or more about the reason for rejecting the 
+  applicants
 
 ### Use Case: Discuss/Process dev payment
 #### Diagram:
 ![](./img/developers_payment.png){#id .class width=400px}
 
-
 #### Brief Descripton
 
++ Super User can discuss and process developer's payment when client rates
+  delivered system less than 3
+
 #### Initial Step-By-Step Description
+
+1. Super User will review the client's rating and the reason for the rating
+2. Super User will access the system submitted to the client
+3. Super User will decide whether to leave the rating upchanged or change the 
+  rating
 
 ### Use Case: Hires a biding developer
 #### Diagram:
