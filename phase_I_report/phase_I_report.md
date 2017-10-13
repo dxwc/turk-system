@@ -194,6 +194,55 @@ A brief summery of the users are:
 2. Visitor enters the username/userID and logs in to the temporary account.
 3. Visitor views the application status on their login page.
 
+### Use Case: View Credential of applicants
+#### Diagram:
+![](./img/view_credential_of_applicants.png){#id .class width=400px}
+
+#### Brief Descripton
+
+#### Initial Step-By-Step Description
+
+### Use Case: Discuss/Process dev payment
+#### Diagram:
+![](./img/developers_payment.png){#id .class width=400px}
+
+
+#### Brief Descripton
+
+#### Initial Step-By-Step Description
+
+### Use Case: Hires a bidding developer
+#### Diagram:
+![](./img/Hire_dev.png){#id .class width=400px}
+
+#### Brief Descripton
+
++ Client can choose between one of the bidding developers to hire
+
+#### Initial Step-By-Step Description
+
+1. Be logged in as client with completed profile
+2. Client will choose one from the list of all the bidding developers
+    1. Half of the bidding price will be transferred from the client to the
+      winning developer
+
++ Developer will be able to view the required project deadline and review the 
+  terms and conditions of the system
+
+### Use Case: Add money to the total deposit
+#### Diagram:
+![](./img/Add_money.png){#id .class width=400px}
+
+#### Brief Descripton
+
++ Client can add money to the total deposit
+
+#### Initial Step-By-Step Description
+
+1. Be logged in as client with completed profile
+2. Client will be allowed to add more money to the deposit before the project
+  deadline.
+
 ### Use Case: Post system demand
 #### Diagram:
 ![](./img/post_system_demand.png){#id .class width=400px}
@@ -285,6 +334,9 @@ A brief summery of the users are:
    been terminated
 
 ### Use Case: Bid on any demand with promised timeline and money
+#### Diagram:
+![](./img/Bid_on_demand.png){#id .class width=400px}
+
 #### Brief Description
 
 + Developer bids on any demand posted by a client.
@@ -297,6 +349,9 @@ A brief summery of the users are:
 4. Developer bids on chosen demand
 
 ### Use Case: Submit delivered system
+#### Diagram:
+![](./img/submit_delivered.png){#id .class width=400px}
+
 #### Brief Description
 
 + Developer is required to submit delivered system before posted deadlines,
