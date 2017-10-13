@@ -1,6 +1,6 @@
 'use strict';
 
-const router = require('../index.js').router;
+const router = require('../server.js').router;
 
 router.get('*', (req, res) =>
 {

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PUBLISHABLE_KEY=pk_test_6pRNASCoBOKtIshFeQd4XMUh SECRET_KEY=sk_test_BQokikJOvBiI2HlWgH4olfQ2 node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "PUBLISHABLE_KEY=pk_test_6pRNASCoBOKtIshFeQd4XMUh SECRET_KEY=sk_test_BQokikJOvBiI2HlWgH4olfQ2 nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "helmet": "^3.8.1",
     "jquery": "^3.2.1",
     "mongoose": "^4.12.0",
+    "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "stripe": "^5.1.0"

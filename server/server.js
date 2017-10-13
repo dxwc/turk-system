@@ -1,8 +1,9 @@
 "use strict";
 
-const express    = require('express');
+const express = require('express');
+const path = require('path'); // used for path.resolve
 const bodyParser = require('body-parser'); // to read POST data
-const helmet     = require('helmet'); // sets some http header for security
+const helmet = require('helmet'); // sets some http header for security
 
 const app = express(); // getting app obj from express
 
