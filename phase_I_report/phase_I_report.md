@@ -28,8 +28,7 @@ time to complete information - to which developers will bid.
 
 Both clients and developers will have their profile page with relevant
 information which would be public for everyone to access. The profile pages
-will also contain their previous work history through the system including
-ratings on them.
+will include their previous work histories and ratings.
 
 Payment processing is expected to be handled by third party or offline
 through super user, who will also manage any disagreements over ratings or
@@ -38,11 +37,10 @@ payments among other things.
 ##1.3 Definitions, Acronyms, and Abbreviations
 
 
-+ **Software Requirements Specification** : "A document that completely
++ **Software Requirements Specification** : A document that completely
   describes all of the functions of a proposed system and the constraints
-  under which it must operate.  For example, this document."
-+ **Database** : "Collection of all the information monitored by this
-  system"
+  under which it must operate.  For example, this document.
++ **Database** : Collection of all the information monitored by this system
 + **Use Case Diagram** : A visual representation of relationship between
   users and their use-interaction with the system
 + **ES6** : A commonly used version of standard javascript language
@@ -54,19 +52,29 @@ payments among other things.
 
 ##1.4 References
 
-Isatou Sanneh provided sample phase I report.
++ Isatou Sanneh provided sample phase I report.
+    + Appropriate parts from the sample have been copied in this document
+      with minor changes.
++ Original project\_spec.docx :
+    + Appropriate phrases from the docx have been used in this document
 
 ##1.5 Overview
 
-The next chapter, the Overall Description section, of this document will give an overview of the functionality of the product. It describes the informal requirements and is used to establish a context for the technical requirements specification in the next chapter.
-The third chapter, Specific Requirements, of this document describes in technical terms the details of the functionality of the product.
+The next chapter, the 'Overall Description' section will give an overview
+of the functionality of the product. It describes the informal requirements
+and is used to establish a context for the technical requirements
+specification in the next chapter.
+
+The third chapter, 'Specific Requirements' describes in technical terms,
+the details of the functionality of the product.
+
 Both sections of the document describe the same software product.
 
 #2. Overall Description
 
 ##2.1 Use-Case Model Survey
 
-Use case diagram follows, use cases will be explained in more detailed in
+Use case diagram follows, use cases will be explained in more details in
 later section.
 
 ![](./img/draw_io_UML.png)
@@ -75,11 +83,11 @@ The types of users are Super User, Client, Developer and visitor.
 
 A brief summery of the users are:
 
-+ Super User: Controls and handles various changes and exception.
-+ Client: Posts requirements and pays developer
-+ Developer: Work on client's requirement when chosen
-+ Visitor: Non-registered user with limited access to view statistics and
-  public information
++ **Super User**: Controls and handles various changes and exception.
++ **Client**: Posts requirements and pays developer
++ **Developer**: Works on client's requirement when chosen
++ **Visitor**: Non-registered (or temporarily registered) user with limited
+  access to view statistics and public information
 
 ##2.2 Assumptions and Dependencies
 
@@ -125,8 +133,8 @@ session cookie support to connect to the system.
 
 #### Initial Step-By-Step Description
 
-1. Visitor follow register/login button/link present on most page views including
-   main
+1. Visitor follow register/login button/link present on most page views
+   including main
 2. Visitor submit payment information (email, debit/credit card number,
    confirmation number, expiration date, zip code)
 3. Visitor fills out form containing role, username, password etc. fields
@@ -150,14 +158,15 @@ session cookie support to connect to the system.
 1. Visitor follow login button/link present on most page views including
    main
 2. Visitor enters the username/userID and logs in to the temporary account.
-3. Visitor fills the details about her/himself which includes a about me, resume
-  upload, picture upload, interests, business credentials or sample work.
+3. Visitor fills the details about her/himself which includes a about me,
+   resume upload, picture upload, interests, business credentials or sample
+   work.
 4. Visitor updates the entered information.
 
 ### Use Case: View application status
 #### Brief Description
 
-+ Vistor can view their current application status information.
++ Visitor can view their current application status information.
 
 #### Initial Step-By-Step Description
 
@@ -171,14 +180,19 @@ session cookie support to connect to the system.
 ### Use Case: Quit from the system
 #### Brief Description
 
-+ Visitor can choose to quit from the system by filing the quit demand to the super-user
++ Developer/Client can choose to quit from the system by filing the quit
+  demand to the super-user
 
 #### Initial Step-By-Step Description
 
-1. Visitor follow login button/link present on most page views including
-main
-2. Visitor files the quit demand
-3. Visitor sends it to the super-user
+1. User follow login button/link present on most page views including
+   main
+2. User submits a form found/linked-from in their profile page with
+   optional reason-to-quit text
+3. After super user confirms (eg: ensure no pending event, refund any
+   amount in deposit etc.) the quit request, user information will no
+   longer be available in the system and user will not be able to log back
+   into the system without re-registering
 
 ### Use Case: Bid on any demand with promised timeline and money
 #### Brief Description
@@ -191,15 +205,22 @@ main
 ### Use Case: Client Rate Developer
 #### Brief Description
 
-+ Client can rate the developer's work after he has received
++ Client can rate the developer's work after he/she has received
+  developer's completed work
 
 #### Initial Step-By-Step Description
 
 1. Client follows login button/link present on most page views including
-main
-2. Client is asked to rate the delivered product and sends the ratings to super-user
-3. Super-user follows accordingly to the clients ratings if the ratings are good the developer
-gets money else the super-user discuss with the client
+   main
+2. On developers mark on completion of project
+    1. Client is asked to rate the delivered product and sends the ratings
+       to super-user
+3. For rating:
+    + \>= 3 : The developer receives the full remaining amount held by super
+      user
+    + \< 3 : Super user will discuss (offline to the system) with the
+      developer and client to decide how much the developer will recieve.
+      Any remaining amount will be redunded to the client
 
 ### Use Case: Send complain message to the super-user
 #### Brief Description
