@@ -104,6 +104,7 @@ A brief summery of the users are:
 ### Use Case: Search public information such as client or developer histories
 #### Diagram:
 ![](./img/Search_public_info.png)
+
 #### Brief Description
 
 + Visitor views Client or developer histories such as ratings and project
@@ -129,6 +130,7 @@ A brief summery of the users are:
 ### Use Case: Apply to be a client or a developer
 #### Diagram:
 ![](./img/Apply_to_be_client_or_developer.png)
+
 #### Brief Description
 
 + Provide payment deposit (debit/credit card) information: via third
@@ -156,6 +158,7 @@ A brief summery of the users are:
 ### Use Case: Add profile details
 #### Diagram:
 ![](./img/Login_with_temp.png)
+
 #### Brief Description
 
 + Submit details including an about me, resume, profile photo, interests,
@@ -174,6 +177,7 @@ A brief summery of the users are:
 ### Use Case: View application status
 #### Diagram:
 ![](./img/Login_with_temp.png)
+
 #### Brief Description
 
 + Visitor can view their current application status information.
@@ -188,6 +192,7 @@ A brief summery of the users are:
 ### Use Case: Post system demand
 #### Diagram:
 ![](./img/post_system_demand.png)
+
 #### Brief Description
 
 + Cleint posts requirements for developer to bid on
@@ -206,6 +211,7 @@ A brief summery of the users are:
 ### Use Case: Quit from the system
 #### Diagram:
 ![](./img/Quit_system.png)
+
 #### Brief Description
 
 + Developer/Client can choose to quit from the system by filing the quit
@@ -225,6 +231,7 @@ A brief summery of the users are:
 ### Use Case: Client Rate Developer
 #### Diagram:
 ![](./img/rate_system.png)
+
 #### Brief Description
 
 + Client can rate the developer's work after he/she has received
@@ -259,6 +266,7 @@ main
 ### Use Case: View account closing status information
 #### Diagram:
 ![](./img/account_closing.png)
+
 #### Brief Description
 
 + User can see if their account has been closed
@@ -299,6 +307,7 @@ main
 ### Use Case: Rate client
 #### Diagram:
 ![](./img/rate_client.png)
+
 #### Brief Description
 
 + Developer can rate client after finishing transaction from 1 to 5
@@ -314,6 +323,7 @@ main
 ### Use Case: Send protesting message to the super-user
 #### Diagram:
 ![](./img/send_protest.png)
+
 #### Brief Description
 
 + Developer or client sends messages to super user on suspected
@@ -334,6 +344,7 @@ main
 ### Use Case: View account closing status information
 #### Diagram:
 ![](./img/account_closing.png)
+
 #### Brief Description
 
 + Developer can login to system one last time for system closing matters after getting thrown out of the system
