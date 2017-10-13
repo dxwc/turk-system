@@ -109,7 +109,7 @@ session cookie support to connect to the system.
         1. Types and enters search term
         2. User views link to matched User/Project
         3. User follows desired link to view project/user histories and
-           credentials such as resume, interrests, past ratings etc.
+           credentials such as resume, interests, past ratings etc.
     2. Statistics section
         1. View top statistics
         2. Scroll or follow link to view further related information
@@ -157,7 +157,7 @@ session cookie support to connect to the system.
 ### Use Case: View application status
 #### Brief Description
 
-+ Vistor can view their current application status information.
++ Visitor can view their current application status information.
 
 #### Initial Step-By-Step Description
 
@@ -165,8 +165,6 @@ session cookie support to connect to the system.
    main
 2. Visitor enters the username/userID and logs in to the temporary account.
 3. Visitor views the application status on their login page.
-
-[comment]: <> (Developer Use Cases)
 
 ### Use Case: Quit from the system
 #### Brief Description
@@ -179,14 +177,6 @@ session cookie support to connect to the system.
 main
 2. Visitor files the quit demand
 3. Visitor sends it to the super-user
-
-### Use Case: Bid on any demand with promised timeline and money
-#### Brief Description
-#### Initial Step-By-Step Description
-
-### Use Case: Submit delivered system
-#### Brief Description
-#### Initial Step-By-Step Description
 
 ### Use Case: Client Rate Developer
 #### Brief Description
@@ -237,6 +227,59 @@ main
 3. Developer finds demand that matches his desired timeline and money
 4. Developer bids on chosen demand
 
+### Use Case: Submit delivered system
+#### Brief Description
+
++ Developer is required to submit delivered system before posted deadlines, otherwise the front money and a fixed penalty will be transferred to the client.
+  + If developer does not submit on time, he will receive an automatic rating of 1.
+  + If developer delivers system before or on deadline, the remaining half of the price is transferred to the super-user automatically, and the developer receives money depending on the rating he is given by the client
+
+#### Initial Step-By-Step Description
+
+1. Developer follows login button/link present on most page views including
+   main
+2. Developer goes to deliver system page
+3. Developer delivers system
+
+### Use Case: Rate client
+#### Brief Description
+
++ Developer can rate client after finishing transaction from 1 to 5
+  + A paragraph must be provided for a rating less than or equal to 2
+
+#### Initial Step-By-Step Description
+
+1. Developer follows login button/link present on most page views including
+   main
+2. After finishing transaction, developer can go to page where he can rate the client
+3. Developer rates client from 1 to 5 with a paragraph if the rating is 2 or lower
+
+### Use Case: Send protesting message to the super-user
+#### Brief Description
+
++
+
+#### Initial Step-By-Step Description
+
+1.
+
+### Use Case: View account closing status information
+#### Brief Description
+
++ Developer can login to system one last time for system closing matters after getting thrown out of the system
+  + Developer can get thrown out of the system for giving too many irresponsible ratings
+
+#### Initial Step-By-Step Description
+
+1. Developer follows login button/link present on most page views including
+   main
+2. Developer views account for system closing matters
+3. Developer logs out
+4. Account is closed forever
+
+### Use Case:
+#### Brief Description
+#### Initial Step-By-Step Description
 
 ##3.2 Supplementary Requirements
 
