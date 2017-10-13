@@ -175,6 +175,23 @@ session cookie support to connect to the system.
 2. Visitor enters the username/userID and logs in to the temporary account.
 3. Visitor views the application status on their login page.
 
+### Use Case: Post system demand
+
+#### Brief Description
+
++ Cleint posts requirements for developer to bid
+
+#### Initial Step-By-Step Description
+
+1. Be logged in as client with completed profile
+2. Submit form with
+    1. A paragraph describing the system spec 
+    2. Bidding timeline (deadline for the project)
+
++ Devloper will now be able to rate or bid on the project
++ If no devloper bids on the project by deadline, client will be charged
+  $10
+
 ### Use Case: Quit from the system
 #### Brief Description
 
