@@ -257,6 +257,8 @@ main
 3. Super-user will review the complain and decide on the punishment accordingly to the severity
 
 ### Use Case: View account closing status information
+#### Diagram:
+![](./img/account_closing.png)
 #### Brief Description
 
 + User can see if their account has been closed
@@ -295,6 +297,8 @@ main
 3. Developer delivers system
 
 ### Use Case: Rate client
+#### Diagram:
+![](./img/rate_client.png)
 #### Brief Description
 
 + Developer can rate client after finishing transaction from 1 to 5
@@ -308,6 +312,8 @@ main
 3. Developer rates client from 1 to 5 with a paragraph if the rating is 2 or lower
 
 ### Use Case: Send protesting message to the super-user
+#### Diagram:
+![](./img/send_protest.png)
 #### Brief Description
 
 + Developer or client sends messages to super user on suspected
@@ -326,6 +332,8 @@ main
   warning, which will bring back regular access to the system
 
 ### Use Case: View account closing status information
+#### Diagram:
+![](./img/account_closing.png)
 #### Brief Description
 
 + Developer can login to system one last time for system closing matters after getting thrown out of the system
