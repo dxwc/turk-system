@@ -53,10 +53,10 @@ payments among other things.
 ##1.4 References
 
 + Isatou Sanneh provided sample phase I report.
-    + Appropriate parts from the sample have been copied in this document
-      with minor changes.
+    + Parts from the sample have been copied in this document with minor
+      changes.
 + Original project\_spec.docx :
-    + Appropriate phrases from the docx have been used in this document
+    + Phrases from the docx have been used in this document
 
 ##1.5 Overview
 
@@ -96,8 +96,9 @@ A brief summery of the users are:
 + All actors must use compatible computer system with standard (unmodified)
   GUI web browser such as Firefox, Google Chrome etc. with HTML5, ES6 and
   session cookie support to connect to the system.
-+ For any monetary transactions between client and developer will be charged
-  5%, which will be transferred to super user account
++ For any monetary transactions between client and developer, there will be
+  a 5% charge for the system which will be transferred to super user
+  account
 
 #3. Specific Requirements
 
@@ -105,6 +106,7 @@ A brief summery of the users are:
 
 ### Use Case: Search public information such as client or developer histories
 #### Diagram:
+
 ![](./img/Search_public_info.png){#id .class width=300px}
 ![](./img/View_grand_system_stat.png){#id .class width=300px}
 
@@ -359,17 +361,16 @@ A brief summery of the users are:
 
 #### Brief Description
 
-+ Developer can login to system one last time for system closing matters
++ User can login to system one last time for system closing matters
   after getting thrown out of the system
-  + Developer can get thrown out of the system for giving too many
+  + User can get thrown out of the system for giving too many
     irresponsible ratings
 
 #### Initial Step-By-Step Description
 
-1. Developer follows login button/link present on most page views including
-   main
-2. Developer views account for system closing matters
-3. Developer logs out
+1. User follows logs in
+2. User views account for system closing matters
+3. user logs out
 4. Account is closed forever
 
 ##3.2 Supplementary Requirements
