@@ -91,9 +91,11 @@ A brief summery of the users are:
 
 ##2.2 Assumptions and Dependencies
 
-All actors must use compatible computer system with standard (unmodified)
-GUI web browser such as Firefox, Google Chrome etc. with HTML5, ES6 and
-session cookie support to connect to the system.
++ All actors must use compatible computer system with standard (unmodified)
+  GUI web browser such as Firefox, Google Chrome etc. with HTML5, ES6 and
+  session cookie support to connect to the system.
++ For any monetary transactions between client and developer will be charged
+  5%, which will be transferred to super user account
 
 #3. Specific Requirements
 
@@ -176,10 +178,9 @@ session cookie support to connect to the system.
 3. Visitor views the application status on their login page.
 
 ### Use Case: Post system demand
-
 #### Brief Description
 
-+ Cleint posts requirements for developer to bid
++ Cleint posts requirements for developer to bid on
 
 #### Initial Step-By-Step Description
 
@@ -244,13 +245,14 @@ main
 ### Use Case: View account closing status information
 #### Brief Description
 
-+ Visitor can see if their account has been closed
++ User can see if their account has been closed
 
 #### Initial Step-By-Step Description
 
-1. Visitor follow login button/link present on most page views including
-main
-2. If the account was submitted to be canceled it will display account has been terminated
+1. User follow login button/link present on most page views including
+   main
+2. If the account was submitted to be canceled it will display account has
+   been terminated
 
 ### Use Case: Bid on any demand with promised timeline and money
 #### Brief Description
@@ -259,8 +261,7 @@ main
 
 #### Initial Step-By-Step Description
 
-1. Developer follows login button/link present on most page views including
-   main
+1. Be a logged in developer
 2. Developer searches list of demands
 3. Developer finds demand that matches his desired timeline and money
 4. Developer bids on chosen demand
@@ -295,11 +296,20 @@ main
 ### Use Case: Send protesting message to the super-user
 #### Brief Description
 
-+
++ Developer or client sends messages to super user on suspected
+  irresponsible evaluations
 
 #### Initial Step-By-Step Description
 
-1.
+1. Be a logged in developer or client
+2. View warning and deadline to account closing for too high or too low
+   ratings on more than 8 projects
+3. Find form / link to form to submit protesting request/information on the
+   same page as the warning
+4. Fill and submit protesting message
+
++ Super user will check protesting message and may decide to remove
+  warning, which will bring back regular access to the system
 
 ### Use Case: View account closing status information
 #### Brief Description
@@ -315,20 +325,33 @@ main
 3. Developer logs out
 4. Account is closed forever
 
-### Use Case:
-#### Brief Description
-#### Initial Step-By-Step Description
-
 ##3.2 Supplementary Requirements
 
-In order to ensure that the system can be long-term, safe, stable, reliable and efficient operation, the Turk system should meet the requirements below.
+In order to ensure that the system can be long-term, safe, stable, reliable
+and efficient operation, the Turk system should meet the requirements
+below.
 
-1. The accuracy and timeliness of the system processing
-The accurate and timely treatment is necessary to the performance of the system. The system may be subject to current and future workload so this needs should be taken into consideration in the system design and development process. In addition the system capacity and response time needs to meet the demand of user information and request processing.
-2. Open system and system scalability
-The Turk system in the development process, should fully consider the future scalability. The system needs to adjust and expand functions to provide adequate usage. In order to get this, not only should the system be an open system but it also needs to meet certain specifications. Through the software of repair, replace the complete system upgrade and update.
-3. Easy to use and easy to maintain system
-Turk system is to directly face the user which might not be very familiar with computer. This requires the system to be able to provide friendly user interface and an easy to use interface. To achieve this, the system should try to use different languages for different regions of people. A use problem may arise, so need to have enough help online, and shorten the process of system user familiar.
+1. The accuracy and timeliness of the system processing The accurate and
+   timely treatment is necessary to the performance of the system. The
+   system may be subject to current and future workload so this needs
+   should be taken into consideration in the system design and development
+   process. In addition the system capacity and response time needs to meet
+   the demand of user information and request processing.
+
+2. Open system and system scalability The Turk system in the development
+   process, should fully consider the future scalability. The system needs
+   to adjust and expand functions to provide adequate usage. In order to
+   get this, not only should the system be an open system but it also needs
+   to meet certain specifications. Through the software of repair, replace
+   the complete system upgrade and update.
+
+3. Easy to use and easy to maintain system Turk system is to directly face
+   the user which might not be very familiar with computer. This requires
+   the system to be able to provide friendly user interface and an easy to
+   use interface. To achieve this, the system should try to use different
+   languages for different regions of people. A use problem may arise, so
+   need to have enough help online, and shorten the process of system user
+   familiar.
 
 #4. Supporting Information
 
