@@ -105,7 +105,8 @@ A brief summery of the users are:
 
 ### Use Case: Search public information such as client or developer histories
 #### Diagram:
-![](./img/Search_public_info.png)
+![](./img/Search_public_info.png){#id .class width=300px}
+![](./img/View_grand_system_stat.png){#id .class width=300px}
 
 #### Brief Description
 
@@ -131,7 +132,7 @@ A brief summery of the users are:
 
 ### Use Case: Apply to be a client or a developer
 #### Diagram:
-![](./img/Apply_to_be_client_or_developer.png)
+![](./img/Apply_to_be_client_or_developer.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -159,7 +160,7 @@ A brief summery of the users are:
 
 ### Use Case: Add profile details
 #### Diagram:
-![](./img/Login_with_temp.png)
+![](./img/Login_with_temp.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -178,7 +179,7 @@ A brief summery of the users are:
 
 ### Use Case: View application status
 #### Diagram:
-![](./img/Login_with_temp.png)
+![](./img/Login_with_temp.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -193,7 +194,7 @@ A brief summery of the users are:
 
 ### Use Case: Post system demand
 #### Diagram:
-![](./img/post_system_demand.png)
+![](./img/post_system_demand.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -212,7 +213,7 @@ A brief summery of the users are:
 
 ### Use Case: Quit from the system
 #### Diagram:
-![](./img/Quit_system.png)
+![](./img/Quit_system.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -232,7 +233,7 @@ A brief summery of the users are:
 
 ### Use Case: Client Rate Developer
 #### Diagram:
-![](./img/rate_system.png)
+![](./img/rate_system.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -268,7 +269,7 @@ A brief summery of the users are:
 
 ### Use Case: View account closing status information
 #### Diagram:
-![](./img/account_closing.png)
+![](./img/account_closing.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -315,7 +316,7 @@ A brief summery of the users are:
 
 ### Use Case: Rate client
 #### Diagram:
-![](./img/rate_client.png)
+![](./img/rate_client.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -333,7 +334,7 @@ A brief summery of the users are:
 
 ### Use Case: Send protesting message to the super-user
 #### Diagram:
-![](./img/send_protest.png)
+![](./img/send_protest.png){#id .class width=400px}
 
 #### Brief Description
 
@@ -354,7 +355,7 @@ A brief summery of the users are:
 
 ### Use Case: View account closing status information
 #### Diagram:
-![](./img/account_closing.png)
+![](./img/account_closing.png){#id .class width=400px}
 
 #### Brief Description
 
