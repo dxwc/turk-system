@@ -239,7 +239,7 @@ A brief summery of the users are:
 
 #### Initial Step-By-Step Description
 
-1. Be logged in as client with completed profile
+1. Be logged in as client with a completed profile
 2. Client will be allowed to add more money to the deposit before the project
   deadline.
 
@@ -275,10 +275,10 @@ A brief summery of the users are:
 
 1. User follow login button/link present on most page views including
    main
-2. User submits a form found/linked-from in their profile page with
+2. User submits a form found/linked in their profile page with an
    optional reason-to-quit text
-3. After super user confirms (eg: ensure no pending event, refund any
-   amount in deposit etc.) the quit request, user information will no
+   3. Super user confirms the quit request by first ensuring no pending event, refund any
+   amount in deposit or any other troubles are present, the user information will no
    longer be available in the system and user will not be able to log back
    into the system without re-registering
 
@@ -295,8 +295,8 @@ A brief summery of the users are:
 
 1. Client follows login button/link present on most page views including
    main
-2. On developers mark on completion of project
-    1. Client is asked to rate the delivered product and sends the ratings
+2. After developers marks on completion of the project
+    1. Client is asked to rate the delivered product and send the ratings
        to super-user
 3. For rating:
     + \>= 3 : The developer receives the full remaining amount held by super
@@ -343,7 +343,7 @@ A brief summery of the users are:
 
 #### Initial Step-By-Step Description
 
-1. Be a logged in developer
+1. Be logged in as a developer
 2. Developer searches list of demands
 3. Developer finds demand that matches his desired timeline and money
 4. Developer bids on chosen demand
@@ -386,7 +386,7 @@ A brief summery of the users are:
    main
 2. After finishing transaction, developer can go to page where he can rate
    the client
-3. Developer rates client from 1 to 5 with a paragraph if the rating is 2
+3. Developer rates client from 1 to 5, a paragraph is needed if the rating is 2
    or lower
 
 ### Use Case: Send protesting message to the super-user
@@ -400,7 +400,7 @@ A brief summery of the users are:
 
 #### Initial Step-By-Step Description
 
-1. Be a logged in developer or client
+1. Be logged in as a developer or client
 2. View warning and deadline to account closing for too high or too low
    ratings on more than 8 projects
 3. Find form / link to form to submit protesting request/information on the
@@ -425,7 +425,7 @@ A brief summery of the users are:
 
 1. User follows logs in
 2. User views account for system closing matters
-3. user logs out
+3. Once User logs out
 4. Account is closed forever
 
 ##3.2 Supplementary Requirements
