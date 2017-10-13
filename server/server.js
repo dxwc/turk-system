@@ -1,61 +1,23 @@
-"use strict";
-
 const express = require('express');
-const path = require('path'); // used for path.resolve
-const bodyParser = require('body-parser'); // to read POST data
-const helmet = require('helmet'); // sets some http header for security
+const path = require('path');
 
-const app = express(); // getting app obj from express
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
-// Have to be exported before app.use(...)
-module.exports.urlencodedParser = urlencodedParser;
-module.exports.router = express.Router();
-
-
-// ------------ more middlewares --------->
-
-// A debugging middleware to log request info
-app.use((req, res, next) =>
-{
-    try
-    {
-        console.log(
-                '\nURL', req.url, // including any get parameters
-                '\n\tPATH:', req.path, // only the path
-                '\n\tHOST:', req.hostname,
-                '\n\tIP:', req.ip,
-                '\n\tPROXIES:', req.ips,
-                '\n\tTIME:', new Date().getTime(), '|', Date()
-                );
-    }
-    catch(e)
-    {
-        console.log('Error', e);
-    }
-
-    next();
+// Answer API requests.
+app.get('/api', function (req, res) {
+  res.set('Content-Type', 'application/json');
+  res.send('{"message":"Hello from the custom server!"}');
 });
 
-app.use(urlencodedParser);
-app.use(helmet());
-app.use(express.static('public')); // to serve static files
-
-// Routers
-app.use('/',       require('./routes/home'));
-app.use('/charge', require('./routes/charge'));
-app.use('*',       require('./routes/404'));
-
-// <---------- Middlewares ends ------------
-
-
-// starting server
-const server =
-app.listen(process.env.PORT || 9001, (err) =>
-{
-    if(err) console.log('Error', err);
-    else    console.log('Started listening', server.address());
+// All remaining requests return the React app, so it can handle routing.
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 });
 
-module.exports.server = server;
+app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
+});
