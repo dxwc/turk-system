@@ -77,7 +77,9 @@ Both sections of the document describe the same software product.
 Use case diagram follows, use cases will be explained in more details in
 later section.
 
-![](./img/draw_io_UML.png)
+![](./img/cut_1.png)
+![](./img/cut_2.png)
+![](./img/cut_3.png)
 
 The types of users are Super User, Client, Developer and visitor.
 
@@ -195,7 +197,7 @@ A brief summery of the users are:
 
 #### Brief Description
 
-+ Cleint posts requirements for developer to bid on
++ Client posts requirements for developer to bid on
 
 #### Initial Step-By-Step Description
 
@@ -204,8 +206,8 @@ A brief summery of the users are:
     1. A paragraph describing the system spec 
     2. Bidding timeline (deadline for the project)
 
-+ Devloper will now be able to rate or bid on the project
-+ If no devloper bids on the project by deadline, client will be charged
++ Developer will now be able to rate or bid on the project
++ If no developer bids on the project by deadline, client will be charged
   $10
 
 ### Use Case: Quit from the system
@@ -259,9 +261,10 @@ A brief summery of the users are:
 #### Initial Step-By-Step Description
 
 1. Visitor follow login button/link present on most page views including
-main
+   main
 2. The visitor will write and send the complain to a super-user
-3. Super-user will review the complain and decide on the punishment accordingly to the severity
+3. Super-user will review the complain and decide on the punishment
+   accordingly to the severity
 
 ### Use Case: View account closing status information
 #### Diagram:
@@ -293,9 +296,15 @@ main
 ### Use Case: Submit delivered system
 #### Brief Description
 
-+ Developer is required to submit delivered system before posted deadlines, otherwise the front money and a fixed penalty will be transferred to the client.
-  + If developer does not submit on time, he will receive an automatic rating of 1.
-  + If developer delivers system before or on deadline, the remaining half of the price is transferred to the super-user automatically, and the developer receives money depending on the rating he is given by the client
++ Developer is required to submit delivered system before posted deadlines,
+  otherwise the front money and a fixed penalty will be transferred to the
+  client.
+  + If developer does not submit on time, he will receive an automatic
+    rating of 1.
+  + If developer delivers system before or on deadline, the remaining half
+    of the price is transferred to the super-user automatically, and the
+    developer receives money depending on the rating he is given by the
+    client
 
 #### Initial Step-By-Step Description
 
@@ -317,8 +326,10 @@ main
 
 1. Developer follows login button/link present on most page views including
    main
-2. After finishing transaction, developer can go to page where he can rate the client
-3. Developer rates client from 1 to 5 with a paragraph if the rating is 2 or lower
+2. After finishing transaction, developer can go to page where he can rate
+   the client
+3. Developer rates client from 1 to 5 with a paragraph if the rating is 2
+   or lower
 
 ### Use Case: Send protesting message to the super-user
 #### Diagram:
@@ -347,8 +358,10 @@ main
 
 #### Brief Description
 
-+ Developer can login to system one last time for system closing matters after getting thrown out of the system
-  + Developer can get thrown out of the system for giving too many irresponsible ratings
++ Developer can login to system one last time for system closing matters
+  after getting thrown out of the system
+  + Developer can get thrown out of the system for giving too many
+    irresponsible ratings
 
 #### Initial Step-By-Step Description
 
@@ -385,9 +398,3 @@ below.
    languages for different regions of people. A use problem may arise, so
    need to have enough help online, and shorten the process of system user
    familiar.
-
-#4. Supporting Information
-
-This Software Requirements Specification includes:
-
-• Table of Contents
