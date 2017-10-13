@@ -102,6 +102,8 @@ A brief summery of the users are:
 ##3.1 Use-Case Reports
 
 ### Use Case: Search public information such as client or developer histories
+#### Diagram:
+![](./img/Search_public_info.png)
 #### Brief Description
 
 + Visitor views Client or developer histories such as ratings and project
@@ -125,6 +127,8 @@ A brief summery of the users are:
         2. Scroll or follow link to view further related information
 
 ### Use Case: Apply to be a client or a developer
+#### Diagram:
+![](./img/Apply_to_be_client_or_developer.png)
 #### Brief Description
 
 + Provide payment deposit (debit/credit card) information: via third
@@ -150,6 +154,8 @@ A brief summery of the users are:
 
 
 ### Use Case: Add profile details
+#### Diagram:
+![](./img/Login_with_temp.png)
 #### Brief Description
 
 + Submit details including an about me, resume, profile photo, interests,
@@ -166,6 +172,8 @@ A brief summery of the users are:
 4. Visitor updates the entered information.
 
 ### Use Case: View application status
+#### Diagram:
+![](./img/Login_with_temp.png)
 #### Brief Description
 
 + Visitor can view their current application status information.
@@ -178,6 +186,8 @@ A brief summery of the users are:
 3. Visitor views the application status on their login page.
 
 ### Use Case: Post system demand
+#### Diagram:
+![](./img/post_system_demand.png)
 #### Brief Description
 
 + Cleint posts requirements for developer to bid on
@@ -194,6 +204,8 @@ A brief summery of the users are:
   $10
 
 ### Use Case: Quit from the system
+#### Diagram:
+![](./img/Quit_system.png)
 #### Brief Description
 
 + Developer/Client can choose to quit from the system by filing the quit
@@ -211,6 +223,8 @@ A brief summery of the users are:
    into the system without re-registering
 
 ### Use Case: Client Rate Developer
+#### Diagram:
+![](./img/rate_system.png)
 #### Brief Description
 
 + Client can rate the developer's work after he/she has received
