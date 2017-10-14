@@ -41,6 +41,9 @@ export default class NavBar extends Component {
               <li className={this.state.aboutActive}>
                 <Link to='/about'>About</Link>
               </li>
+              <li>
+                <Link to='/stripe_example'>stripe_example</Link>
+              </li>
             </ul>
           </div>
         </nav>
