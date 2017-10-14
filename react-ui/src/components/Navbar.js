@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import $ from 'jquery';
+import { Link } from 'react-router-dom'
 
+// The Navbar creates links that can be used to navigate between routes.
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
@@ -32,13 +33,13 @@ export default class NavBar extends Component {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper container">
-            <a href="#" className="brand-logo">Flying Lanterns</a>
+            <a href="#" className="brand-logo">Turk System</a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li className={this.state.homeActive}>
-                <a href="" onClick={this.homeClicked}>Home</a>
+                <Link to='/'>Home</Link>
               </li>
               <li className={this.state.aboutActive}>
-                <a href="" onClick={this.aboutClicked}>About</a>
+                <Link to='/about'>About</Link>
               </li>
             </ul>
           </div>
