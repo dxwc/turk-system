@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const express = require('express');
 const path = require('path'); // needed to use path.resolve
@@ -7,6 +7,10 @@ const helmet = require('helmet'); // sets some http header for security
 
 const app = express(); // getting app obj from express
 const PORT = process.env.PORT || 5000;
+
+// Router modules
+const api = require('./routes/api');
+const charge = require('./routes/charge');
 
 // ------------ more middlewares --------->
 
@@ -36,19 +40,23 @@ app.use(helmet());
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
 // Answer API requests.
-app.get('/api', function (req, res) {
-  res.set('Content-Type', 'application/json');
-  res.send('{"message":"Hello from the custom server!"}');
-});
+// app.get('/api', function (req, res) {
+//   res.set('Content-Type', 'application/json');
+//   res.send('{"message":"Hello from the custom server!"}');
+// });
+
+// Load router modules
+app.use('/api', api);
+app.use('/charge', charge);
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 });
 
-app.listen(PORT, function () {
-  console.log(`Listening on port ${PORT}`);
-});
+// app.listen(PORT, function () {
+//   console.log(`Listening on port ${PORT}`);
+// });
 
 // starting server
 const server = app.listen(PORT, (err) => {

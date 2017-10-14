@@ -1,14 +1,13 @@
-'use strict';
-
 // Stripe example:
 
 const keyPublishable = process.env.PUBLISHABLE_KEY;
 const keySecret      = process.env.SECRET_KEY;
 
-const router = require('../index.js').router;
+const express = require('express');
+const router = express.Router();
 const stripe = require("stripe")(process.env.SECRET_KEY);
 
-router.post('/charge', (req, res) =>
+router.post('/', (req, res) =>
 {
     // res.json(req.body);
 
