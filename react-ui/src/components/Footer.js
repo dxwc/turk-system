@@ -10,7 +10,7 @@ export default class Footer extends Component {
           <div className="row">
             <div className="col l6 s12">
               <h5 className="white-text">About this page</h5>
-              <p className="grey-text text-lighten-4">Made with React and Materialize by.</p>
+              <p className="grey-text text-lighten-4">Made with React, Materialize, Express</p>
             </div>
             <div className="col l4 offset-l2 s12">
               <h5 className="white-text">Around the Web</h5>
