@@ -28,6 +28,7 @@ export default class NavBar extends Component {
     });
   }
 
+  // React Router's <Link> is used instead of <a> to prevent whole page reload
   render() {
     return (
       <div className="navbar-fixed">

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Main from './components/Main';
 import Footer from './components/Footer';
 
+// This component is rendered by our <BrowserRouter>
 const App = () => (
   <div>
     <Navbar />

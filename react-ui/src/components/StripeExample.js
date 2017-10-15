@@ -5,8 +5,6 @@ import Checkout from './Checkout';
 
 export default class StripeExample extends Component {
   render() {
-    // <!-- Generates a token sends server, doesn't charge -->
-    // <!-- Use example card number to test: https://stripe.com/docs/testing -->
     return (
       <div>
         <Checkout

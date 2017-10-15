@@ -1,3 +1,4 @@
+// These URLs are used to create whitelist for CORS
 const FRONTEND_DEV_URLS = [ 'http://localhost:3000' ];
 
 const FRONTEND_PROD_URLS = [

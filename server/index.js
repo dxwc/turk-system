@@ -1,8 +1,8 @@
-// Entry point and bootstraps express application
+// This file is entry point and bootstraps express application
 
 const express = require('express');
 const path = require('path');
-
+// Port
 const SERVER_CONFIGS = require('./constants/server');
 
 const configureServer = require('./server');
