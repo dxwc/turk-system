@@ -1,6 +1,7 @@
 https://turk-system.herokuapp.com/
 
 To test website:
+cd application
 npm install
 cd react-ui
 npm install
