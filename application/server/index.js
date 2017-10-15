@@ -2,6 +2,7 @@
 
 const express = require('express');
 const path = require('path');
+const passport = require('passport');
 // Port
 const SERVER_CONFIGS = require('./constants/server');
 
@@ -10,8 +11,8 @@ const configureRoutes = require('./routes');
 
 const app = express();
 
-configureServer(app);
-configureRoutes(app);
+configureServer(app, passport);
+configureRoutes(app, passport);
 
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
