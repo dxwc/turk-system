@@ -13,6 +13,4 @@ const testApi = app => {
   return app;
 }
 
-
-
 module.exports = testApi

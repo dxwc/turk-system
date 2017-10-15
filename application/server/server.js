@@ -47,6 +47,8 @@ const configureServer = (app, passport) => {
   app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded
   app.use(bodyParser.json());
 
+  app.set('view engine', 'ejs'); // set up ejs for templating
+
   // required for passport
   app.use(session({ secret: 'kjfdk1231lkdfsa0DGdkCa23k2' })); // session secret
   app.use(passport.initialize());
