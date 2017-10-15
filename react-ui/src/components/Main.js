@@ -6,6 +6,7 @@ import About from './About';
 import PageNotFound from './PageNotFound';
 import StripeExample from './StripeExample';
 
+// Render route if there is match
 const Main = () => (
   <main>
     <Switch>

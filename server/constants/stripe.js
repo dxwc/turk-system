@@ -1,3 +1,5 @@
+// Stripe secret api key
+
 const configureStripe = require('stripe');
 
 const STRIPE_SECRET_KEY = process.env.NODE_ENV === 'production'

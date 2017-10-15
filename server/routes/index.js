@@ -6,7 +6,7 @@ const configureRoutes = app => {
   testApi(app);
 };
 
-console.log("#####");
-console.log(configureRoutes.toString());
+// console.log("#####");
+// console.log(configureRoutes.toString());
 
 module.exports = configureRoutes;
