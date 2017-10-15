@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PUBLISHABLE_KEY=pk_test_6pRNASCoBOKtIshFeQd4XMUh SECRET_KEY=sk_test_BQokikJOvBiI2HlWgH4olfQ2 nodemon server/server.js",
+    "start": "PUBLISHABLE_KEY=pk_test_6pRNASCoBOKtIshFeQd4XMUh SECRET_KEY=sk_test_BQokikJOvBiI2HlWgH4olfQ2 nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
   },
@@ -21,6 +21,7 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "express-session": "^1.15.6",
     "helmet": "^3.8.1",
