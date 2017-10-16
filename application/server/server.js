@@ -50,7 +50,12 @@ const configureServer = (app, passport) => {
   app.set('view engine', 'ejs'); // set up ejs for templating
 
   // required for passport
-  app.use(session({ secret: 'kjfdk1231lkdfsa0DGdkCa23k2' })); // session secret
+  app.use(session({
+      secret: 'kjfdk1231lkdfsa0DGdkCa23k2',
+      resave: false,
+      saveUninitialized: false
+  }));
+  // app.use(session({ secret: 'kjfdk1231lkdfsa0DGdkCa23k2' })); // session secret
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
