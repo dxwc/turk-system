@@ -1,3 +1,5 @@
-module.exports = {
-  'url': 'mongodb://localhost/turk-system' // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot for production
-};
+const DB_URL = process.env.NODE_ENV === 'production'
+  ? { 'url': 'mongodb://testuser:dfk2432kAcSe1k12NVNWO3@ds121495.mlab.com:21495/turk-system' }
+  : { 'url': 'mongodb://localhost/turk-system' };
+
+module.exports = DB_URL;
