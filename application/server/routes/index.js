@@ -5,6 +5,8 @@ const login = require('./login');
 const signup = require('./signup');
 const logout = require('./logout');
 const profile = require('./profile');
+const pageNotFound = require('./404');
+const charge = require('./charge');
 
 const stripeExample = require('./stripeExample');
 const paymentApi = require('./payment');
@@ -26,10 +28,12 @@ const configureRoutes = (app, passport) => {
   signup(app, passport);
   logout(app);
   profile(app, isLoggedIn);
+  charge(app);
 
   stripeExample(app);
   paymentApi(app);
   testApi(app);
+  pageNotFound(app); // This should go last
 
 };
 
