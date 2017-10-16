@@ -7,6 +7,8 @@ const login = (app, passport) => {
 
   // process the login form
     // app.post('/login', do all our passport stuff here);
+
+  return app;
 };
 
 module.exports = login
