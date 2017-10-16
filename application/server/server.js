@@ -20,7 +20,7 @@ const corsOptions = {
 
 const configureServer = (app, passport) => {
   mongoose.connect(configDB.url); // connect to our database
-  // require('./config/passport')(passport); // pass passport for configuration
+  require('./config/passport')(passport); // pass passport for configuration
 
   // A debugging middleware to log request info
   // app.use((req, res, next) => {
@@ -55,7 +55,7 @@ const configureServer = (app, passport) => {
       resave: false,
       saveUninitialized: false
   }));
-  // app.use(session({ secret: 'kjfdk1231lkdfsa0DGdkCa23k2' })); // session secret
+
   app.use(passport.initialize());
   app.use(passport.session()); // persistent login sessions
   app.use(flash()); // use connect-flash for flash messages stored in session
