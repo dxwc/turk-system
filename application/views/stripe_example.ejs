@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
 </head>
 <body>
-    <!-- Generates a token sends server, doesn't charge -->
-    <!-- Use example card number to test: https://stripe.com/docs/testing -->
-    <form action="/charge" method="post">
-    <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-        data-amount="500"
-        data-name="Turk System"
-        data-description="Pay deposit"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        data-locale="auto"
-        data-zip-code="true">
-    </script>
-    <br><br>
-    </form>
-    $5 will be charged and immediately be refunded, result will show in JSON.
-    Use example card number number 4242424242424242 to test.
+  <!-- Generates a token sends server, doesn't charge -->
+  <!-- Use example card number to test: https://stripe.com/docs/testing -->
+  <form action="/charge" method="post">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-amount="500"
+    data-name="Turk System"
+    data-description="Pay deposit"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-zip-code="true">
+  </script>
+  <br><br>
+  </form>
+  $5 will be charged and immediately be refunded, result will show in JSON.
+  Use example card number number 4242424242424242 to test.
 </body>
