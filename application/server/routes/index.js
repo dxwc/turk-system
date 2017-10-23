@@ -1,5 +1,6 @@
 // Routes index
 
+const welcome = require('./welcome');
 const home = require('./home');
 const login = require('./login');
 const signup = require('./signup');
@@ -23,7 +24,8 @@ const isLoggedIn = (req, res, next) => {
 }
 
 const configureRoutes = (app, passport) => {
-  home(app);
+  welcome(app);
+  home(app, isLoggedIn);
   login(app, passport);
   signup(app, passport);
   logout(app);

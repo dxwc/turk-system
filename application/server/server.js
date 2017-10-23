@@ -50,7 +50,7 @@ const configureServer = (app, passport) => {
   app.use(bodyParser.json());
 
   app.set('view engine', 'ejs'); // set up ejs for templating
-  app.set('views', path.resolve(__dirname, '../frontend/views')); // change default view directory
+  app.set('views', path.resolve(__dirname, '../frontend/views/pages')); // change default view directory
 
   // Serve static files with express static middleware function
   app.use('/controllers', express.static(path.resolve(__dirname, '../frontend/controllers')));

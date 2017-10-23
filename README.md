@@ -1,6 +1,6 @@
 https://turk-system.herokuapp.com/
 
-Test Website:
+Test Locally:
 ================
 1. Go to application directory and run 'npm install'
 2. Then run 'npm start'
