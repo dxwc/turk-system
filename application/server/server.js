@@ -7,6 +7,8 @@ const flash = require('connect-flash');
 const morgan = require('morgan'); // HTTP request logger middleware for node.js
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path');
+const express = require('express');
 
 const CORS_WHITELIST = require('./constants/frontend');
 const configDB = require('./config/database');
@@ -48,6 +50,10 @@ const configureServer = (app, passport) => {
   app.use(bodyParser.json());
 
   app.set('view engine', 'ejs'); // set up ejs for templating
+  app.set('views', path.resolve(__dirname, '../frontend/views')); // change default view directory
+
+  // Serve static files with express static middleware function
+  app.use('/controllers', express.static(path.resolve(__dirname, '../frontend/controllers')));
 
   // required for passport
   app.use(session({

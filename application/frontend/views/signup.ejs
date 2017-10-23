@@ -37,10 +37,15 @@
         </div>
         <div class="form-group">
           <label>User Type</label>
-          <select name="usertype"> <!--Supplement an id here instead of using 'name'-->
+          <select name="usertype" id="select-usertype"> <!--Supplement an id here instead of using 'name'-->
             <option value="client">Client</option>
             <option value="developer">Developer</option>
+            <option value="superuser">Superuser</option>
           </select>
+        </div>
+        <div class="form-group" id="superuser-key-input" style="display: none;">
+          <label>Superuser key</label>
+          <input type="password" class="form-control" name="superuserkey">
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Signup</button>
       </form>
@@ -53,5 +58,7 @@
     </div>
 
   </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/controllers/signup.js"></script>
 </body>
 </html>
