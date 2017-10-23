@@ -57,6 +57,11 @@ module.exports = function(passport) {
           if (req.body.password !== req.body.password2) {
             return done(null, false, req.flash('signupMessage', 'Passwords do not match.'));
           }
+          // Check if usertype is superuser and then check is key is correct
+          if (req.body.usertype === 'superuser' && req.body.superuserkey !== 'admin123') {
+            return done(null, false, req.flash('signupMessage', 'Superuer key is not correct.'));
+          }
+
           // if there is no user with that email
           // create the user
           var newUser = new User();
