@@ -9,6 +9,7 @@ const profile = require('./profile');
 const pageNotFound = require('./404');
 const charge = require('./charge');
 const userApps = require('./userApps');
+const tempUsers = require('./tempUsers');
 
 const stripeExample = require('./stripeExample');
 const paymentApi = require('./payment');
@@ -43,7 +44,8 @@ const configureRoutes = (app, passport) => {
   logout(app);
   profile(app, isLoggedIn);
   charge(app);
-  userApps(app, isSuperuser);
+  userApps(app, isLoggedIn, isSuperuser);
+  tempUsers(app, isLoggedIn, isSuperuser);
 
   stripeExample(app);
   paymentApi(app);
