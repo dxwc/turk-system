@@ -7,5 +7,128 @@
 </head>
 
 <body>
-    Hello World
+
+    <div id='authentication'>
+        <div id='login' style='display: none'>
+            <input
+                id='l_user_name'
+                type='text'
+                placeholder='User name'
+                required='required'><br>
+            <input
+                id='l_password'
+                type='password'
+                placeholder='Password'
+                required='required'><br>
+            <div
+                id='l_button_information'
+                style='display: inline'></div><br>
+            <button
+                type='button'
+                style='display: inline'>Login</button><br><br>
+        </div>
+
+        <div id='sign_up' style='display: none'>
+            <input
+                id='s_user_name'
+                type='text'
+                placeholder='User name'
+                required='required'>
+            <div
+                id='s_user_name_info'
+                style='display: inline'></div><br>
+            <input
+                id='s_password'
+                type='password'
+                placeholder='Password'
+                required='required'>
+            <div
+                id='s_password_info'
+                style='display: inline'></div><br>
+            <input
+                id='s_confirm_password'
+                type='password'
+                placeholder='Confirm password'
+                required='required'>
+            <div
+                id='s_confirm_password_info'
+                style='display: inline'></div><br>
+            <input
+                id='s_developer'
+                type='radio'
+                name='role'
+                checked='checked'>Developer<br>
+            <input
+                id='s_client'
+                type='radio'
+                name='role'>Client<br>
+            <input
+                id='s_deposit'
+                type='number'
+                placeholder='Dollar to deposit'
+                min='10' step='0.01'
+                required='required'>
+            <div
+                id='s_deposit_info'
+                style='display: inline'></div><br>
+            <div
+                id='s_button_info'
+                style='display: inline'></div><br>
+            <button
+                type='button'
+                style='display: inline'>Sign Up</button><br><br>
+        </div>
+
+        <div id='login_signup'>
+            <div
+                id='open_login'>
+                > <a href>Login</a> </div>
+            <div
+                id='open_sign_up'>
+                > <a href>Sign Up</a> </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+//----------------
+
+// DOM has finished loading
+document.addEventListener('DOMContentLoaded', (event) =>
+{
+    let login   = document.getElementById('login');
+    let sign_up = document.getElementById('sign_up');
+
+    let open_login   = document.getElementById('open_login');
+    let open_sign_up = document.getElementById('open_sign_up');
+
+    open_login.addEventListener('click', (event) =>
+    {
+        event.preventDefault();
+
+        sign_up.setAttribute('style', 'display : none');
+        login.removeAttribute('style');
+
+        open_login.setAttribute('style', 'display: none');
+        open_sign_up.removeAttribute('style');
+    });
+
+    open_sign_up.addEventListener('click', (event) =>
+    {
+        event.preventDefault();
+
+        login.setAttribute('style', 'display : none');
+        sign_up.removeAttribute('style');
+
+        open_sign_up.setAttribute('style', 'display: none');
+        open_login.removeAttribute('style');
+    });
+});
+
+//----------------
+
+    </script>
+
 </body>
