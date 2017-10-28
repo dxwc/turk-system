@@ -21,9 +21,10 @@
                 placeholder='Password'
                 required='required'><br>
             <div
-                id='l_button_information'
+                id='l_button_info'
                 style='display: inline'></div><br>
             <button
+                id='l_button'
                 type='button'
                 style='display: inline'>Login</button><br><br>
         </div>
@@ -75,6 +76,7 @@
                 id='s_button_info'
                 style='display: inline'></div><br>
             <button
+                id='s_button'
                 type='button'
                 style='display: inline'>Sign Up</button><br><br>
         </div>
@@ -98,11 +100,49 @@
 // DOM has finished loading
 document.addEventListener('DOMContentLoaded', (event) =>
 {
-    let login   = document.getElementById('login');
-    let sign_up = document.getElementById('sign_up');
+    // original source: https://stackoverflow.com/a/39899635
+    // Creates a cutom event 'keystopped' that triggers with a delay after user
+    // finishes typing on input field (wheras 'input' or similar event would trigger on
+    // every little change)
+    (function()
+    {
+        let keystoppedTimer = null;
+        let keystoppedInputs = document.getElementsByTagName('input');
+        for (let i = 0, l = keystoppedInputs.length; i < l; i++)
+        {
+            keystoppedInputs[i].addEventListener('input', function(event)
+            {
+                clearTimeout(keystoppedTimer);
+                keystoppedTimer = setTimeout
+                (
+                    function() { event.target.dispatchEvent(new Event('keystopped')) },
+                    600
+                );
+            }, false);
+        }
+    }());
 
-    let open_login   = document.getElementById('open_login');
-    let open_sign_up = document.getElementById('open_sign_up');
+
+    let login                   = document.getElementById('login');
+    let l_user_name             = document.getElementById('l_user_name');
+    let l_password              = document.getElementById('l_password');
+    let l_button_info           = document.getElementById('l_button_info');
+    let l_button                = document.getElementById('l_button');
+
+    let sign_up                 = document.getElementById('sign_up');
+    let s_user_name             = document.getElementById('s_user_name');
+    let s_user_name_info        = document.getElementById('s_user_name_info');
+    let s_password              = document.getElementById('s_password');
+    let s_password_info         = document.getElementById('s_password_info');
+    let s_confirm_password      = document.getElementById('s_confirm_password');
+    let s_confirm_password_info = document.getElementById('s_confirm_password_info');
+    let s_deposit               = document.getElementById('s_deposit');
+    let s_button_info           = document.getElementById('s_button_info');
+    let s_button                = document.getElementById('s_button');
+
+    let open_login              = document.getElementById('open_login');
+    let open_sign_up            = document.getElementById('open_sign_up');
+
 
     open_login.addEventListener('click', (event) =>
     {
