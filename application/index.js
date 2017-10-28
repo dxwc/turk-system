@@ -8,6 +8,9 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+/** Serves requested files if found in ./static_files folder */
+app.use(express.static(__dirname + '/static_files'));
+
 //>>>>>---Routes--->>>>>
 app.use('/', require('./routes/home.js'));
 app.use('*', require('./routes/404.js')); // should be last one in order of routes
