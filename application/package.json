@@ -1,37 +1,19 @@
 {
-  "name": "csc322-software-engineering-turk-system",
+  "name": "turk-system",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PUBLISHABLE_KEY=pk_test_6pRNASCoBOKtIshFeQd4XMUh SECRET_KEY=sk_test_BQokikJOvBiI2HlWgH4olfQ2 nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dxwc/csc322-software-engineering-turk-system.git"
+    "url": "git+https://github.com/dxwc/turk-system.git"
   },
   "author": "",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/dxwc/csc322-software-engineering-turk-system/issues"
+    "url": "https://github.com/dxwc/turk-system/issues"
   },
-  "homepage": "https://github.com/dxwc/csc322-software-engineering-turk-system#readme",
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.18.1",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
-    "ejs": "^2.5.7",
-    "express": "^4.15.4",
-    "express-session": "^1.15.6",
-    "helmet": "^3.8.1",
-    "mongoose": "^4.12.0",
-    "morgan": "^1.9.0",
-    "nodemon": "^1.12.1",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "stripe": "^5.1.0"
-  }
+  "homepage": "https://github.com/dxwc/turk-system#readme"
 }
