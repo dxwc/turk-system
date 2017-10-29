@@ -33,6 +33,7 @@
                 id='s_user_name'
                 type='text'
                 placeholder='User name'
+                minlength='3'
                 required='required'>
             <div
                 id='s_user_name_info'
@@ -41,6 +42,7 @@
                 id='s_password'
                 type='password'
                 placeholder='Password'
+                minlength='5'
                 required='required'>
             <div
                 id='s_password_info'
@@ -49,6 +51,7 @@
                 id='s_confirm_password'
                 type='password'
                 placeholder='Confirm password'
+                minlength='5'
                 required='required'>
             <div
                 id='s_confirm_password_info'
@@ -115,7 +118,11 @@ document.addEventListener('DOMContentLoaded', (event) =>
                 clearTimeout(keystoppedTimer);
                 keystoppedTimer = setTimeout
                 (
-                    function() { event.target.dispatchEvent(new Event('keystopped')) },
+                    function()
+                    {
+                        s_button_info.innerHTML = ''; // edited in
+                        event.target.dispatchEvent(new Event('keystopped'))
+                    },
                     600
                 );
             }, false);
@@ -136,6 +143,8 @@ document.addEventListener('DOMContentLoaded', (event) =>
     let s_password_info         = document.getElementById('s_password_info');
     let s_confirm_password      = document.getElementById('s_confirm_password');
     let s_confirm_password_info = document.getElementById('s_confirm_password_info');
+    let s_developer             = document.getElementById('s_developer');
+    let s_client                = document.getElementById('s_client');
     let s_deposit               = document.getElementById('s_deposit');
     let s_deposit_info          = document.getElementById('s_deposit_info');
     let s_deposit_summery       = document.getElementById('s_deposit_summery');
@@ -144,6 +153,8 @@ document.addEventListener('DOMContentLoaded', (event) =>
 
     let open_login              = document.getElementById('open_login');
     let open_sign_up            = document.getElementById('open_sign_up');
+
+    let authentication          = document.getElementById('authentication');
 
 
     /**
@@ -159,10 +170,10 @@ document.addEventListener('DOMContentLoaded', (event) =>
     function check_username_uniqueness()
     {
         s_user_name.value = s_user_name.value.trim();
-        if(s_user_name.value.length === 0)
+        if(s_user_name.value.length < 3)
         {
-            s_user_name_info.innerHTML = '';
-            return Promise.resolve('');
+            s_user_name_info.innerHTML = '✗ Username must be at least 3 character';
+            return Promise.resolve('✗ Username must be at least 3 character');
         }
 
         let a_to_z = 'abcdefghijklmnopqrstuvwxyz';
@@ -222,6 +233,7 @@ document.addEventListener('DOMContentLoaded', (event) =>
         {
             console.log('Error:\n', err);
             s_user_name_info.innerHTML = '✗ Error checking uniqueness';
+            return '✗ Error checking uniqueness: connection / server error';
         });
     }
 
@@ -236,9 +248,9 @@ document.addEventListener('DOMContentLoaded', (event) =>
         if(s_password.value.length < 5)
         {
             s_password_info.innerHTML =
-                '✗ Password have to be more than 5 characters';
+                '✗ Password must be at least 5 characters';
             s_confirm_password_info.innerHTML = '🡡';
-            return Promise.resolve('✗ Password have to be more than 5 characters');
+            return Promise.resolve('✗ Password must be at least 5 characters');
         }
         else
         {
@@ -294,6 +306,34 @@ document.addEventListener('DOMContentLoaded', (event) =>
         });
     }
 
+    /**
+     * - a_boolean == false : disable editing of s_ inputs/radios fields
+     * - a_boolean == true  : make inputs/radio fields editable
+     * */
+    function s_make_editable(a_boolean)
+    {
+        if(!a_boolean)
+        {
+            s_user_name.setAttribute('disabled', 'disabled');
+            s_password.setAttribute('disabled', 'disabled');
+            s_confirm_password.setAttribute('disabled', 'disabled');
+            s_developer.setAttribute('disabled', 'disabled');
+            s_client.setAttribute('disabled', 'disabled');
+            s_deposit.setAttribute('disabled', 'disabled');
+            s_button.setAttribute('disabled', 'disabled');
+        }
+        else
+        {
+            s_user_name.removeAttribute('disabled');
+            s_password.removeAttribute('disabled');
+            s_confirm_password.removeAttribute('disabled');
+            s_developer.removeAttribute('disabled');
+            s_client.removeAttribute('disabled');
+            s_deposit.removeAttribute('disabled');
+            s_button.removeAttribute('disabled');
+        }
+    }
+
     s_user_name.addEventListener('keystopped', (event) =>
     {
         check_username_uniqueness();
@@ -312,6 +352,71 @@ document.addEventListener('DOMContentLoaded', (event) =>
     s_deposit.addEventListener('keystopped', (event) =>
     {
         check_deposit();
+    });
+
+    s_button.addEventListener('click', (event) =>
+    {
+        event.preventDefault();
+
+        s_button_info.innerHTML = '';
+        s_make_editable(false);
+
+        Promise.all([check_username_uniqueness(), check_password(), check_deposit()])
+        .then((result) =>
+        {
+            let err_text = '<ul style=\'color: red\'>';
+            for(let i = 0; i < result.length; ++i)
+            {
+                if(typeof(result[i]) === 'string')
+                    err_text += '<li>' + result[i] + '</li>';
+            }
+            if(err_text !== '<ul style=\'color: red\'>')
+            {
+                s_button_info.innerHTML = err_text + '</ul>';
+                return 'displayed_error';
+            }
+            else
+            {
+                s_button_info.innerHTML = 'Sending application...';
+                return axios.post
+                (
+                    './',
+                    {
+                        s_user_name : s_user_name,
+                        s_password : s_password,
+                        s_role : s_developer.checked,
+                        s_deposit : s_deposit,
+                    }
+                );
+            }
+        })
+        .then((result) =>
+        {
+            if(result === 'displayed_error')
+            {
+                s_make_editable(true);
+            }
+            else if(result.data === true)
+            {
+                authentication.innerHTML =
+                `Your application has been submitted.
+                Ensure you pay the total deposit amount to super user.
+                Super user will check your application and decide to reject or
+                accept your applicaiton. If you log in later with your username
+                and password, you will be able to view current status of your
+                application.`;
+            }
+            else if(typeof(result.data) === 'string')
+            {
+                authentication.innerHTML =
+                    '✗ ' + result.data; // error sent from server
+                s_make_editable(true);
+            }
+        })
+        .catch((err) =>
+        {
+            console.log('Error:\n', err);
+        });
     });
 
     open_login.addEventListener('click', (event) =>
