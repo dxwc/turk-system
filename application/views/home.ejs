@@ -72,7 +72,7 @@
                 id='s_deposit_info'
                 style='display: inline'></div><br>
             <div
-                id='s_deposit_summery'></div><br><br>
+                id='s_deposit_summery'></div><br>
             <button
                 id='s_button'
                 type='button'
@@ -257,6 +257,43 @@ document.addEventListener('DOMContentLoaded', (event) =>
         }
     }
 
+    /**
+     * - Shows error message of deposit amount is less than $10
+     * - On valid amount, show summery of amount with system charge and total
+     *   amount of payment user will have to make
+     * */
+    function check_deposit()
+    {
+        return new Promise((resolve, reject) =>
+        {
+            if(s_deposit.value >= 10)
+            {
+                s_deposit_info.innerHTML = '✔ Valid amount';
+                s_deposit_summery.innerHTML = `
+                <ul>
+                    <li>Your account balance will be
+                        $${s_deposit.value} - transferred to your account</li>
+                    <li>5% system charge :
+                        $${Number(s_deposit.value*(0.05)).toFixed(2)}
+                            - transferred to super user</li>
+                    <li>You will have to pay a <b>total</b> of
+                        <b>$${Number(
+                            Number(s_deposit.value)+
+                            Number(s_deposit.value*(0.05))).toFixed(2)}</b></li>
+                </ul>
+                `;
+                resolve(true);
+            }
+            else
+            {
+                s_deposit_summery.innerHTML = '';
+                s_deposit_info.innerHTML =
+                '✗ Deposit dollar amount must be a number >= 10';
+                resolve('✗ Deposit dollar amount must be a number >= 10');
+            }
+        });
+    }
+
     s_user_name.addEventListener('keystopped', (event) =>
     {
         check_username_uniqueness();
@@ -270,6 +307,11 @@ document.addEventListener('DOMContentLoaded', (event) =>
     s_confirm_password.addEventListener('keystopped', (event) =>
     {
         check_password();
+    });
+
+    s_deposit.addEventListener('keystopped', (event) =>
+    {
+        check_deposit();
     });
 
     open_login.addEventListener('click', (event) =>
