@@ -144,6 +144,89 @@ document.addEventListener('DOMContentLoaded', (event) =>
     let open_sign_up            = document.getElementById('open_sign_up');
 
 
+    /**
+     * Show error message on s_user_name.value:
+     * - if first character is not a letter
+     * - if usrname contains non alphanumeric characters
+     * - if can not connect to server
+     * - if server send error string
+     * Otherwiser:
+     * - if server send boolean true : username available (unique)
+     * - if server sends boolean false or string : username not available */
+    function check_username_uniqueness()
+    {
+        s_user_name.value = s_user_name.value.trim();
+        if(s_user_name.value.length === 0)
+        {
+            s_user_name_info.innerHTML = '';
+            return Promise.resolve('');
+        }
+
+        let a_to_z = 'abcdefghijklmnopqrstuvwxyz';
+        let alpha_numeric = 'abcdefghijklmnopqrstuvwxyz1234567890';
+
+        if(a_to_z.indexOf( `${s_user_name.value[0]}`.toLowerCase() ) === -1)
+        {
+            s_user_name_info.innerHTML = '✗ First character must be a letter';
+            return Promise.resolve('✗ First character must be a letter')
+        }
+        for(let i = 0; i < s_user_name.value.length; ++i)
+        {
+            if
+            (
+                alpha_numeric
+                .indexOf(`${s_user_name.value[i]}`.toLocaleLowerCase()) === -1
+            )
+            {
+                s_user_name_info.innerHTML =
+                        '✗ Invalid character \'' +
+                        s_user_name.value[i] +
+                        '\' at position ' + (i+1);
+                return Promise.resolve
+                (
+                        '✗ Invalid character \'' +
+                        s_user_name.value[i] +
+                        '\' at position ' + (i+1)
+                );
+            }
+        }
+
+        s_user_name_info.innerHTML = '↻';
+        return axios.post
+        (
+            '/sign_up',
+            { 'user_name_check' : s_user_name.value }
+        )
+        .then((result) =>
+        {
+            if(result.data === true)
+            {
+                s_user_name_info.innerHTML = '✔ Available';
+                return true;
+            }
+            else if(result.data && result.data.length > 0)
+            {
+                s_user_name_info.innerHTML = `✗ ${result.data}`;
+                return `✗ ${result.data}`;
+            }
+            else
+            {
+                s_user_name_info.innerHTML = '✗ Username taken';
+                return '✗ Username taken';
+            }
+        })
+        .catch((err) =>
+        {
+            console.log('Error:\n', err);
+            s_user_name_info.innerHTML = 'Error checking uniqueness';
+        });
+    }
+
+    s_user_name.addEventListener('keystopped', (event) =>
+    {
+        check_username_uniqueness();
+    });
+
     open_login.addEventListener('click', (event) =>
     {
         event.preventDefault();
