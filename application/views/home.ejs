@@ -19,14 +19,13 @@
                 id='l_password'
                 type='password'
                 placeholder='Password'
-                required='required'><br>
-            <div
-                id='l_button_info'
-                style='display: inline'></div><br>
+                required='required'><br><br>
             <button
                 id='l_button'
                 type='button'
-                style='display: inline'>Login</button><br><br>
+                style='display: inline'>Login</button><br>
+            <div
+                id='l_button_info'></div><br><br>
         </div>
 
         <div id='sign_up' style='display: none'>
@@ -71,14 +70,13 @@
                 required='required'>
             <div
                 id='s_deposit_info'
-                style='display: inline'></div><br>
-            <div
-                id='s_button_info'
-                style='display: inline'></div><br>
+                style='display: inline'></div><br><br>
             <button
                 id='s_button'
                 type='button'
-                style='display: inline'>Sign Up</button><br><br>
+                style='display: inline'>Sign Up</button><br>
+            <div
+                id='s_button_info'></div><br><br>
         </div>
 
         <div id='login_signup'>
@@ -126,8 +124,8 @@ document.addEventListener('DOMContentLoaded', (event) =>
     let login                   = document.getElementById('login');
     let l_user_name             = document.getElementById('l_user_name');
     let l_password              = document.getElementById('l_password');
-    let l_button_info           = document.getElementById('l_button_info');
     let l_button                = document.getElementById('l_button');
+    let l_button_info           = document.getElementById('l_button_info');
 
     let sign_up                 = document.getElementById('sign_up');
     let s_user_name             = document.getElementById('s_user_name');
@@ -137,8 +135,9 @@ document.addEventListener('DOMContentLoaded', (event) =>
     let s_confirm_password      = document.getElementById('s_confirm_password');
     let s_confirm_password_info = document.getElementById('s_confirm_password_info');
     let s_deposit               = document.getElementById('s_deposit');
-    let s_button_info           = document.getElementById('s_button_info');
+    let s_deposit_info          = document.getElementById('s_deposit_info');
     let s_button                = document.getElementById('s_button');
+    let s_button_info           = document.getElementById('s_button_info');
 
     let open_login              = document.getElementById('open_login');
     let open_sign_up            = document.getElementById('open_sign_up');
