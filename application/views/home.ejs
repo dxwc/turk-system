@@ -419,6 +419,77 @@ document.addEventListener('DOMContentLoaded', (event) =>
         });
     });
 
+    function l_make_editable(a_boolean)
+    {
+        if(!a_boolean)
+        {
+            l_user_name.setAttribute('disabled', 'disabled');
+            l_password.setAttribute('disabled', 'disabled');
+            l_button.setAttribute('disabled', 'disabled');
+        }
+        else
+        {
+            l_user_name.removeAttribute('disabled');
+            l_password.removeAttribute('disabled');
+            l_button.removeAttribute('disabled');
+        }
+    }
+
+    function logged_in_user_handler(data)
+    {
+        //...
+    }
+
+    l_button.addEventListener('click', (event) =>
+    {
+        event.preventDefault();
+
+
+        if(l_user_name.value.length === 0 || l_password.value.length === 0)
+        {
+            l_button_info.innerHTML = '✗ You must fill out both username and password';
+            return;
+        }
+
+        l_make_editable(false);
+        axios.post
+        (
+            '/',
+            {
+                l_user_name : l_user_name.value,
+                l_password : l_password
+            }
+        )
+        .then((result) =>
+        {
+            if(result.data === false)
+            {
+                l_button_info.innerHTML =
+                    '✗ Given username and password combination does not exist in our'
+                    +' database';
+                l_make_editable(true);
+            }
+            else if(typeof(result.data) === 'object') // successfully logged in
+            {
+                authentication.parentNode.removeChild(authentication);
+                logged_in_user_handler(data);
+            }
+            else
+            {
+                throw new Error('Undefined');
+            }
+        })
+        .catch((err) =>
+        {
+            if(err === 'Undefined')
+                l_button_info.innerHTML = '✗ Unknown error occured';
+            else
+                l_button_info.innerHTML = '✗ Unknown server/connection error';
+
+            l_make_editable(true);
+        });
+    });
+
     open_login.addEventListener('click', (event) =>
     {
         event.preventDefault();
