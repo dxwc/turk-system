@@ -4,3 +4,4 @@ node_modules/
 react-ui/build/
 deploy_to_heroku.sh
 jsDoc/
+db_data/

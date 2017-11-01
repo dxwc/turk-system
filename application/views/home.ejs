@@ -208,8 +208,8 @@ document.addEventListener('DOMContentLoaded', (event) =>
         s_user_name_info.innerHTML = '↻';
         return axios.post
         (
-            '/sign_up',
-            { 'user_name_check' : s_user_name.value }
+            '/',
+            { 's_user_name_check' : s_user_name.value }
         )
         .then((result) =>
         {
