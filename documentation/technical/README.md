@@ -30,6 +30,7 @@
   and `mongoose` will do that on node.js server of our application. No
   special instruction needed for mongoose, npm install will install this
   with other packages.
+    + Note: All top level documents must have to have an `_id` field
 
 ## Collection
 + Equivalent to SQL Table

@@ -14,9 +14,6 @@ mongoose.model
             user_name      : { type : String, required : true, unique : true },
             reason         : { type : String, required : true},
             remaining_time : { type : Number, required : true}
-        },
-        {
-            _id : false
         }
     )
 );
@@ -29,9 +26,6 @@ mongoose.model
         {
             user_ip : { type : String, required : true, unique : true },
             reason  : { type : String, required : true}
-        },
-        {
-            _id : false
         }
     )
 );
@@ -65,27 +59,20 @@ mongoose.model
             amount    : { type : Number, required : true },
             time      : { type : Number, required : true },
             verified  : { type : Boolean, required : true }
-        },
-        {
-            _id : false
         }
     )
 );
 
 mongoose.model
 (
-    'temporary_user',
+    'temporary_users',
     new mongoose.Schema
     (
         {
-            user_id        : { type : mongoose.Schema.Types.ObjectId,
-                               unique : true, ref: 'users' },
+            _id        :     { type : mongoose.Schema.Types.ObjectId, ref: 'users' },
             deposit_amount : { type : Number, require : true },
             status         : { type : Number, require : true },
             information    : { type: String }
-        },
-        {
-            _id : false
         }
     )
 );
