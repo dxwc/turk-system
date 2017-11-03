@@ -1,5 +1,4 @@
 // Server configuration
-const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet'); // sets some http header for security
 const mongoose = require('mongoose'); // MongoDB object modeling tool designed to work in an asynchronous environment
@@ -10,15 +9,7 @@ const session = require('express-session');
 const path = require('path');
 const express = require('express');
 
-const CORS_WHITELIST = require('./constants/frontend');
 const configDB = require('./config/database');
-
-const corsOptions = {
-  origin: (origin, callback) =>
-    (CORS_WHITELIST.indexOf(origin) !== -1)
-      ? callback(null, true)
-      : callback(new Error('Not allowed by CORS'))
-};
 
 const configureServer = (app, passport) => {
   mongoose.connect(configDB.url); // connect to our database
@@ -43,7 +34,6 @@ const configureServer = (app, passport) => {
   // });
 
   app.use(morgan('dev')); // log every request to the console
-  app.use(cors());
   app.use(helmet());
   app.use(cookieParser()); // read cookies (needed for auth)
   app.use(bodyParser.urlencoded({ extended: false })); // parse application/x-www-form-urlencoded

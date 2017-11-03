@@ -1,15 +1,15 @@
 var Users = require('../models/user.js');
 
 const getTempUsers = function(req, res) {
-    Users
-      .find({ 'local.isTempAccount': true })
-      .exec(function(err, doc) {
-        if (err) { throw err; }
-        else if (doc) {
-          console.log(doc);
-          res.json(doc);
-        }
-      });
+  Users
+    .find({ 'local.isTempAccount': true })
+    .exec(function(err, doc) {
+      if (err) { throw err; }
+      else if (doc) {
+        console.log(doc);
+        res.json(doc);
+      }
+    });
   };
 
 const tempUsers = (app, isLoggedIn, isSuperuser) => {

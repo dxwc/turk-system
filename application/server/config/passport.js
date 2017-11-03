@@ -59,7 +59,7 @@ module.exports = function(passport) {
           }
           // Check if usertype is superuser and then check is key is correct
           if (req.body.usertype === 'superuser' && req.body.superuserkey !== 'admin123') {
-            return done(null, false, req.flash('signupMessage', 'Superuer key is not correct.'));
+            return done(null, false, req.flash('signupMessage', 'Superuser key is not correct.'));
           }
 
           // if there is no user with that email
@@ -70,7 +70,12 @@ module.exports = function(passport) {
           newUser.local.email = email;
           newUser.local.password = newUser.generateHash(password);
           newUser.local.usertype = req.body.usertype;
-          newUser.local.isTempAccount = true;
+          // If superuser, set isTempAccount to false, otherwise set to true
+          if (req.body.usertype === 'superuser') {
+            newUser.local.isTempAccount = false;
+          } else {
+            newUser.local.isTempAccount = true;
+          }
 
           // save the user
           newUser.save(function(err) {
