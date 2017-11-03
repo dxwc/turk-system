@@ -6,6 +6,7 @@ const getTempUsers = function(req, res) {
       .exec(function(err, doc) {
         if (err) { throw err; }
         else if (doc) {
+          console.log(doc);
           res.json(doc);
         }
       });
