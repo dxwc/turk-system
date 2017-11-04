@@ -6,9 +6,11 @@
   $('#select-usertype').on('change', function() {
     // console.log($('#select-usertype').val());
     if($('#select-usertype').val() === 'superuser') {
-      $('#superuser-key-input').show();
+      $('.superuser-only').show();
+      $('.non-superuser-only').hide();
     } else {
-      $('#superuser-key-input').hide();
+      $('.superuser-only').hide();
+      $('.non-superuser-only').show();
     }
   });
 })();

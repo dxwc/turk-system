@@ -27,7 +27,7 @@
           <label>Real Name</label>
           <input type="text" class="form-control" name="realname">
         </div>
-        <div class="form-group">
+        <div class="form-group non-superuser-only">
           <label>Deposit Amount ($) - No cents</label>
           <input type="number" pattern="\d*" class="form-control" name="deposit">
         </div>
@@ -51,7 +51,7 @@
             <option value="superuser">Superuser</option>
           </select>
         </div>
-        <div class="form-group" id="superuser-key-input" style="display: none;">
+        <div class="form-group superuser-only" id="superuser-key-input" style="display: none;">
           <label>Superuser Key</label>
           <input type="password" class="form-control" name="superuserkey">
         </div>
