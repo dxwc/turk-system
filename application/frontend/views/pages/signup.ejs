@@ -24,6 +24,14 @@
       <!-- LOGIN FORM -->
       <form action="/signup" method="post">
         <div class="form-group">
+          <label>Real Name</label>
+          <input type="text" class="form-control" name="realname">
+        </div>
+        <div class="form-group">
+          <label>Deposit Amount ($) - No cents</label>
+          <input type="number" pattern="\d*" class="form-control" name="deposit">
+        </div>
+        <div class="form-group">
           <label>Email</label>
           <input type="text" class="form-control" name="email">
         </div>

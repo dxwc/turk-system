@@ -7,7 +7,9 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
     usertype: String,
-    isTempAccount: Boolean,
+    isTempAccount: { type: String, default: true },
+    realname: String,
+    deposit: { type: Number, default: 0 }
   },
 });
 
