@@ -79,7 +79,7 @@
             <button
                 id='s_button'
                 type='button'
-                style='display: inline'>Sign Up</button><br>
+                style='display: inline'>Send Application</button><br>
             <div
                 id='s_button_info'></div><br><br>
         </div>
@@ -90,7 +90,7 @@
                 > <a href>Login</a> </div>
             <div
                 id='open_sign_up'>
-                > <a href>Sign Up</a> </div>
+                > <a href>Send Application</a> </div>
         </div>
     </div>
 
@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', (event) =>
     let open_sign_up            = document.getElementById('open_sign_up');
 
     let authentication          = document.getElementById('authentication');
-
 
     /**
      * Show error message on s_user_name.value:
@@ -233,7 +232,6 @@ document.addEventListener('DOMContentLoaded', (event) =>
         {
             console.log('Error:\n', err);
             s_user_name_info.innerHTML = '✗ Error checking uniqueness';
-            return '✗ Error checking uniqueness: connection / server error';
         });
     }
 
@@ -380,20 +378,30 @@ document.addEventListener('DOMContentLoaded', (event) =>
                 s_button_info.innerHTML = 'Sending application...';
                 return axios.post
                 (
-                    './',
+                    '/',
                     {
-                        s_user_name : s_user_name,
-                        s_password : s_password,
+                        s_user_name : s_user_name.value,
+                        s_password : s_password.value,
                         s_role : s_developer.checked,
-                        s_deposit : s_deposit,
+                        s_deposit : s_deposit.value,
                     }
                 );
             }
         })
         .then((result) =>
         {
-            if(result === 'displayed_error')
+            if(typeof(result) == 'undefined' || typeof(result) == null)
             {
+                s_button_info.innerHTML += 'Server connection error error';
+                s_make_editable(true);
+            }
+            else if(result === 'displayed_error')
+            {
+                s_make_editable(true);
+            }
+            else if(result.data === false)
+            {
+                s_button_info.innerHTML = 'Could not sign you up for Invalid input';
                 s_make_editable(true);
             }
             else if(result.data === true)
@@ -408,14 +416,28 @@ document.addEventListener('DOMContentLoaded', (event) =>
             }
             else if(typeof(result.data) === 'string')
             {
-                authentication.innerHTML =
-                    '✗ ' + result.data; // error sent from server
+                s_button_info.innerHTML = '✗ ' + result.data;
+                s_make_editable(true);
+            }
+            else if(typeof(result.data) === 'object')
+            {
+                    // authentication.innerHTML =
+                    // '✗ ' + result.data.err; // error sent from server
+            }
+            else
+            {
+                s_button_info.innerHTML = 'Unknwon error';
                 s_make_editable(true);
             }
         })
         .catch((err) =>
         {
             console.log('Error:\n', err);
+            s_button_info.innerHTML = `
+            <span style='color:red;'>
+                ✗ Unknown Error: try again or contact admins';
+            </span>`
+            s_make_editable(true);
         });
     });
 
