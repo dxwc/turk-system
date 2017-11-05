@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     usertype: String,
     realname: String,
     deposit: { type: Number, default: 0 },
-    accountStatus: String
+    accountStatus: String,
+    rejectMessage: { type: String, default: '' }
   },
 });
 

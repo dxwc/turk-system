@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-var Users = require('../models/user.js');
+let Users = require('../models/user.js');
 
+// Respond with list of temporary user accounts in json format
 const getTempUsers = function(req, res) {
   Users
     .find({ 'local.accountStatus': 'temp' })
@@ -16,6 +17,7 @@ const getTempUsers = function(req, res) {
     });
 };
 
+// Reject application for dev/client account
 const rejectUser = function(req, res) {
   Users
     .findOne({ '_id':  mongoose.Types.ObjectId(req.body.id) })
@@ -35,6 +37,9 @@ const rejectUser = function(req, res) {
       }
     });
 };
+
+// Accept application for dev/client account
+
 
 const tempUsers = (app, isLoggedIn, isSuperuser) => {
   // We will want this protected so you have to be logged in and is super user to visit
