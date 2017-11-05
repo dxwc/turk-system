@@ -8,7 +8,7 @@
       // console.log(user);
       // console.log('<input type="button" id="' + 'qwer' +'" onclick="handleAcceptClick(this.id)" value="Accept" />');
       $('#temp-user-list').append(
-        '<div class="well">' +
+        '<div class="well" id="well-' + user._id +'">' +
           '<p>Real Name: ' + user.local.realname + '</p>' +
           '<p>Deposit: ' + user.local.deposit + '</p>' +
           '<p>Email: ' + user.local.email + '</p>' +
@@ -30,7 +30,7 @@ function handleRejectClick(clicked_id) {
   console.log('reject clicked...');
   // Post to /reject-user
   $.post('/reject-user', { 'id': clicked_id }, function(data) {
-    console.log("###");
-    console.log(data);
+    $('#well-' + clicked_id).hide();
+    alert('User sucessfully rejected');
   });
 };
