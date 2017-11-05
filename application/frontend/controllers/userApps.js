@@ -9,8 +9,10 @@
       // console.log('<input type="button" id="' + 'qwer' +'" onclick="handleAcceptClick(this.id)" value="Accept" />');
       $('#temp-user-list').append(
         '<div class="well">' +
-          '<p>' + user.local.email + '</p>' +
-          '<p>' + user.local.usertype + '</p>' +
+          '<p>Real Name: ' + user.local.realname + '</p>' +
+          '<p>Deposit: ' + user.local.deposit + '</p>' +
+          '<p>Email: ' + user.local.email + '</p>' +
+          '<p>User Type: ' + user.local.usertype + '</p>' +
           '<input type="button" id="' + user._id + '" onclick="handleAcceptClick(this.id)" value="Accept" />' +
           '<input type="button" id="' + user._id + '" onclick="handleRejectClick(this.id)" value="Reject" />' +
         '</div>'
@@ -25,5 +27,10 @@ function handleAcceptClick(clicked_id) {
 };
 
 function handleRejectClick(clicked_id) {
-  alert('reject');
+  console.log('reject clicked...');
+  // Post to /reject-user
+  $.post('/reject-user', { 'id': clicked_id }, function(data) {
+    console.log("###");
+    console.log(data);
+  });
 };

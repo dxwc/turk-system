@@ -71,13 +71,17 @@ module.exports = function(passport) {
           newUser.local.password = newUser.generateHash(password);
           newUser.local.usertype = req.body.usertype;
           newUser.local.realname = req.body.realname;
-          // If superuser, set isTempAccount to false, otherwise set to true
+
+          // Set different data for superuser and non superuser
           if (req.body.usertype === 'superuser') {
+            // If superuser, set isTempAccount to false, otherwise set to true
             newUser.local.isTempAccount = false;
+            newUser.local.accountStatus = 'superuser';
           } else {
             newUser.local.isTempAccount = true;
             // Only set deposit if not superuser
             newUser.local.deposit = req.body.deposit;
+            newUser.local.accountStatus = 'temp'
           }
 
           // save the user

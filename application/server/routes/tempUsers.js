@@ -1,20 +1,45 @@
+const mongoose = require('mongoose');
 var Users = require('../models/user.js');
 
 const getTempUsers = function(req, res) {
   Users
-    .find({ 'local.isTempAccount': true })
-    .exec(function(err, doc) {
-      if (err) { throw err; }
-      else if (doc) {
-        console.log(doc);
-        res.json(doc);
+    .find({ 'local.accountStatus': 'temp' })
+    .exec(function(err, user) {
+      if (err) {
+        throw err;
+      } else if (user) {
+        // console.log(doc);
+        res.json(user);
+      } else {
+        res.send('No temp accounts found');
       }
     });
-  };
+};
+
+const rejectUser = function(req, res) {
+  Users
+    .findOne({ '_id':  mongoose.Types.ObjectId(req.body.id) })
+    .exec(function(err, user) {
+      if (err) { throw err; }
+      else if (user) {
+        user.local.accountStatus = 'rejected';
+        user.save(function(err, updatedUser) {
+          if (err) {
+            throw err;
+          }
+          res.send(updatedUser);
+        });
+
+      } else {
+        res.send('User reject failed');
+      }
+    });
+};
 
 const tempUsers = (app, isLoggedIn, isSuperuser) => {
   // We will want this protected so you have to be logged in and is super user to visit
   app.get('/temp-users', isLoggedIn, isSuperuser, getTempUsers);
+  app.post('/reject-user', isLoggedIn, isSuperuser, rejectUser)
 
   return app;
 }
