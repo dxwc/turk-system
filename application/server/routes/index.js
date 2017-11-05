@@ -36,13 +36,24 @@ const isSuperuser = (req, res, next) => {
   res.redirect('/home');
 }
 
+const checkIfRejected = (req, res, next) => {
+  // If not rejected, continue
+  if (req.user.local.accountStatus !== 'rejected') {
+    return next();
+  }
+  // Otherwise render rejected page
+  res.render('rejected.ejs', {
+    user: req.user // get the user out of session and pass to template
+  });
+}
+
 const configureRoutes = (app, passport) => {
   welcome(app);
-  home(app, isLoggedIn);
+  home(app, isLoggedIn, checkIfRejected);
   login(app, passport);
   signup(app, passport);
   logout(app);
-  profile(app, isLoggedIn);
+  profile(app, isLoggedIn, checkIfRejected);
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
   tempUsers(app, isLoggedIn, isSuperuser);
