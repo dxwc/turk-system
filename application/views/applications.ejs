@@ -1,0 +1,58 @@
+<!doctype html>
+<head>
+    <title>View Applications</title>
+    <style>
+    .application
+    {
+        border-bottom : 1px solid #ddd;
+        padding-bottom: 1em;
+        padding-top: 1em;
+    }
+    </style>
+</head>
+<body>
+
+    <% if(locals.applications) { %>
+        <a style='float: right' href='/applications?end_session=true'>Log Out</a>
+        <h1>Applications Pending Decision</h1>
+    <%
+            for(let i = 0; i < applications.length; ++i) { %>
+            <div class='application'>
+                <b>User Name:</b><span class='user_name'>
+                    <%= applications[i]._id.user_name %>
+                </span><br>
+                <b>Role:</b><% if(applications[i]._id.role == true) { %>
+                    <span class='role'>Developer</span>
+                <% } else { %>
+                    <span class='role'>Client</span>
+                <% } %><br>
+                <b>Amount specified for deposit:</b>
+                <span class='deposit_amount'>
+                    $<%= applications[i].deposit_amount %>
+                </span><br>
+                <b>Date Applied:</b>
+                <span class='creation_time'>
+                    <%= new Date(applications[i]._id.creation_time) %>
+                </span><br>
+                <span class='user_id' style='display: none'>
+                    <%=applications[i]._id._id%>
+                </span>
+                <a class='accept' style='margin-right: 1em;' href>Accept</a>
+                <a class='reject' href>Reject</a>
+            </div>
+    <%      } %>
+    <% } else { %>
+        <form actions='/applications' method='post'>
+        <input
+            type='password'
+            placeholder='Access Code'
+            name='access_code'><br><br>
+        <button
+            type='submit'>Enter</button>
+        <% if(locals.invalid) { %>
+            <br><b style='color: red'>Invalid Access Code, try again</b>
+        <% } %>
+    </form>
+    <% } %>
+
+</body>

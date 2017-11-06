@@ -34,8 +34,9 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 app.use(require('body-parser').json()); // For parsing application/json content type
 
 //>>>>>---Routes--->>>>>
-app.use('/', require('./routes/home.js'));
-app.use('*', require('./routes/404.js')); // should be last one in order of routes
+app.use(require('./routes/applications.js'));
+app.use(require('./routes/home.js'));
+app.use(require('./routes/404.js')); // should be last one in order of routes
 //<<<<<---Routes---<<<<<
 
 // Connect mongodb on localhost at port 27017 on database turk_system
