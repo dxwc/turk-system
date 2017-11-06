@@ -10,6 +10,8 @@
 + Axios : <https://github.com/axios/axios>
 + Mongoose: <http://mongoosejs.com>
 + Body-parser : <https://github.com/expressjs/body-parser>
++ Express-session : <https://www.npmjs.com/package/express-session>
++ Connect-mongo : <https://www.npmjs.com/package/connect-mongo>
 
 # MongoDB notes:
 

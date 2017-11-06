@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 require('./models.js'); // defines all the data model (schema)
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 const express = require('express');
 
 const app = express();
@@ -14,6 +17,16 @@ app.set('views', __dirname + '/views');
 
 /** Serves requested files if found in ./static_files folder */
 app.use(express.static(__dirname + '/static_files'));
+
+/** session middleware to save data to validate user */
+app.use(session({
+    secret: 'foo',
+    store: new MongoStore({ mongooseConnection : mongoose.connection }),
+    // using existing mongodb connection
+    ttl: .50 * 60 * 60, // session will exire in half an hour
+    resave: true,
+    saveUninitialized: true
+}));
 
 // ** A middleware to have access to POST sent data (ex: req.body.some_data) : **/
 // For content type : application/x-www-form-urlencoded (default for all POST or GET)
