@@ -1,6 +1,8 @@
 <!doctype html>
 <head>
+    <meta charset="UTF-8">
     <title>View Applications</title>
+    <script src='axios.min.js'></script>
     <style>
     .application
     {
@@ -34,11 +36,10 @@
                 <span class='creation_time'>
                     <%= new Date(applications[i]._id.creation_time) %>
                 </span><br>
-                <span class='user_id' style='display: none'>
-                    <%=applications[i]._id._id%>
+                <span>
+                <a class='accept' id='<%=applications[i]._id._id%>' style='margin-right: 1em;' href>Accept</a>
+                <a class='reject' id='<%=applications[i]._id._id%>' href>Reject</a>
                 </span>
-                <a class='accept' style='margin-right: 1em;' href>Accept</a>
-                <a class='reject' href>Reject</a>
             </div>
     <%      } %>
     <% } else { %>
@@ -54,5 +55,52 @@
         <% } %>
     </form>
     <% } %>
+
+    <script>
+
+    document.addEventListener('DOMContentLoaded', (event) =>
+    {
+        let decision = document.getElementsByTagName('a');
+        for(let i = 0; i < decision.length; ++i)
+        {
+            decision[i].addEventListener('click', (event) =>
+            {
+                event.preventDefault();
+                let elem = decision[i];
+                elem.setAttribute('style', 'display : none');
+
+                if(elem.className == 'accept')
+                    decision[i+1].setAttribute('style', 'display : none');
+                else
+                    decision[i-1].setAttribute('style', 'display : none');
+
+                elem.parentElement.parentElement
+                .setAttribute('style', 'opacity: 0.5');
+
+                // FIXME: scoping issues are appearing
+                axios.post
+                (
+                    '/decision',
+                    {
+                        user_id : elem.id,
+                        boolean : elem.className == 'accept' ? true : false
+                    }
+                )
+                .then((result) =>
+                {
+                    console.log(result);
+                    // elem.parentElement.innerHTML = 'sent';
+                    // elem.parentNode.removeChild(elem);
+                })
+                .catch((err) =>
+                {
+                    // elem.parentElement.innerHTML =
+                        // `<b style='color: red'>Error saving decision</b>`;
+                    console.log('Error:\n', err);
+                })
+            });
+        }
+    })
+    </script>
 
 </body>
