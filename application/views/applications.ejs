@@ -10,6 +10,14 @@
         padding-bottom: 1em;
         padding-top: 1em;
     }
+    .accept
+    {
+        margin-right: 1em;
+    }
+    .rejectReason
+    {
+        width : 100%;
+    }
     </style>
 </head>
 <body>
@@ -17,7 +25,9 @@
     <% if(locals.applications) { %>
         <a style='float: right' href='/applications?end_session=true'>Log Out</a>
         <h1>Applications Pending Decision</h1>
-    <%
+        <div id='all_app'>
+
+        <%
             for(let i = 0; i < applications.length; ++i) { %>
             <div class='application'>
                 <b>User Name:</b><span class='user_name'>
@@ -36,12 +46,24 @@
                 <span class='creation_time'>
                     <%= new Date(applications[i]._id.creation_time) %>
                 </span><br>
-                <span>
-                <a class='accept' id='<%=applications[i]._id._id%>' style='margin-right: 1em;' href>Accept</a>
-                <a class='reject' id='<%=applications[i]._id._id%>' href>Reject</a>
+                <span id='<%=applications[i]._id._id%>'>
+                    <a class='accept' href>Accept</a>
+                    <a class='reject' href>Reject</a>
+                    <a
+                        class='cancel'
+                        style='display : none' href>Cancel</a>
+                    <textarea
+                        class='rejectReason'
+                        style='display: none'
+                        placeholder='Your reason for applicaiton rejection...'>
+                    </textarea>
+                    <a
+                        class='save'
+                        style='display : none' href>Save</a>
                 </span>
             </div>
     <%      } %>
+        </div>
     <% } else { %>
         <form actions='/applications' method='post'>
         <input
@@ -60,44 +82,120 @@
 
     document.addEventListener('DOMContentLoaded', (event) =>
     {
-        let decision = document.getElementsByTagName('a');
+        let decision = document.getElementById('all_app').getElementsByTagName('a');
+
         for(let i = 0; i < decision.length; ++i)
         {
+            if(decision[i].className === 'accept')
             decision[i].addEventListener('click', (event) =>
             {
                 event.preventDefault();
-                let elem = decision[i];
-                elem.setAttribute('style', 'display : none');
 
-                if(elem.className == 'accept')
+                decision[i].setAttribute('style', 'display : none');
+
+                if(decision[i].className == 'accept')
                     decision[i+1].setAttribute('style', 'display : none');
                 else
                     decision[i-1].setAttribute('style', 'display : none');
 
-                elem.parentElement.parentElement
+                decision[i].parentElement.parentElement
                 .setAttribute('style', 'opacity: 0.5');
 
-                // FIXME: scoping issues are appearing
                 axios.post
                 (
                     '/decision',
                     {
-                        user_id : elem.id,
-                        boolean : elem.className == 'accept' ? true : false
+                        user_id : decision[i].parentElement.id,
+                        boolean : decision[i].className == 'accept' ? true : false
                     }
                 )
                 .then((result) =>
                 {
                     console.log(result);
-                    // elem.parentElement.innerHTML = 'sent';
-                    // elem.parentNode.removeChild(elem);
                 })
                 .catch((err) =>
                 {
-                    // elem.parentElement.innerHTML =
-                        // `<b style='color: red'>Error saving decision</b>`;
                     console.log('Error:\n', err);
                 })
+            });
+            else if(decision[i].className === 'reject')
+            decision[i].addEventListener('click', (event) =>
+            {
+                event.preventDefault();
+
+                decision[i]
+                .parentElement
+                .getElementsByClassName('accept')[0]
+                .setAttribute('style', 'display : none');
+
+                decision[i]
+                .parentElement
+                .getElementsByClassName('cancel')[0]
+                .removeAttribute('style');
+
+                decision[i]
+                .parentElement
+                .getElementsByClassName('save')[0]
+                .removeAttribute('style');
+
+                decision[i]
+                .setAttribute('style', 'display : none');
+
+                decision[i].parentElement
+                .getElementsByClassName('rejectReason')[0]
+                .removeAttribute('style');
+
+                decision[i]
+                .parentElement
+                .getElementsByClassName('cancel')[0]
+                .addEventListener('click', (event) =>
+                {
+                    event.preventDefault();
+
+                    decision[i].parentElement.getElementsByClassName('cancel')[0]
+                    .setAttribute('style', 'display : none');
+                    decision[i].parentElement.getElementsByClassName('rejectReason')[0]
+                    .setAttribute('style', 'display : none');
+                    decision[i].parentElement.getElementsByClassName('save')[0]
+                    .setAttribute('style', 'display : none');
+                    decision[i].parentElement.getElementsByClassName('accept')[0]
+                    .removeAttribute('style');
+                    decision[i].parentElement.getElementsByClassName('reject')[0]
+                    .removeAttribute('style');
+                });
+
+                decision[i]
+                .parentElement
+                .getElementsByClassName('save')[0]
+                .addEventListener('click', (event) =>
+                {
+                    event.preventDefault();
+
+                    decision[i]
+                    .parentElement
+                    .setAttribute('style', 'display: none');
+
+                    decision[i].parentElement.parentElement
+                    .setAttribute('style', 'opacity: 0.5');
+
+                     axios.post
+                    (
+                        '/decision',
+                        {
+                            user_id : decision[i].parentElement.id,
+                            boolean : decision[i].className == 'accept' ? true : false
+                        }
+                    )
+                    .then((result) =>
+                    {
+                        console.log(result);
+                    })
+                    .catch((err) =>
+                    {
+                        console.log('Error:\n', err);
+                    })
+                });
+
             });
         }
     })
