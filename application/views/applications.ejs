@@ -82,108 +82,43 @@
 
     document.addEventListener('DOMContentLoaded', (event) =>
     {
-        let decision = document.getElementById('all_app').getElementsByTagName('a');
+        let decision =
+            document.getElementById('all_app')
+            .getElementsByTagName('a');
+
+        let accept = undefined;
+        let reject = undefined;
+        let decision_sec = undefined; // section
+        let application = undefined;
+
+        let accept_link = undefined;
+        let reject_link = undefined;
+        let save_link = undefined;
+        let cancel_link = undefined;
+        let rejectReason_link = undefined;
 
         for(let i = 0; i < decision.length; ++i)
         {
             if(decision[i].className === 'accept')
-            decision[i].addEventListener('click', (event) =>
             {
-                event.preventDefault();
-
-                decision[i].setAttribute('style', 'display : none');
-
-                if(decision[i].className == 'accept')
-                    decision[i+1].setAttribute('style', 'display : none');
-                else
-                    decision[i-1].setAttribute('style', 'display : none');
-
-                decision[i].parentElement.parentElement
-                .setAttribute('style', 'opacity: 0.5');
-
-                axios.post
-                (
-                    '/decision',
-                    {
-                        user_id : decision[i].parentElement.id,
-                        boolean : decision[i].className == 'accept' ? true : false
-                    }
-                )
-                .then((result) =>
-                {
-                    console.log(result);
-                })
-                .catch((err) =>
-                {
-                    console.log('Error:\n', err);
-                })
-            });
-            else if(decision[i].className === 'reject')
-            decision[i].addEventListener('click', (event) =>
-            {
-                event.preventDefault();
-
-                decision[i]
-                .parentElement
-                .getElementsByClassName('accept')[0]
-                .setAttribute('style', 'display : none');
-
-                decision[i]
-                .parentElement
-                .getElementsByClassName('cancel')[0]
-                .removeAttribute('style');
-
-                decision[i]
-                .parentElement
-                .getElementsByClassName('save')[0]
-                .removeAttribute('style');
-
-                decision[i]
-                .setAttribute('style', 'display : none');
-
-                decision[i].parentElement
-                .getElementsByClassName('rejectReason')[0]
-                .removeAttribute('style');
-
-                decision[i]
-                .parentElement
-                .getElementsByClassName('cancel')[0]
-                .addEventListener('click', (event) =>
+                decision[i].addEventListener('click', (event) =>
                 {
                     event.preventDefault();
 
-                    decision[i].parentElement.getElementsByClassName('cancel')[0]
-                    .setAttribute('style', 'display : none');
-                    decision[i].parentElement.getElementsByClassName('rejectReason')[0]
-                    .setAttribute('style', 'display : none');
-                    decision[i].parentElement.getElementsByClassName('save')[0]
-                    .setAttribute('style', 'display : none');
-                    decision[i].parentElement.getElementsByClassName('accept')[0]
-                    .removeAttribute('style');
-                    decision[i].parentElement.getElementsByClassName('reject')[0]
-                    .removeAttribute('style');
-                });
+                    decision_sec = accept.parentElement;
+                    application = decision_sec.parentElement;
 
-                decision[i]
-                .parentElement
-                .getElementsByClassName('save')[0]
-                .addEventListener('click', (event) =>
-                {
-                    event.preventDefault();
+                    console.log(decision_sec);
 
-                    decision[i]
-                    .parentElement
-                    .setAttribute('style', 'display: none');
+                    application.setAttribute('style', 'opacity: 0.5');
+                    decision_sec.setAttribute('style', 'display : none');
 
-                    decision[i].parentElement.parentElement
-                    .setAttribute('style', 'opacity: 0.5');
-
-                     axios.post
+                    axios.post
                     (
                         '/decision',
                         {
-                            user_id : decision[i].parentElement.id,
-                            boolean : decision[i].className == 'accept' ? true : false
+                            user_id : decision_sec.id,
+                            boolean : true
                         }
                     )
                     .then((result) =>
@@ -195,8 +130,72 @@
                         console.log('Error:\n', err);
                     })
                 });
+            }
+            else if(decision[i].className === 'reject')
+            {
+                decision[i].addEventListener('click', (event) =>
+                {
+                    event.preventDefault();
 
-            });
+                    reject = decision[i];
+                    decision_sec = reject.parentElement;
+                    application = decision_sec.parentElement;
+
+                    accept_link = decision_sec.getElementsByClassName('accept')[0];
+                    reject_link = decision_sec.getElementsByClassName('reject')[0];
+                    cancel_link = decision_sec.getElementsByClassName('cancel')[0];
+                    save_link   = decision_sec.getElementsByClassName('save')[0];
+                    rejectReason_link
+                                = decision_sec
+                                  .getElementsByClassName('rejectReason')[0];
+
+                    reject.setAttribute('style', 'display : none');
+
+                    accept_link.setAttribute('style', 'display : none');
+                    cancel_link.removeAttribute('style');
+                    save_link.removeAttribute('style');
+                    rejectReason_link.removeAttribute('style');
+
+                    cancel_link
+                    .addEventListener('click', (event) =>
+                    {
+                        event.preventDefault();
+
+                        cancel_link.setAttribute('style', 'display : none');
+                        rejectReason_link.setAttribute('style', 'display : none');
+                        save_link.setAttribute('style', 'display : none');
+                        accept_link.removeAttribute('style');
+                        reject_link.removeAttribute('style');
+                    });
+
+                    save_link
+                    .addEventListener('click', (event) =>
+                    {
+                        event.preventDefault();
+
+                        decision_sec.setAttribute('style', 'display: none');
+                        application.setAttribute('style', 'opacity: 0.5');
+
+                        axios.post
+                        (
+                            '/decision',
+                            {
+                                user_id : decision_sec.id,
+                                boolean : false
+                            }
+                        )
+                        .then((result) =>
+                        {
+                            console.log(result);
+                        })
+                        .catch((err) =>
+                        {
+                            console.log('Error:\n', err);
+                        })
+                    });
+
+                });
+            }
         }
     })
     </script>
