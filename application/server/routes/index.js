@@ -1,6 +1,6 @@
 // Routes index
 
-const welcome = require('./welcome');
+const start = require('./start');
 const home = require('./home');
 const login = require('./login');
 const signup = require('./signup');
@@ -10,6 +10,9 @@ const pageNotFound = require('./404');
 const charge = require('./charge');
 const userApps = require('./userApps');
 const tempUsers = require('./tempUsers');
+
+// these are for gui ss purposes. they should be moved/fixed/edited for real app
+const welcome = require('./welcome');
 
 const stripeExample = require('./stripeExample');
 const paymentApi = require('./payment');
@@ -21,7 +24,7 @@ const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated())
     return next();
 
-  // if they aren't redirect them to welcome page
+  // if they aren't redirect them to start page
   res.redirect('/');
 }
 
@@ -48,7 +51,7 @@ const checkIfRejected = (req, res, next) => {
 }
 
 const configureRoutes = (app, passport) => {
-  welcome(app);
+  start(app);
   home(app, isLoggedIn, checkIfRejected);
   login(app, passport);
   signup(app, passport);
@@ -57,6 +60,9 @@ const configureRoutes = (app, passport) => {
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
   tempUsers(app, isLoggedIn, isSuperuser);
+
+  // these are for gui ss purposes. they should be moved/fixed/edited for real app
+  welcome(app, isLoggedIn);
 
   stripeExample(app);
   paymentApi(app);

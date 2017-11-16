@@ -1,4 +1,3 @@
-<!-- views/index.ejs -->
 <!doctype html>
 <html>
 <head>
@@ -10,13 +9,36 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="jumbotron text-center">
-      <h1><span class="fa fa-lock"></span>Turk System</h1>
-      <p>Login or Register with:</p>
-      <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
-      <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+  <header>
+    <% include ../partials/navbar %>
+    <div class="page-header text-center">
+      <h1>Welcome!</h1>
+      <h4>Please fill in more details about yourself</h4>
     </div>
-  </div>
+  </header>
+  <main>
+    <div class="container">
+      <form action="/updateInfo" method="post">
+        <div class="form-group">
+          <label>Resume</label>
+          <input type="text" class="form-control" name="resume">
+        </div>
+        <div class="form-group">
+          <label>Picture</label>
+          <input type="text" class="form-control" name="picture">
+        </div>
+        <div class="form-group">
+          <label>Interests</label>
+          <input type="text" class="form-control" name="interests">
+        </div>
+        <div class="form-group">
+          <label>Sample Work</label>
+          <input type="text" class="form-control" name="samplework">
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg">Update Info</button>
+      </form>
+    </div>
+  </main>
 </body>
 </html>
