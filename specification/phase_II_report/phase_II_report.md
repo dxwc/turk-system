@@ -25,15 +25,24 @@ A brief summery of the users are:
 + **Visitor**: Non-registered (or temporarily registered) user with limited
   access to view statistics and public information
 
-##2.1 Search Public Information
+##2.1 Create an Account
 
-##2.2 Apply To Be a Client Or a Developer
+The user-type Visitor will be able to create an account by entering their userid, name, 
+deposit amount($), email, password. Users that want to apply to be a client can select
+the user-type Client. Users that want to apply to be a developer can select the user-type
+developer. Users that want to apply to be a super-user can select the user-type
+super-user and enter the super-user key.  
 
-##2.3 Add Profile Details
 
-##2.4 View Application Status
+##2.2 Search Public Information
 
-##2.5 Discuss/Process Dev. Payment
+##2.3 Apply To Be a Client Or a Developer
+
+##2.4 Add Profile Details
+
+##2.5 View Application Status
+
+##2.6 Discuss/Process Dev. Payment
 
 ##2.6 Hire a Biding Developer
 
