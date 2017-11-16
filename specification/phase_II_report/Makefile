@@ -1,2 +1,2 @@
 all:
-	pandoc phase_I_report.md -fmarkdown-implicit_figures -o phase_I_report.pdf --template=latex.template
+	pandoc phase_II_report.md -fmarkdown-implicit_figures -o phase_II_report.pdf --template=latex.template
