@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>System Demand</title>
+  <title>Pay</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 </head>
@@ -9,22 +9,23 @@
   <header>
     <% include ../partials/navbar %>
     <div class="page-header text-center">
-      <h1>Post a System Demand Here</h1>
+      <h1>Payment</h1>
+      <h4>You can pay here</h4>
     </div>
   </header>
   <main>
     <div class="container">
       <form action="/updateInfo" method="post">
         <div class="form-group">
-          <label>System Spec</label>
-          <textarea type="text" class="form-control" name="spec"></textarea>
+          <label>Payment Amount</label>
+          <input type="text" class="form-control" name="resume">
         </div>
         <div class="form-group">
-          <label>Bidding Timeline</label>
-          <input type="text" class="form-control" name="biddingtimeline">
+          <label>Who to Pay</label>
+          <input type="text" class="form-control" name="picture">
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Post</button>
+        <button type="submit" class="btn btn-warning btn-lg">Pay</button>
       </form>
     </div>
   </main>

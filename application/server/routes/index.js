@@ -15,9 +15,10 @@ const tempUsers = require('./tempUsers');
 const welcome = require('./welcome');
 const demand = require('./demand');
 const mostActive = require('./mostActive');
+const payment = require('./payment');
 
 const stripeExample = require('./stripeExample');
-const paymentApi = require('./payment');
+const paymentApi = require('./stripe');
 const testApi = require('./test');
 
 // route middleware to make sure a user is logged in
@@ -67,6 +68,7 @@ const configureRoutes = (app, passport) => {
   welcome(app, isLoggedIn);
   demand(app, isLoggedIn);
   mostActive(app, isLoggedIn);
+  payment(app, isLoggedIn);
 
   stripeExample(app);
   paymentApi(app);

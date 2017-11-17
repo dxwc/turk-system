@@ -1,25 +1,12 @@
-// Stripe backend
 
-const stripe = require('../constants/stripe');
-
-const postStripeCharge = res => (stripeErr, stripeRes) => {
-  if (stripeErr) {
-    res.status(500).send({ error: stripeErr });
-  } else {
-    res.status(200).send({ success: stripeRes });
-  }
-}
-
-const paymentApi = app => {
-  app.get('/stripe', (req, res) => {
-    res.send({ message: 'Hello Stripe checkout server!', timestamp: new Date().toISOString() })
-  });
-
-  app.post('/stripe', (req, res) => {
-    stripe.charges.create(req.body, postStripeCharge(res));
+const payment = (app, isLoggedIn) => {
+  app.get('/payment', isLoggedIn, function(req, res) {
+    res.render('payment.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
   });
 
   return app;
-};
+}
 
-module.exports = paymentApi;
+module.exports = payment
