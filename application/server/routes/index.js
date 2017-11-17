@@ -14,6 +14,7 @@ const tempUsers = require('./tempUsers');
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const welcome = require('./welcome');
 const demand = require('./demand');
+const mostActive = require('./mostActive');
 
 const stripeExample = require('./stripeExample');
 const paymentApi = require('./payment');
@@ -65,6 +66,7 @@ const configureRoutes = (app, passport) => {
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   welcome(app, isLoggedIn);
   demand(app, isLoggedIn);
+  mostActive(app, isLoggedIn);
 
   stripeExample(app);
   paymentApi(app);
