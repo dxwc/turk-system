@@ -102,16 +102,10 @@ Normal Scenarios:
 Exception Scenarios:
 
  2. a. User does not enter any information on the search query
-    a. 1. Display error message to user to enter all the required fields/information
+       + Display error message to user to enter all the required fields/information
  3. a. No result matched with the database
-    a. 1. Display error message stating no result found
-    a. 2. Prompt user to re-enter the search query
-
-##2.3 Apply To Be a Client Or a Developer
-
-Normal Scenarios:
-
-Exception Scenarios:
+       + Display error message stating no result found
+       + Prompt user to re-enter the search query
 
 ##2.4 Add Profile Details
 
@@ -128,12 +122,12 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 3. a. User does not enter a required information
-    a. 1. Prompt error message to user asking for the required information
- 4. a. Usertype - Developers does not enter any sample work
-    a. 1. Prompt error message to user asking for the required information
- 5. a. Usertype - Client does not enter any business credentials
-    a. 1. Prompt error message to user asking for the required information
+ 3. User does not enter a required information
+       + Prompt error message to user asking for the required information
+ 4. Usertype - Developers does not enter any sample work
+       + Prompt error message to user asking for the required information
+ 5. Usertype - Client does not enter any business credentials
+       + Prompt error message to user asking for the required information
 
 ##2.5 View Application Status
 
@@ -149,9 +143,7 @@ Normal Scenarios:
 Exception Scenarios:
 
  2. a. No status available for that user
-    a. 1. Prompt error message to user stating there is no status information available
-
-##2.6 Discuss/Process Dev. Payment
+    1. Prompt error message to user stating there is no status information available
 
 ##2.6 Hire a Biding Developer
 
@@ -170,13 +162,15 @@ Normal Scenarios:
 
 Exception Scenarios:
  
- 3. a. No bidding developers were found in the system
-    a. 1.1. The posted deadline has passed
-    a. 1.2. Redirect client to the project removed and $10 fees charged information page
-    a. 2.1. The posted deadline has not passed
-    a. 2.2. Prompt client with message that no bids placed for this system 
- 4. a. Client clicked on the bidding developer of non-lowest price
-    a. 1. Prompt a justification text-field for client requesting the reason
+ 3. No bidding developers were found in the system
+    a. The posted deadline has passed
+        +  Redirect client to the project removed and $10 fees charged information page
+    b. The posted deadline has not passed
+        +  Prompt client with message that no bids placed for this system 
+ 4. Client clicked on the bidding developer of non-lowest price
+    a. Prompt a justification text-field for client requesting the reason
+ 5. Client does not have enough amount in their account
+    a. Send wraning message to the client and prompt them to add money
 
 ##2.7 Add Money to the Total Deposit
 
@@ -195,10 +189,10 @@ Normal Scenarios:
 Exception Scenarios:
  
  3. a. Client did not enter any amount
-    a. 1. Prompt error message to user asking for the required information
+    a.1. Prompt error message to user asking for the required information
  4. a. Deadline for adding deposit has already passed
-    a. 1. Prompt user that the deadline has already passed
-    a. 2. Redirect client fees charged information page 
+    a.1. Prompt user that the deadline has already passed
+    a.2. Redirect client fees charged information page 
 
 ##2.8 Post System Demand
 
@@ -221,22 +215,149 @@ Exception Scenarios:
 
 ##2.9 Quit From the System
 
+Precondition: User is connected to the internet
+			  User is logged in the system
 
-##2.10 Client Rate Developer
+Normal Scenarios:
 
-##2.11 Send Complain Message to the Super-User
+ 1. User visits the main GUI interface
+ 2. User selects Quit from System option
+ 3. User enters option information for reson-to-quit text-field
+ 4. User enters submit button
+ 5. System sends user information for final review from the super-user
+ 6. User views final review from the super-user
+ 7. User is redirected to the exit page
 
-##2.12 View Account Closing Status Information
+Exception Scenarios:
+ 
+ 6. User has unpaid/unfinished system demand
+    + Prompt user the reason for why they can not quit the system yet
 
-##2.13 Bid on Any Demand With Promised Timeline and Money
+##2.10 Client Rate Delivered System
 
-##2.14 Submit Delivered System
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is client
+			  The required system is delivered to the client
 
-##2.15 Rate Client
+Normal Scenarios:
 
-##2.16 Send Protesting Message To The Super-User
+ 1. Client visits the main GUI interface
+ 2. Client selects the Rate delivered system option 
+ 3. Client is redirected to the page with all the delivered system for that client
+ 4. Client clicks on the system that they want to rate
+ 5. Client enters the desired rating for the system
+ 6. Client submits the rating for the system
+ 7. Rating verified by the system
 
-##2.17 View Account Closing Status Information
+Exception Scenarios:
+
+ 7. a. Rating is higher than 3
+    + Transfer the remaining bid money held by the super-user to the corresponding developer
+    b. Rating is lower than 2
+    + Prompt the user with the note text-field about the reason of the low feedback
+
+##2.11 Bid on Any Demand With Promised Timeline and Money
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is developer		
+
+Normal Scenarios:
+
+ 1. Developer visits the main GUI interface
+ 2. Developer selects the View System Demands option 
+ 3. Developer is redirected to the page with all the current system demands
+ 4. Developer clicks on the system demands that they want to bid on
+ 5. Developer enters all the required fields for the bid 
+ 6. Developer submits the bid to the client
+ 7. Submission is verified by the system
+
+Exception Scenarios:
+
+ 3. a. No system demands avaiable in the turk-system
+    + Prompt user that there is no system demands posted
+ 6. a. Developer did not enter required information for the bid
+    + Prompt user asking for the required information for the bid
+
+##2.12 Submit Delivered System
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is developer		
+
+Normal Scenarios:
+
+ 1. Developer visits the main GUI interface
+ 2. Developer selects the Submit system option 
+ 3. Developer is redirected to the page with all the systems for that developer
+ 4. Developer clicks on the system that they want to submit
+ 5. Developer enters all the required fields for the system delivery
+ 6. Developer submits system to the client
+ 7. Submission is verified by the system
+
+Exception Scenarios:
+
+ 7. a. Developer submitted the system before or on the deadline
+    + Transfer the remaining half of the system bid amount to the super-user account
+    b. Developer submitted the system after the deadline
+    + Transfer the front bid amount and fixed penalty from the developer to the client
+    + Rate developer with 1 rating
+
+##2.13 Rate Client
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is developer		
+
+Normal Scenarios:
+
+ 1. Developer visits the main GUI interface
+ 2. Developer selects the Submit system option 
+ 3. Developer is redirected to the page with all the systems for that developer
+ 4. Developer clicks on the client that they want to rate
+ 5. Developer enters the rating for client
+ 6. Developer submits the rating
+ 7. Submission is verified by the system
+
+Exception Scenarios:
+
+ 5. a. Developer entered rating lower than 2
+    + Prompt user to enter a paragraph for the low rawting
+
+##2.14 Send Protesting Message to the Super-User
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is developer or client		
+
+Normal Scenarios:
+
+ 1. User visits the main GUI interface
+ 2. User selects the View warning and deadline option 
+ 3. User is redirected to the page with a form to submit protesting request
+ 4. User enters the required information in the form
+ 5. User submits protest message
+ 6. Submission is verified by the system
+
+Exception Scenarios:
+
+ 4. User did not enter all required information in the protest form
+    + Prompt user to enter the required information
+
+##2.15 View Account Closing Status Information
+
+Precondition: User is connected to the internet
+			  Usertype is developer or client
+			  User is thrown out of the system 		
+
+Normal Scenarios:
+
+ 1. User logs into the system
+ 2. User visits the main GUI interface 
+ 3. User views the Closing status information
+ 4. User logs out
+ 5. System adds user to the black-list
 
 #3. E-R Diagram
 
@@ -254,6 +375,39 @@ E-R diagram goes here
 
 #5. System Screens
 
+##5.1 Main Page for Login and Registeration Screen
+
+![](./img/start.png)
+
+##5.2 Registeration Screen
+
+![](./img/signup.png)
+
+##5.3 Login Screen
+
+![](./img/login.png)
+
+##5.4 Welcome Screen
+
+![](./img/welcome.png)
+
+##5.4 Most Active Users Screen
+
+![](./img/most_active.png)
+
+##5.5 System Demand Screen
+
+![](./img/system_demand.png)
+
+##5.6 User Applications Screen
+
+![](./img/user_applications.png)
+
+##5.7 Payment Screen
+
+![](./img/payment.png)
+
 #6. Minutes of Group Meetings
+
 
 #7. Phase I Report Feedback
