@@ -371,7 +371,7 @@ Normal Scenarios:
 
 #4. Detailed Design
 
-##4.1 All User Methods:
+##4.1 User Methods:
 
 ~~~~~~~
 login_to_the_system(username, password)
@@ -392,8 +392,24 @@ logout_from_the_system(username)
 
 
 ~~~~~~~
+quit_system(userID, quitForm)
+	if quitForm != empty
+		send_request_to_superuser(userID, quitForm)
+	end if
+	return 
+~~~~~~~
 
 
+~~~~~~~
+search_public_information(userStatus, userID, depositAmount)
+	if userStatus == temporaryAccount
+		userdetails = findUser(userID)
+		userdetails.append(depositAmount)
+		send_application_to_superUser(userdetails)
+	else
+		displayexecption(msg)
+	end if
+	return
 ~~~~~~~
 
 
@@ -408,8 +424,47 @@ update_profile_for_client(userStatus, userID, business credential)
 		save_to_system(userdetails)
 	else
 		displayexecption(msg)
+	end if
+	return
 ~~~~~~~
 
+
+~~~~~~~
+post_a_system_demand(userID, spec_paragraph, bidding_timeline)
+	if spec_paragraph && bidding_timeline 
+		add_demand_to_system(userID, spec_paragraph, bidding_timeline)
+	else
+		displayexecption(msg)
+	end if
+	return
+~~~~~~~
+
+
+~~~~~~~
+view_bids_to_the_system(userID, systemID)
+ 
+
+~~~~~~~
+
+
+~~~~~~~
+hire_a_bidding_developer(userID, systemID, developerID, bid_amount)
+	developer = getUser(developerID)
+	if is-non-lowest(bid_amount)
+		promptUser(text_justification)
+		process_hiring(userID, systemID, developerID, bid_amount, text_justification)
+	else
+		process_hiring(userID, systemID, developerID, bid_amount)
+	end if
+	return
+~~~~~~~
+
+
+~~~~~~~
+add_money_to_the_total_deposit(userID, deposit_amount)
+	
+
+~~~~~~~
 
 ##4.3 Developer Methods:
 
@@ -422,7 +477,24 @@ update_profile_for_devs(userStatus, userID, resume, interests, sample_work)
 		save_to_system(userdetails)
 	else
 		displayexecption(msg)
+	end if
+	return
 ~~~~~~~
+
+
+~~~~~~~
+bid_on_system_demand(userStatus, userID, resume, interests, sample_work)
+	if userStatus == accepted
+		userdetails = findUser(userID)
+		userdetails.append(resume)
+		userdetails.append(sample_work)
+		save_to_system(userdetails)
+	else
+		displayexecption(msg)
+	end if 
+	return
+~~~~~~~
+
 
 ##4.4 Visitor Methods:
 
@@ -434,20 +506,13 @@ apply_to_be_a_client_or_developer(userStatus, userID, depositAmount)
 		send_application_to_superUser(userdetails)
 	else
 		displayexecption(msg)
+	end if 
+	return
 ~~~~~~~
 
-
-~~~~~~~
-apply_to_be_a_client_or_developer(userStatus, userID, depositAmount)
-	if userStatus == temporaryAccount
-		userdetails = findUser(userID)
-		userdetails.append(depositAmount)
-		send_application_to_superUser(userdetails)
-	else
-		displayexecption(msg)
-~~~~~~~
 
 ##4.5 Super User Methods:
+
 
 #5. System Screens
 
