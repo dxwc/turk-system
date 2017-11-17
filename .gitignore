@@ -3,3 +3,4 @@ node_modules/
 *.swp
 react-ui/build/
 deploy_to_heroku.sh
+.Rhistory
