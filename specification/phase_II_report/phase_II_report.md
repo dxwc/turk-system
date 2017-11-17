@@ -112,6 +112,8 @@ Exception Scenarios:
        + Display error message stating no result found
        + Prompt user to re-enter the search query
 
+![](./img/searchpublicinfo.png)
+
 ##2.4 Add Profile Details
 
 Precondition: User is connected to the internet
@@ -260,6 +262,7 @@ Exception Scenarios:
 
 ![](./img/Quit_System_CD.png)
 
+![](./img/QuitFormSystem.png)
 
 ##2.10 Client Rate Delivered System
 
