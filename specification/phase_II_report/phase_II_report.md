@@ -14,7 +14,6 @@ geometry: margin=3cm
 Introduction an overall picture of the system using collaboration class diagram
 
 
-
 #2. Use Cases
 
 The types of users are Super User, Client, Developer and Visitor.
@@ -62,6 +61,8 @@ Exception Scenarios:
     + Display error message to user stating the password does not match the confirmatio
 
 ##2.2 Sign-in
+
+![](./img/Sign_in_CD.png)
 
 The user can Sign-in by entering their email and password. If the user's email exists 
 in the system, the system will verify the password. If not the system will ask the 
@@ -111,6 +112,8 @@ Exception Scenarios:
 
 ##2.4 Add Profile Details
 
+![](./img/update_profile_CD-2.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 
@@ -133,6 +136,8 @@ Exception Scenarios:
 
 ##2.5 View Application Status
 
+![](./img/profile_status_CD.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 
@@ -148,6 +153,8 @@ Exception Scenarios:
     + Prompt error message to user stating there is no status information available
 
 ##2.6 Hire a Biding Developer
+
+![](./img/Hire_biding_CD.png)
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -176,6 +183,8 @@ Exception Scenarios:
 
 ##2.7 Add Money to the Total Deposit
 
+![](./img/Add_Money_CD.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 			  Usertype is client
@@ -198,6 +207,8 @@ Exception Scenarios:
 
 ##2.8 Post System Demand
 
+![](./img/Post_system_Demand_CD.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 			  Usertype is client
@@ -216,6 +227,8 @@ Exception Scenarios:
     + Prompt error message to user asking for the required information
 
 ##2.9 Quit From the System
+
+![](./img/Quit_System_CD.png)
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -308,6 +321,8 @@ Exception Scenarios:
 
 ##2.13 Rate Client
 
+![](./img/Rate_Client_CD.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 			  Usertype is developer		
@@ -329,6 +344,8 @@ Exception Scenarios:
 
 ##2.14 Send Protesting Message to the Super-User
 
+![](./img/Protesting_Message_CD.png)
+
 Precondition: User is connected to the internet
 			  User is logged in the system
 			  Usertype is developer or client		
@@ -348,6 +365,8 @@ Exception Scenarios:
     + Prompt user to enter the required information
 
 ##2.15 View Account Closing Status Information
+
+![](./img/Account_closing_CD.png)
 
 Precondition: User is connected to the internet
 			  Usertype is developer or client
