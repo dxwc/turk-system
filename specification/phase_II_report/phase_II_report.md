@@ -275,6 +275,8 @@ Normal Scenarios:
  6. Client submits the rating for the system
  7. Rating verified by the system
 
+![](./img/Rate_Delivered_Sys_CD.png)
+
 Exception Scenarios:
 
  7. a. Rating is higher than 3
@@ -305,6 +307,8 @@ Exception Scenarios:
  6. a. Developer did not enter required information for the bid
     + Prompt user asking for the required information for the bid
 
+![](./img/Bid_on_Dem_CD.png)
+
 ##2.12 Submit Delivered System
 
 Precondition: User is connected to the internet
@@ -328,6 +332,8 @@ Exception Scenarios:
     b. Developer submitted the system after the deadline
     + Transfer the front bid amount and fixed penalty from the developer to the client
     + Rate developer with 1 rating
+
+![](./img/Submit_System_CD.png)
 
 ##2.13 Rate Client
 
