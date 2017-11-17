@@ -112,8 +112,6 @@ Exception Scenarios:
        + Display error message stating no result found
        + Prompt user to re-enter the search query
 
-![](./img/Search_Info_CD.png)
-
 ##2.4 Add Profile Details
 
 Precondition: User is connected to the internet
@@ -215,6 +213,8 @@ Exception Scenarios:
 
 ![](./img/Add_Money_CD.png)
 
+![](./img/AddMoneyToDeposit.png)
+
 ##2.8 Post System Demand
 
 Precondition: User is connected to the internet
@@ -236,6 +236,7 @@ Exception Scenarios:
 
 ![](./img/Post_system_Demand_CD.png)
 
+![](./img/PostSystemDemand.png)
 
 ##2.9 Quit From the System
 
