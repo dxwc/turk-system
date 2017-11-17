@@ -41,6 +41,22 @@ account. If the password and password-confirmation does not match, the system wi
 an exception message to the user stating the error. The user can then re-enter these 
 two fields.
 
+Normal Scenarios:
+
+ 1. User enters their userID, name, email, password, password confirmation and desired usertype.
+ 2. User's email and userID validation for uniqueness
+ 3. User's password and password confirmation for match
+ 4. User is redirected to the welcome GUI interface
+
+Exception Scenarios:
+
+ 1. a. User does not enter a required field
+ 	a. 1. Display error message to user to enter all the required fields/information
+ 2. a. User's email and userID already exists in the database
+    a. 1. Display error message stating email or userID is not unique
+ 3. b. User's password and password confirmation does not match
+    b. 1. Display error message to user stating the password does not match the confirmatio
+
 ##2.2 Sign-in
 
 The user can Sign-in by entering their email and password. If the user's email exists 
@@ -49,9 +65,43 @@ user to re-enter the email or create a new account. The user will be able to use
 turk-system if the password is valid. If the password is not valid the user will be 
 asked to re-enter their password. 
 
-##2.2 Search Public Information
+Normal Scenarios:
+
+ 1. User enters their email and password
+ 2. User's email address is validated against the database for match
+ 3. User's password is validated against the database for match
+ 4. User is redirected to the welcome GUI interface
+
+Exception Scenarios:
+
+ 1. a. User does not enter a required field
+ 	a. 1. Display error message to user to enter all the required fields/information
+ 2. a. User's email address does not match
+    a. 1. Display error message to user stating email is not found
+ 3. a. User's password does not match
+    a. 1. Display error message to user stating password is does not match
+
+##2.3 Search Public Information
+
+Normal Scenarios:
+
+ 1. User visits the welcome GUI interface
+ 2. User types the search query in the search box and searches
+ 3. User's search query is validated
+ 4. System displays the matched result of the search query of links to Users or projects
+ 5. User follows desired links to view project/user histories and credentials
+ 6. User is redirected to the respective link's GUI interface
+
+Exception Scenarios:
+
+ 2. a. User does not enter any information on the search query
+     1. Display error message to user to enter all the required fields/information
+ 3. a. No result matched with the database
+     1. Display error message stating no result found
+     2. Prompt user to re-enter the search query
 
 ##2.3 Apply To Be a Client Or a Developer
+
 
 ##2.4 Add Profile Details
 
