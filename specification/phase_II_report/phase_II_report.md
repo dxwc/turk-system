@@ -5,7 +5,7 @@ forwhat: For Web Application
 version: 0.1
 bottomleft: Confidential
 date: 16/Nov/17
-documentidentifier: CSC322-EF2-0001
+documentidentifier: CSC322-EF2-0002
 geometry: margin=3cm
 ---
 
@@ -361,7 +361,11 @@ Normal Scenarios:
 
 #3. E-R Diagram
 
-E-R diagram goes here
+![](./img/ER_diagram/part_1.png)
+![](./img/ER_diagram/part_2.png)
+![](./img/ER_diagram/part_3.png)
+![](./img/ER_diagram/part_4.png)
+![](./img/ER_diagram/part_5.png)
 
 #4. Detailed Design
 
