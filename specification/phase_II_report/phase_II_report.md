@@ -384,21 +384,32 @@ login_to_the_system(username, password)
 		redirect user to the login GUI interface
 ~~~~~~~
 
+
 ~~~~~~~
 logout_from_the_system(username)
 
 ~~~~~~~
 
+
 ~~~~~~~
 
 
 ~~~~~~~
+
 
 ##4.2 Client Methods:
-~~~~~~~
-update_profile_for_client(business credential)
 
 ~~~~~~~
+update_profile_for_client(userStatus, userID, business credential)
+	if userStatus == accepted
+		userdetails = findUser(userID)
+		userdetails.append(resume)
+		userdetails.append(sample_work)
+		save_to_system(userdetails)
+	else
+		displayexecption(msg)
+~~~~~~~
+
 
 ##4.3 Developer Methods:
 
@@ -414,6 +425,27 @@ update_profile_for_devs(userStatus, userID, resume, interests, sample_work)
 ~~~~~~~
 
 ##4.4 Visitor Methods:
+
+~~~~~~~
+apply_to_be_a_client_or_developer(userStatus, userID, depositAmount)
+	if userStatus == temporaryAccount
+		userdetails = findUser(userID)
+		userdetails.append(depositAmount)
+		send_application_to_superUser(userdetails)
+	else
+		displayexecption(msg)
+~~~~~~~
+
+
+~~~~~~~
+apply_to_be_a_client_or_developer(userStatus, userID, depositAmount)
+	if userStatus == temporaryAccount
+		userdetails = findUser(userID)
+		userdetails.append(depositAmount)
+		send_application_to_superUser(userdetails)
+	else
+		displayexecption(msg)
+~~~~~~~
 
 ##4.5 Super User Methods:
 
