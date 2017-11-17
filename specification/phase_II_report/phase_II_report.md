@@ -41,6 +41,8 @@ account. If the password and password-confirmation does not match, the system wi
 an exception message to the user stating the error. The user can then re-enter these 
 two fields.
 
+Precondition: User is connected to the internet
+
 Normal Scenarios:
 
  1. User enters their userID, name, email, password, password confirmation and desired usertype.
@@ -65,6 +67,8 @@ user to re-enter the email or create a new account. The user will be able to use
 turk-system if the password is valid. If the password is not valid the user will be 
 asked to re-enter their password. 
 
+Precondition: User is connected to the internet
+
 Normal Scenarios:
 
  1. User enters their email and password
@@ -83,6 +87,9 @@ Exception Scenarios:
 
 ##2.3 Search Public Information
 
+Precondition: User is connected to the internet
+			  User is logged in the system
+
 Normal Scenarios:
 
  1. User visits the welcome GUI interface
@@ -95,27 +102,125 @@ Normal Scenarios:
 Exception Scenarios:
 
  2. a. User does not enter any information on the search query
-     1. Display error message to user to enter all the required fields/information
+    a. 1. Display error message to user to enter all the required fields/information
  3. a. No result matched with the database
-     1. Display error message stating no result found
-     2. Prompt user to re-enter the search query
+    a. 1. Display error message stating no result found
+    a. 2. Prompt user to re-enter the search query
 
 ##2.3 Apply To Be a Client Or a Developer
 
+Normal Scenarios:
+
+Exception Scenarios:
 
 ##2.4 Add Profile Details
 
+Precondition: User is connected to the internet
+			  User is logged in the system
+
+Normal Scenarios:
+
+ 1. User views the welcome GUI interface and visits the profile
+ 2. User selects the Add more information
+ 3. User enters information about her/himself including resume, picture, interests
+ 4. Usertype - Developers add sample work
+ 5. Usertype - Clients add business credentials
+
+Exception Scenarios:
+
+ 3. a. User does not enter a required information
+    a. 1. Prompt error message to user asking for the required information
+ 4. a. Usertype - Developers does not enter any sample work
+    a. 1. Prompt error message to user asking for the required information
+ 5. a. Usertype - Client does not enter any business credentials
+    a. 1. Prompt error message to user asking for the required information
+
 ##2.5 View Application Status
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+
+Normal Scenarios:
+
+ 1. Usertype - Visitor views the main GUI interface
+ 2. User views the application status on the main page
+ 3. Add more details feature is disabled or enabled based on the application status
+
+Exception Scenarios:
+
+ 2. a. No status available for that user
+    a. 1. Prompt error message to user stating there is no status information available
 
 ##2.6 Discuss/Process Dev. Payment
 
 ##2.6 Hire a Biding Developer
 
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is client
+
+Normal Scenarios:
+
+ 1. Usertype - Client visits the main GUI interface
+ 2. Client selects view bidding developers option
+ 3. Redirect client to the list of all bidding developers for the system demand
+ 4. Client clicks on the bidding developer to hire
+ 5. Confirmation is sent and verified in the system
+ 6. Half of the bidding price is transferred from the client to the winner developer
+
+Exception Scenarios:
+ 
+ 3. a. No bidding developers were found in the system
+    a. 1.1. The posted deadline has passed
+    a. 1.2. Redirect client to the project removed and $10 fees charged information page
+    a. 2.1. The posted deadline has not passed
+    a. 2.2. Prompt client with message that no bids placed for this system 
+ 4. a. Client clicked on the bidding developer of non-lowest price
+    a. 1. Prompt a justification text-field for client requesting the reason
+
 ##2.7 Add Money to the Total Deposit
+
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is client
+
+Normal Scenarios:
+
+ 1. Usertype - Client visits the main GUI interface
+ 2. Client selects Add money to total deposit option
+ 3. Redirect client form with amount field
+ 4. Client clicks the confirm option
+ 5. Confirmation is sent and verified in the system
+
+Exception Scenarios:
+ 
+ 3. a. Client did not enter any amount
+    a. 1. Prompt error message to user asking for the required information
+ 4. a. Deadline for adding deposit has already passed
+    a. 1. Prompt user that the deadline has already passed
+    a. 2. Redirect client fees charged information page 
 
 ##2.8 Post System Demand
 
+Precondition: User is connected to the internet
+			  User is logged in the system
+			  Usertype is client
+
+Normal Scenarios:
+
+ 1. Usertype - Client visits the main GUI interface
+ 2. Client selects post a system demand option
+ 3. Client enters information including a paragraph describing system spec.
+ 4. Client enters information for bidding timeline 
+ 5. Client submits the system demand
+
+Exception Scenarios:
+ 
+ 5. a. Client did not enter required information
+    a. 1. Prompt error message to user asking for the required information
+
 ##2.9 Quit From the System
+
 
 ##2.10 Client Rate Developer
 
