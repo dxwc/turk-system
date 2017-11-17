@@ -62,8 +62,6 @@ Exception Scenarios:
 
 ##2.2 Sign-in
 
-![](./img/Sign_in_CD.png)
-
 The user can Sign-in by entering their email and password. If the user's email exists 
 in the system, the system will verify the password. If not the system will ask the 
 user to re-enter the email or create a new account. The user will be able to use the 
@@ -87,6 +85,10 @@ Exception Scenarios:
     + Display error message to user stating email is not found
  3. User's password does not match
     + Display error message to user stating password is does not match
+
+![](./img/Sign_in_CD.png)
+
+![](./img/loginState.png)
 
 ##2.3 Search Public Information
 
@@ -112,8 +114,6 @@ Exception Scenarios:
 
 ##2.4 Add Profile Details
 
-![](./img/update_profile_CD-2.png)
-
 Precondition: User is connected to the internet
 			  User is logged in the system
 
@@ -134,9 +134,11 @@ Exception Scenarios:
  5. Usertype - Client does not enter any business credentials
        + Prompt error message to user asking for the required information
 
-##2.5 View Application Status
+![](./img/update_profile_CD-2.png)
 
-![](./img/profile_status_CD.png)
+![](./img/addProfileDetails.png)
+
+##2.5 View Application Status
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -152,9 +154,11 @@ Exception Scenarios:
  2. No status available for that user
     + Prompt error message to user stating there is no status information available
 
-##2.6 Hire a Biding Developer
+![](./img/profile_status_CD.png)
 
-![](./img/Hire_biding_CD.png)
+![](./img/viewApplicationStatus.png)
+
+##2.6 Hire a Biding Developer
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -181,9 +185,11 @@ Exception Scenarios:
  5. Client does not have enough amount in their account
     a. Send wraning message to the client and prompt them to add money
 
-##2.7 Add Money to the Total Deposit
+![](./img/Hire_biding_CD.png)
 
-![](./img/Add_Money_CD.png)
+![](./img/hireBiddingDeveloper.png)
+
+##2.7 Add Money to the Total Deposit
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -205,9 +211,9 @@ Exception Scenarios:
     + Prompt user that the deadline has already passed
     + Redirect client fees charged information page 
 
-##2.8 Post System Demand
+![](./img/Add_Money_CD.png)
 
-![](./img/Post_system_Demand_CD.png)
+##2.8 Post System Demand
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -226,9 +232,10 @@ Exception Scenarios:
  5. Client did not enter required information
     + Prompt error message to user asking for the required information
 
-##2.9 Quit From the System
+![](./img/Post_system_Demand_CD.png)
 
-![](./img/Quit_System_CD.png)
+
+##2.9 Quit From the System
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -247,6 +254,9 @@ Exception Scenarios:
  
  6. User has unpaid/unfinished system demand
     + Prompt user the reason for why they can not quit the system yet
+
+![](./img/Quit_System_CD.png)
+
 
 ##2.10 Client Rate Delivered System
 
@@ -321,8 +331,6 @@ Exception Scenarios:
 
 ##2.13 Rate Client
 
-![](./img/Rate_Client_CD.png)
-
 Precondition: User is connected to the internet
 			  User is logged in the system
 			  Usertype is developer		
@@ -342,9 +350,11 @@ Exception Scenarios:
  5. Developer entered rating lower than 2
     + Prompt user to enter a paragraph for the low rawting
 
+![](./img/Rate_Client_CD.png)
+
+
 ##2.14 Send Protesting Message to the Super-User
 
-![](./img/Protesting_Message_CD.png)
 
 Precondition: User is connected to the internet
 			  User is logged in the system
@@ -364,9 +374,11 @@ Exception Scenarios:
  4. User did not enter all required information in the protest form
     + Prompt user to enter the required information
 
+![](./img/Protesting_Message_CD.png)
+
+
 ##2.15 View Account Closing Status Information
 
-![](./img/Account_closing_CD.png)
 
 Precondition: User is connected to the internet
 			  Usertype is developer or client
@@ -379,6 +391,9 @@ Normal Scenarios:
  3. User views the Closing status information
  4. User logs out
  5. System adds user to the black-list
+
+![](./img/Account_closing_CD.png)
+
 
 #3. E-R Diagram
 
@@ -401,17 +416,23 @@ login_to_the_system(username, password)
 	else
 		unsucessful login
 		redirect user to the login GUI interface
+	end if 
+	return
 ~~~~~~~
 
 
 ~~~~~~~
 logout_from_the_system(username)
-
+	removeCache(username)
+	redirect user to the logout sucess page
+	return
 ~~~~~~~
 
 
 ~~~~~~~
 quit_system(userID, quitForm)
+	if userID.remainingBalance == true or userID.assignedWork == true
+		prompt (exception - cannot quit from system)
 	if quitForm != empty
 		send_request_to_superuser(userID, quitForm)
 	end if
@@ -461,8 +482,16 @@ post_a_system_demand(userID, spec_paragraph, bidding_timeline)
 
 ~~~~~~~
 view_bids_to_the_system(userID, systemID)
- 
-
+	 bids = generate_All_Bids(systemID)
+	 if bids != empty
+	 	show bids
+	 else if bids == empty && haspassed(systemID.deadline)
+	 	prompt message to client that system has been removed
+	 	add $10 fine
+	 else
+	 	prompt message (no bids yet)
+	 end if
+	 return
 ~~~~~~~
 
 
@@ -481,8 +510,8 @@ hire_a_bidding_developer(userID, systemID, developerID, bid_amount)
 
 ~~~~~~~
 add_money_to_the_total_deposit(userID, deposit_amount)
-	
-
+	userID.totalDeposit += deposit_amount
+	return
 ~~~~~~~
 
 ##4.3 Developer Methods:
@@ -526,6 +555,17 @@ apply_to_be_a_client_or_developer(userStatus, userID, depositAmount)
 	else
 		displayexecption(msg)
 	end if 
+	return
+~~~~~~~
+
+
+~~~~~~~
+view_application_status(userID)
+	if userID.status != pending
+		show (userID.status)
+	else
+		prompt (no status yet)
+	end if
 	return
 ~~~~~~~
 
