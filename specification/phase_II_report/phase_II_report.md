@@ -25,15 +25,39 @@ A brief summery of the users are:
 + **Visitor**: Non-registered (or temporarily registered) user with limited
   access to view statistics and public information
 
-##2.1 Search Public Information
+##2.1 Create an Account
 
-##2.2 Apply To Be a Client Or a Developer
+The user-type Visitor will be able to create an account by entering their userid, name, 
+deposit amount($), email, password. Users that want to apply to be a client can select
+the user-type Client. Users that want to apply to be a developer can select the user-type
+developer. Users that want to apply to be a super-user can select the user-type
+super-user and enter the super-user key. Client and developer usertypes can add their
+deposit amount. Once the user enters submit, the user's user id and email will be 
+validated by the system to check the uniqueness of the user id and email. If the user id 
+or email address of the user is not unique, the system will send an exception message
+to the user stating the error. The user can then re-enter a new user id or email. The 
+user will have to enter the password and the password-confirmation while creating an
+account. If the password and password-confirmation does not match, the system will send
+an exception message to the user stating the error. The user can then re-enter these 
+two fields.
 
-##2.3 Add Profile Details
+##2.2 Sign-in
 
-##2.4 View Application Status
+The user can Sign-in by entering their email and password. If the user's email exists 
+in the system, the system will verify the password. If not the system will ask the 
+user to re-enter the email or create a new account. The user will be able to use the 
+turk-system if the password is valid. If the password is not valid the user will be 
+asked to re-enter their password. 
 
-##2.5 Discuss/Process Dev. Payment
+##2.2 Search Public Information
+
+##2.3 Apply To Be a Client Or a Developer
+
+##2.4 Add Profile Details
+
+##2.5 View Application Status
+
+##2.6 Discuss/Process Dev. Payment
 
 ##2.6 Hire a Biding Developer
 
