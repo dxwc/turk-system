@@ -13,9 +13,11 @@ geometry: margin=3cm
 
 Introduction an overall picture of the system using collaboration class diagram
 
+
+
 #2. Use Cases
 
-The types of users are Super User, Client, Developer and visitor.
+The types of users are Super User, Client, Developer and Visitor.
 
 A brief summery of the users are:
 
@@ -52,12 +54,12 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 1. a. User does not enter a required field
- 	a. 1. Display error message to user to enter all the required fields/information
- 2. a. User's email and userID already exists in the database
-    a. 1. Display error message stating email or userID is not unique
- 3. b. User's password and password confirmation does not match
-    b. 1. Display error message to user stating the password does not match the confirmatio
+ 1. User does not enter a required field
+ 	+ Display error message to user to enter all the required fields/information
+ 2. User's email and userID already exists in the database
+    + Display error message stating email or userID is not unique
+ 3. User's password and password confirmation does not match
+    + Display error message to user stating the password does not match the confirmatio
 
 ##2.2 Sign-in
 
@@ -78,12 +80,12 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 1. a. User does not enter a required field
- 	a. 1. Display error message to user to enter all the required fields/information
- 2. a. User's email address does not match
-    a. 1. Display error message to user stating email is not found
- 3. a. User's password does not match
-    a. 1. Display error message to user stating password is does not match
+ 1. User does not enter a required field
+ 	+ Display error message to user to enter all the required fields/information
+ 2. User's email address does not match
+    + Display error message to user stating email is not found
+ 3. User's password does not match
+    + Display error message to user stating password is does not match
 
 ##2.3 Search Public Information
 
@@ -101,9 +103,9 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 2. a. User does not enter any information on the search query
+ 2. User does not enter any information on the search query
        + Display error message to user to enter all the required fields/information
- 3. a. No result matched with the database
+ 3. No result matched with the database
        + Display error message stating no result found
        + Prompt user to re-enter the search query
 
@@ -142,8 +144,8 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 2. a. No status available for that user
-    1. Prompt error message to user stating there is no status information available
+ 2. No status available for that user
+    + Prompt error message to user stating there is no status information available
 
 ##2.6 Hire a Biding Developer
 
@@ -188,11 +190,11 @@ Normal Scenarios:
 
 Exception Scenarios:
  
- 3. a. Client did not enter any amount
-    a.1. Prompt error message to user asking for the required information
- 4. a. Deadline for adding deposit has already passed
-    a.1. Prompt user that the deadline has already passed
-    a.2. Redirect client fees charged information page 
+ 3. Client did not enter any amount
+    + Prompt error message to user asking for the required information
+ 4. Deadline for adding deposit has already passed
+    + Prompt user that the deadline has already passed
+    + Redirect client fees charged information page 
 
 ##2.8 Post System Demand
 
@@ -210,8 +212,8 @@ Normal Scenarios:
 
 Exception Scenarios:
  
- 5. a. Client did not enter required information
-    a. 1. Prompt error message to user asking for the required information
+ 5. Client did not enter required information
+    + Prompt error message to user asking for the required information
 
 ##2.9 Quit From the System
 
@@ -322,7 +324,7 @@ Normal Scenarios:
 
 Exception Scenarios:
 
- 5. a. Developer entered rating lower than 2
+ 5. Developer entered rating lower than 2
     + Prompt user to enter a paragraph for the low rawting
 
 ##2.14 Send Protesting Message to the Super-User
@@ -365,13 +367,51 @@ E-R diagram goes here
 
 #4. Detailed Design
 
-##4.1 Super-User Methods:
+##4.1 All User Methods:
+
+~~~~~~~
+login_to_the_system(username, password)
+	bool value = verify_login_credential(username, password)
+	if value == true
+		sucessfully login
+		redirect user to the main GUI interface
+	else
+		unsucessful login
+		redirect user to the login GUI interface
+~~~~~~~
+
+~~~~~~~
+logout_from_the_system(username)
+
+~~~~~~~
+
+~~~~~~~
+
+
+~~~~~~~
 
 ##4.2 Client Methods:
+~~~~~~~
+update_profile_for_client(business credential)
+
+~~~~~~~
 
 ##4.3 Developer Methods:
 
+~~~~~~~
+update_profile_for_devs(userStatus, userID, resume, interests, sample_work)
+	if userStatus == accepted
+		userdetails = findUser(userID)
+		userdetails.append(resume)
+		userdetails.append(sample_work)
+		save_to_system(userdetails)
+	else
+		displayexecption(msg)
+~~~~~~~
+
 ##4.4 Visitor Methods:
+
+##4.5 Super User Methods:
 
 #5. System Screens
 
