@@ -282,14 +282,16 @@ Normal Scenarios:
  6. Client submits the rating for the system
  7. Rating verified by the system
 
-![](./img/Rate_Delivered_Sys_CD.png)
-
 Exception Scenarios:
 
  7. a. Rating is higher than 3
     + Transfer the remaining bid money held by the super-user to the corresponding developer
     b. Rating is lower than 2
     + Prompt the user with the note text-field about the reason of the low feedback
+
+![](./img/Rate_Delivered_Sys_CD.png)
+
+![](./img/ClientRateDeliveredSystem.png)
 
 ##2.11 Bid on Any Demand With Promised Timeline and Money
 
@@ -315,6 +317,8 @@ Exception Scenarios:
     + Prompt user asking for the required information for the bid
 
 ![](./img/Bid_on_Dem_CD.png)
+
+![](./img/BidOnAnyDemand.png)
 
 ##2.12 Submit Delivered System
 
@@ -342,6 +346,8 @@ Exception Scenarios:
 
 ![](./img/Submit_System_CD.png)
 
+![](./img/submitDeliveredSystem.png)
+
 ##2.13 Rate Client
 
 Precondition: User is connected to the internet
@@ -365,6 +371,7 @@ Exception Scenarios:
 
 ![](./img/Rate_Client_CD.png)
 
+![](./img/rateClient.png)
 
 ##2.14 Send Protesting Message to the Super-User
 
@@ -389,6 +396,7 @@ Exception Scenarios:
 
 ![](./img/Protesting_Message_CD.png)
 
+![](./img/sendProtestMessage.png)
 
 ##2.15 View Account Closing Status Information
 
@@ -407,6 +415,7 @@ Normal Scenarios:
 
 ![](./img/Account_closing_CD.png)
 
+![](./img/ViewAccountClosingInformation.png)
 
 #3. E-R Diagram
 
