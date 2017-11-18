@@ -13,7 +13,6 @@ geometry: margin=3cm
 
 Introduction an overall picture of the system using collaboration class diagram
 
-
 #2. Use Cases
 
 The types of users are Super User, Client, Developer and Visitor.
@@ -592,9 +591,6 @@ view_application_status(userID)
 ~~~~~~~
 
 
-##4.5 Super User Methods:
-
-
 #5. System Screens
 
 ##5.1 Main Page for Login and Registeration Screen
@@ -629,7 +625,30 @@ view_application_status(userID)
 
 ![](./img/payment.png)
 
+##5.8 Working Functionality
+
++ Super-user can accept or reject application
+
+![](./img/Step1.png)
+Super-user views all the application
+
+![](./img/Step2.png)
+Super-user accepts a user
+
+![](./img/Step3.png)
+Super-user rejects a user and enters the rejection information
+
+![](./img/Step4.png)
+Super-user views the confirmation
+
+![](./img/Step5.png)
+User is removed from the application
+
 #6. Minutes of Group Meetings
 
+200 minutes of group meeting via Slack and In-class meeting.
 
 #7. Phase I Report Feedback
+
+We received great feedback on the first report and we have reviewed and corrected our
+report as per the feedback.
