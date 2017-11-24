@@ -2,9 +2,7 @@
 
 const start = require('./start');
 const home = require('./home');
-const login = require('./login');
-const signup = require('./signup');
-const logout = require('./logout');
+const authentication = require('./authentication');
 const profile = require('./profile');
 const pageNotFound = require('./404');
 const charge = require('./charge');
@@ -56,9 +54,7 @@ const checkIfRejected = (req, res, next) => {
 const configureRoutes = (app, passport) => {
   start(app);
   home(app, isLoggedIn, checkIfRejected);
-  login(app, passport);
-  signup(app, passport);
-  logout(app);
+  authentication(app, passport);
   profile(app, isLoggedIn, checkIfRejected);
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
@@ -76,8 +72,5 @@ const configureRoutes = (app, passport) => {
   pageNotFound(app); // This should go last
 
 };
-
-// console.log("#####");
-// console.log(configureRoutes.toString());
 
 module.exports = configureRoutes;

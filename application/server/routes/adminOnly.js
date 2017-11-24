@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let Users = require('../models/user.js');
 
 // Respond with list of temporary user accounts in json format
-const getTempUsers = function(req, res) {
+const getTempUsers = (req, res) => {
   Users
     .find({ 'local.accountStatus': 'temp' })
     .exec(function(err, users) {
@@ -18,7 +18,7 @@ const getTempUsers = function(req, res) {
 };
 
 // Respond with list of rejected user accounts in json format
-const getRejectedUsers = function(req, res) {
+const getRejectedUsers = (req, res) => {
   Users
     .find({ 'local.accountStatus': 'rejected' })
     .exec(function(err, users) {
@@ -34,7 +34,8 @@ const getRejectedUsers = function(req, res) {
 };
 
 // Reject application for dev/client account
-const rejectUser = function(req, res) {
+// mongoose.Types is needed to convert string id to mongoose id
+const rejectUser = (req, res) => {
   Users
     .findOne({ '_id':  mongoose.Types.ObjectId(req.body.id) })
     .exec(function(err, user) {
@@ -57,7 +58,7 @@ const rejectUser = function(req, res) {
 // Accept application for dev/client account
 
 
-const tempUsers = (app, isLoggedIn, isSuperuser) => {
+const adminOnly = (app, isLoggedIn, isSuperuser) => {
   // We will want this protected so you have to be logged in and is super user to visit
   app.get('/api/temp-users', isLoggedIn, isSuperuser, getTempUsers);
   app.get('/api/rejected-users', isLoggedIn, isSuperuser, getRejectedUsers)
@@ -66,4 +67,4 @@ const tempUsers = (app, isLoggedIn, isSuperuser) => {
   return app;
 }
 
-module.exports = tempUsers
+module.exports = adminOnly

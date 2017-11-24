@@ -1,4 +1,4 @@
-// Home page
+// Start page
 
 const start = app => {
   app.get('/', function(req, res) {
