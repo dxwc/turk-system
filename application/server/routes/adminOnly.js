@@ -5,14 +5,30 @@ let Users = require('../models/user.js');
 const getTempUsers = function(req, res) {
   Users
     .find({ 'local.accountStatus': 'temp' })
-    .exec(function(err, user) {
+    .exec(function(err, users) {
       if (err) {
         throw err;
-      } else if (user) {
+      } else if (users) {
         // console.log(doc);
-        res.json(user);
+        res.json(users);
       } else {
         res.send('No temp accounts found');
+      }
+    });
+};
+
+// Respond with list of rejected user accounts in json format
+const getRejectedUsers = function(req, res) {
+  Users
+    .find({ 'local.accountStatus': 'rejected' })
+    .exec(function(err, users) {
+      if (err) {
+        throw err;
+      } else if (users) {
+        // console.log(doc);
+        res.json(users);
+      } else {
+        res.send('No rejected accounts found');
       }
     });
 };
@@ -43,7 +59,8 @@ const rejectUser = function(req, res) {
 
 const tempUsers = (app, isLoggedIn, isSuperuser) => {
   // We will want this protected so you have to be logged in and is super user to visit
-  app.get('/temp-users', isLoggedIn, isSuperuser, getTempUsers);
+  app.get('/api/temp-users', isLoggedIn, isSuperuser, getTempUsers);
+  app.get('/api/rejected-users', isLoggedIn, isSuperuser, getRejectedUsers)
   app.post('/reject-user', isLoggedIn, isSuperuser, rejectUser)
 
   return app;

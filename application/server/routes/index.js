@@ -9,7 +9,7 @@ const profile = require('./profile');
 const pageNotFound = require('./404');
 const charge = require('./charge');
 const userApps = require('./userApps');
-const tempUsers = require('./tempUsers');
+const adminOnly = require('./adminOnly');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const welcome = require('./welcome');
@@ -62,7 +62,7 @@ const configureRoutes = (app, passport) => {
   profile(app, isLoggedIn, checkIfRejected);
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
-  tempUsers(app, isLoggedIn, isSuperuser);
+  adminOnly(app, isLoggedIn, isSuperuser);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   welcome(app, isLoggedIn);
