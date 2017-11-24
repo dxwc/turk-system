@@ -42,6 +42,7 @@ const rejectUser = (req, res) => {
       if (err) { throw err; }
       else if (user) {
         user.local.accountStatus = 'rejected';
+        user.local.rejectMessage = req.body.rejectReason;
         user.save(function(err, updatedUser) {
           if (err) {
             throw err;

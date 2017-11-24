@@ -2,7 +2,7 @@
 
 (function () {
   // Show list of temp users
-  $.get('/temp-users', function(data) {
+  $.get('/api/temp-users', function(data) {
     // console.log(data);
     data.forEach((user, index) => {
       // console.log(user);
@@ -38,8 +38,10 @@ function handleRejectClick(id) {
 };
 
 function handleRejectOkayClick(id) {
+  const rejectReason = $('#reject-message-' + id).val();
+  console.log(rejectReason);
   // Post to /reject-user
-  $.post('/reject-user', { 'id': id }, function(data) {
+  $.post('/reject-user', { 'id': id, 'rejectReason': rejectReason }, function(data) {
     $('#well-' + id).hide();
     alert('User sucessfully rejected');
   });
