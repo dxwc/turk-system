@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
-let Users = require('../models/user.js');
+let User = require('../models/user.js');
 
 // Update user info with more details right after user is accepted
 // mongoose.Types is needed to convert string id to mongoose id
 const updateUser = (req, res) => {
-  Users
+  User
     .findOne({ '_id':  req.user.id })
     .exec(function(err, user) {
       if (err) { throw err; }
       else if (user) {
+        // change accountStatus to normal
         user.local.accountStatus = 'normal';
 
         const details = req.body;
