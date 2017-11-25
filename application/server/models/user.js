@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
 // define the schema for our user model
-const userSchema = mongoose.Schema({
+const userSchema = Schema({
   local: {
     email: String,
     password: String,
@@ -15,14 +16,16 @@ const userSchema = mongoose.Schema({
       resume: { type: String, default: '' },
       picture: { type: String, default: '' },
       interests: { type: String, default: '' },
-      samplework: { type: String, default: '' }
+      samplework: { type: String, default: '' },
+      bidDemandIds: [Schema.Types.ObjectId]
     },
     clientDetails: {
       picture: { type: String, default: '' },
       interests: { type: String, default: '' },
-      businessCredentials: { type: String, default: '' }
+      businessCredentials: { type: String, default: '' },
+      postedDemandIds: [Schema.Types.ObjectId]
     }
-  },
+  }
 });
 
 // methods ======================
