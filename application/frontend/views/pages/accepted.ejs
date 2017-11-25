@@ -10,12 +10,13 @@
     <% include ../partials/navbar %>
     <div class="page-header text-center">
       <h1>Your application has been accepted!</h1>
+      <h4>Please fill in more details about yourself</h4>
     </div>
   </header>
   <main>
     <div class="container">
       <% if (user.local.usertype === 'developer') { %>
-        <form action="/" method="post">
+        <form action="/update-user" method="post">
           <div class="form-group">
             <label>Resume</label>
             <input type="text" class="form-control" name="resume">
@@ -35,7 +36,7 @@
           <button type="submit" class="btn btn-warning btn-lg">Update Info</button>
         </form>
       <% } else if (user.local.usertype === 'client') {%>
-        <form action="/" method="post">
+        <form action="/update-user" method="post">
           <div class="form-group">
             <label>Picture</label>
             <input type="text" class="form-control" name="picture">

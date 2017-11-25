@@ -8,9 +8,9 @@ const pageNotFound = require('./404');
 const charge = require('./charge');
 const userApps = require('./userApps');
 const adminOnly = require('./adminOnly');
+const normalUser = require('./normalUser');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
-const welcome = require('./welcome');
 const demand = require('./demand');
 const mostActive = require('./mostActive');
 const payment = require('./payment');
@@ -22,9 +22,9 @@ const testApi = require('./test');
 // route middleware to make sure a user is logged in
 const isLoggedIn = (req, res, next) => {
   // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
+  if (req.isAuthenticated()) {
     return next();
-
+  }
   // if they aren't redirect them to start page
   res.redirect('/');
 }
@@ -70,9 +70,9 @@ const configureRoutes = (app, passport) => {
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
   adminOnly(app, isLoggedIn, isSuperuser);
+  normalUser(app, isLoggedIn);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
-  welcome(app, isLoggedIn);
   demand(app, isLoggedIn);
   mostActive(app, isLoggedIn);
   payment(app, isLoggedIn);

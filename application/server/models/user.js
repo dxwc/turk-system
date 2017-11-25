@@ -10,7 +10,18 @@ const userSchema = mongoose.Schema({
     realname: String,
     deposit: { type: Number, default: 0 },
     accountStatus: String,
-    rejectMessage: { type: String, default: '' }
+    rejectMessage: { type: String, default: '' },
+    developerDetails: {
+      resume: { type: String, default: '' },
+      picture: { type: String, default: '' },
+      interests: { type: String, default: '' },
+      samplework: { type: String, default: '' }
+    },
+    clientDetails: {
+      picture: { type: String, default: '' },
+      interests: { type: String, default: '' },
+      businessCredentials: { type: String, default: '' }
+    }
   },
 });
 
