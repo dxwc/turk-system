@@ -23,7 +23,7 @@ const userSchema = Schema({
       picture: { type: String, default: '' },
       interests: { type: String, default: '' },
       businessCredentials: { type: String, default: '' },
-      postedDemandIds: [Schema.Types.ObjectId]
+      postedDemandIds: { type: [Schema.Types.ObjectId], default: [] }
     }
   }
 });

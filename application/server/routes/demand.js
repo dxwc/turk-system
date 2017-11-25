@@ -11,7 +11,7 @@ const demand = (app, isLoggedIn) => {
   };
 
   const postDemand = (req, res) => {
-    Users
+    User
       .findOne({ '_id':  req.user.id })
       .exec(function(err, user) {
         if (err) { throw err; }
@@ -23,13 +23,27 @@ const demand = (app, isLoggedIn) => {
         // set new demand document props
         newDemand.spec = spec;
         newDemand.biddingTimeline = biddingTimeline;
-        // save new demand document to dB
-        newDemand.save(function(err) {
+        console.log('newDemand.id: ' + newDemand.id);
+        console.log(user);
+        // get array of currently posted demand ids
+        let postedDemandIds = user.local.clientDetails.postedDemandIds;
+        // push new demand id to list of demand ids
+        postedDemandIds.push(newDemand.id);
+        // save updated list of demand ids
+        user.local.clientDetails.postedDemandIds = postedDemandIds
+        user.save(function(err) {
           if (err) {
             throw err;
           }
-          res.redirect('/home');
-        });
+          // save new demand document to dB
+          newDemand.save(function(err) {
+            if (err) {
+              throw err;
+            }
+            res.redirect('/home');
+          });
+        })
+
       });
   };
 
