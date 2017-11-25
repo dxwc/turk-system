@@ -7,33 +7,50 @@
 </head>
 <body>
   <header>
+    <% include ../partials/navbar %>
     <div class="page-header text-center">
       <h1>Your application has been accepted!</h1>
     </div>
   </header>
   <main>
     <div class="container">
-      <form action="/updateInfo" method="post">
-
-        <div class="form-group">
-          <label>Resume</label>
-          <input type="text" class="form-control" name="resume">
-        </div>
-        <div class="form-group">
-          <label>Picture</label>
-          <input type="text" class="form-control" name="picture">
-        </div>
-        <div class="form-group">
-          <label>Interests</label>
-          <input type="text" class="form-control" name="interests">
-        </div>
-        <div class="form-group">
-          <label>Sample Work</label>
-          <input type="text" class="form-control" name="samplework">
-        </div>
-
-        <button type="submit" class="btn btn-warning btn-lg">Update Info</button>
-      </form>
+      <% if (user.local.usertype === 'developer') { %>
+        <form action="/" method="post">
+          <div class="form-group">
+            <label>Resume</label>
+            <input type="text" class="form-control" name="resume">
+          </div>
+          <div class="form-group">
+            <label>Picture</label>
+            <input type="text" class="form-control" name="picture">
+          </div>
+          <div class="form-group">
+            <label>Interests</label>
+            <input type="text" class="form-control" name="interests">
+          </div>
+          <div class="form-group">
+            <label>Sample Work</label>
+            <input type="text" class="form-control" name="samplework">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Update Info</button>
+        </form>
+      <% } else if (user.local.usertype === 'client') {%>
+        <form action="/" method="post">
+          <div class="form-group">
+            <label>Picture</label>
+            <input type="text" class="form-control" name="picture">
+          </div>
+          <div class="form-group">
+            <label>Interests</label>
+            <input type="text" class="form-control" name="interests">
+          </div>
+          <div class="form-group">
+            <label>Business Credentials</label>
+            <input type="text" class="form-control" name="business-credentials">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Update Info</button>
+        </form>
+      <% } %>
     </div>
   </main>
 </body>
