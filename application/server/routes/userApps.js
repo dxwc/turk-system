@@ -6,8 +6,6 @@ const userApps = (app, isLoggedIn, isSuperuser) => {
     });
   });
 
-
-
   return app;
 }
 

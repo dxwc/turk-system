@@ -30,7 +30,10 @@
 })();
 
 function handleAcceptClick(id) {
-  alert('accept');
+  $.post('/accept-user', { 'id': id }, function(data) {
+    $('#well-' + id).hide();
+    alert('User sucessfully accepted');
+  });
 };
 
 function handleRejectClick(id) {
@@ -40,7 +43,7 @@ function handleRejectClick(id) {
 function handleRejectOkayClick(id) {
   const rejectReason = $('#reject-message-' + id).val();
   console.log(rejectReason);
-  // Post to /reject-user
+  // Post to /reject-user with user id and rejectReason
   $.post('/reject-user', { 'id': id, 'rejectReason': rejectReason }, function(data) {
     $('#well-' + id).hide();
     alert('User sucessfully rejected');

@@ -57,13 +57,34 @@ const rejectUser = (req, res) => {
 };
 
 // Accept application for dev/client account
+const acceptUser = (req, res) => {
+  Users
+  .findOne({ '_id':  mongoose.Types.ObjectId(req.body.id) })
+  .exec(function(err, user) {
+    if (err) { throw err; }
+    else if (user) {
+      // set accountStatus to preAccepted. this is before user puts in more details about himself
+      // accountStatus will be later changed to accepted
+      user.local.accountStatus = 'accepted';
+      user.save(function(err, updatedUser) {
+        if (err) {
+          throw err;
+        }
+        res.send(updatedUser);
+      });
 
+    } else {
+      res.send('User accept failed');
+    }
+  });
+};
 
 const adminOnly = (app, isLoggedIn, isSuperuser) => {
   // We will want this protected so you have to be logged in and is super user to visit
   app.get('/api/temp-users', isLoggedIn, isSuperuser, getTempUsers);
-  app.get('/api/rejected-users', isLoggedIn, isSuperuser, getRejectedUsers)
-  app.post('/reject-user', isLoggedIn, isSuperuser, rejectUser)
+  app.get('/api/rejected-users', isLoggedIn, isSuperuser, getRejectedUsers);
+  app.post('/reject-user', isLoggedIn, isSuperuser, rejectUser);
+  app.post('/accept-user', isLoggedIn, isSuperuser, acceptUser);
 
   return app;
 }
