@@ -1,4 +1,3 @@
-
 const demand = (app, isLoggedIn) => {
   app.get('/demand', isLoggedIn, function(req, res) {
     res.render('demand.ejs', {

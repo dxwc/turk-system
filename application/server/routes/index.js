@@ -9,9 +9,10 @@ const charge = require('./charge');
 const userApps = require('./userApps');
 const adminOnly = require('./adminOnly');
 const normalUser = require('./normalUser');
+const demand = require('./demand');
+const bid = require('./bid');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
-const demand = require('./demand');
 const mostActive = require('./mostActive');
 const payment = require('./payment');
 
@@ -71,9 +72,10 @@ const configureRoutes = (app, passport) => {
   userApps(app, isLoggedIn, isSuperuser);
   adminOnly(app, isLoggedIn, isSuperuser);
   normalUser(app, isLoggedIn);
+  demand(app, isLoggedIn);
+  bid(app, isLoggedIn);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
-  demand(app, isLoggedIn);
   mostActive(app, isLoggedIn);
   payment(app, isLoggedIn);
 

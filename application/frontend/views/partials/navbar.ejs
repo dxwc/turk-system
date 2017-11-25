@@ -12,6 +12,12 @@
       <% if (user.local.usertype === 'superuser') { %>
         <li><a href="/user-apps">User Applications</a></li>
       <% } %>
+      <% if (user.local.usertype === 'client') { %>
+        <li><a href="/demand">Post Demand</a></li>
+      <% } %>
+      <% if (user.local.usertype === 'developer') { %>
+        <li><a href="/bid">Bid on Demand</a></li>
+      <% } %>
       <li><a href="/logout">Logout</a></li>
     </ul>
   </div>

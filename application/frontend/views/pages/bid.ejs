@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Post System Demand</title>
+  <title>Bid on Demand</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 </head>
@@ -9,19 +9,19 @@
   <header>
     <% include ../partials/navbar %>
     <div class="page-header text-center">
-      <h1>Post a System Demand Here</h1>
+      <h1>Bid on a System Demand Here</h1>
     </div>
   </header>
   <main>
     <div class="container">
-      <form action="/post-demand" method="post">
+      <form action="/bid-demand" method="post">
         <div class="form-group">
-          <label>System Spec</label>
-          <textarea type="text" class="form-control" name="spec"></textarea>
+          <label>Bid Amount $$$</label>
+          <input type="text" class="form-control" name="money">
         </div>
         <div class="form-group">
-          <label>Bidding Timeline</label>
-          <input type="text" class="form-control" name="biddingtimeline">
+          <label>Promised Timeline</label>
+          <input type="text" class="form-control" name="promisedtimeline">
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Post</button>
       </form>
