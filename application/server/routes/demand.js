@@ -23,8 +23,6 @@ const demand = (app, isLoggedIn) => {
         // set new demand document props
         newDemand.spec = spec;
         newDemand.biddingTimeline = biddingTimeline;
-        console.log('newDemand.id: ' + newDemand.id);
-        console.log(user);
         // get array of currently posted demand ids
         let postedDemandIds = user.local.clientDetails.postedDemandIds;
         // push new demand id to list of demand ids
@@ -43,12 +41,26 @@ const demand = (app, isLoggedIn) => {
             res.redirect('/home');
           });
         })
+      });
+  };
 
+  const getAllDemands = (req, res) => {
+    Demand
+      .find()
+      .exec(function(err, demands) {
+        if (err) {
+          throw err;
+        } else if (demands) {
+          res.json(demands);
+        } else {
+          res.send('No demands found');
+        }
       });
   };
 
   app.get('/demand', isLoggedIn, renderDemand);
   app.post('/demand', isLoggedIn, postDemand);
+  app.get('/api/demands', isLoggedIn, getAllDemands);
 
   return app;
 }
