@@ -40,6 +40,10 @@ function handleRejectClick(id) {
   $('#reject-div-' + id).show();
 };
 
+function handleRejectCancelClick(id) {
+  $('#reject-div-' + id).hide();
+}
+
 function handleRejectOkayClick(id) {
   const rejectReason = $('#reject-message-' + id).val();
   console.log(rejectReason);
@@ -48,8 +52,4 @@ function handleRejectOkayClick(id) {
     $('#well-' + id).hide();
     alert('User sucessfully rejected');
   });
-}
-
-function handleRejectCancelClick(id) {
-  $('#reject-div-' + id).hide();
 }

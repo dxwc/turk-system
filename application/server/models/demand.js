@@ -6,7 +6,7 @@ const bidSchema = Schema({
   userId: Schema.Types.ObjectId,
   email: String,
   name: String,
-  amount: Number,
+  bidAmount: Number,
   promisedTimeline: String
 });
 

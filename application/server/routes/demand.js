@@ -60,7 +60,7 @@ const demand = (app, isLoggedIn) => {
 
   app.get('/demand', isLoggedIn, renderDemand);
   app.post('/demand', isLoggedIn, postDemand);
-  app.get('/api/demands', isLoggedIn, getAllDemands);
+  app.get('/api/demands', getAllDemands);
 
   return app;
 }
