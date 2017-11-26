@@ -36,10 +36,11 @@ function handleBidCancelClick(id) {
 }
 
 function handleBidOkayClick(id) {
+  const demandId = id;
   const bidAmount = $('#bid-amount-' + id).val();
   const promisedTimeline = $('#promised-timeline-' + id).val();
 
-  $.post('/bid', { 'bidAmount': bidAmount, 'promisedTimeline': promisedTimeline }, function(data) {
+  $.post('/bid', { 'demandId': demandId, 'bidAmount': bidAmount, 'promisedTimeline': promisedTimeline }, function(data) {
     $('#well-' + id).hide();
     alert('Bid successful');
   });

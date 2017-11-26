@@ -12,16 +12,18 @@ const demand = (app, isLoggedIn) => {
 
   const postDemand = (req, res) => {
     User
-      .findOne({ '_id':  req.user.id })
+      .findOne({ '_id': req.user.id })
       .exec(function(err, user) {
         if (err) { throw err; }
         // grab params sent over with post request
         const spec = req.body.spec;
         const biddingTimeline = req.body.biddingtimeline;
+        // get currently logged in user's id
+        const clientID = req.user.id;
         // create new Demand document
         let newDemand = new Demand();
         // set new demand document props
-        newDemand.clientID = req.user.id;
+        newDemand.clientID = clientID;
         newDemand.spec = spec;
         newDemand.biddingTimeline = biddingTimeline;
         // get array of currently posted demand ids
