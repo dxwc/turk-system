@@ -10,6 +10,13 @@ const demand = (app, isLoggedIn) => {
     });
   };
 
+  const renderManageDemands = (req, res) => {
+    res.render('manageDemands.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
+  };
+
+  // allow client to post a demand
   const postDemand = (req, res) => {
     User
       .findOne({ '_id': req.user.id })
@@ -77,6 +84,7 @@ const demand = (app, isLoggedIn) => {
 
   app.get('/demand', isLoggedIn, renderDemand);
   app.post('/demand', isLoggedIn, postDemand);
+  app.get('/manage-demands', isLoggedIn, renderManageDemands);
   app.get('/api/demands', getAllDemands);
   app.get('/api/demands/:id', isLoggedIn, getUserDemands);
 
