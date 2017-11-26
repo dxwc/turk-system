@@ -21,6 +21,7 @@ const demand = (app, isLoggedIn) => {
         // create new Demand document
         let newDemand = new Demand();
         // set new demand document props
+        newDemand.clientID = req.user.id;
         newDemand.spec = spec;
         newDemand.biddingTimeline = biddingTimeline;
         // get array of currently posted demand ids

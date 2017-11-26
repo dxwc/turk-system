@@ -12,9 +12,7 @@ const bidSchema = Schema({
 
 // define the schema for demand model
 const demandSchema = Schema({
-  // ##########
-  // !!!!
-  // maybe put id of client who posted demand here
+  clientID: Schema.Types.ObjectId,
   spec: String,
   biddingTimeline: String,
   bids: [bidSchema]
