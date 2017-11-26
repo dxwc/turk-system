@@ -14,9 +14,10 @@
       <% } %>
       <% if (user.local.usertype === 'client') { %>
         <li><a href="/demand">Post Demand</a></li>
+        <li><a href="/manage-demands">Manage Demands</a></li>
       <% } %>
       <% if (user.local.usertype === 'developer') { %>
-        <li><a href="/bid">Bid</a></li>
+        <li><a href="/bid">Bid on Demand</a></li>
       <% } %>
       <li><a href="/logout">Logout</a></li>
     </ul>

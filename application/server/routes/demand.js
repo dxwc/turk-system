@@ -61,9 +61,24 @@ const demand = (app, isLoggedIn) => {
       });
   };
 
+  const getUserDemands = (req, res) => {
+    Demand
+      .find({ 'clientID': req.params.id })
+      .exec(function(err, demands) {
+        if (err) {
+          throw err;
+        } else if (demands) {
+          res.json(demands);
+        } else {
+          res.send('No demands found');
+        }
+      });
+  };
+
   app.get('/demand', isLoggedIn, renderDemand);
   app.post('/demand', isLoggedIn, postDemand);
   app.get('/api/demands', getAllDemands);
+  app.get('/api/demands/:id', isLoggedIn, getUserDemands);
 
   return app;
 }
