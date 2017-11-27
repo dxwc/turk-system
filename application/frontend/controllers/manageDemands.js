@@ -22,6 +22,7 @@
         const name = bid.name;
         const bidAmount = bid.bidAmount;
         const promisedTimeline = bid.promisedTimeline;
+        const isLowestBid= bid.isLowestBid;
         // create the list of bids using string accumulator
         bidsList +=
           '<div class="well" id="bid-form-div-' + bidId + '">' +
@@ -36,6 +37,9 @@
             '</div>' +
             '<div>' +
               '<p>Promised Timeline: ' + promisedTimeline + '</p>' +
+            '</div>' +
+            '<div>' +
+              '<p>Lowest Bid: ' + isLowestBid + '</p>' +
             '</div>' +
             '<input type="button" onclick="handleBidAcceptClick(\'' + bidId + '\')" value="Accept Bid" />' +
           '</div>'

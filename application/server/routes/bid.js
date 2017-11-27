@@ -27,11 +27,30 @@ const bid = (app, isLoggedIn) => {
           email: email,
           name: name,
           bidAmount: bidAmount,
-          promisedTimeline: promisedTimeline
+          promisedTimeline: promisedTimeline,
+          isLowestBid: false
         };
 
         // get array of all bids for current demand
         let currentBids = demand.bids;
+        if (currentBids.length === 0) {
+          // if there are no current bids, set the first bid to the lowest bid
+          newBid.isLowestBid = true;
+        } else {
+          // check if the new bid is the lowest bid
+          currentBids.forEach((bid, i) => {
+            // find lowest bid
+            if (bid.isLowestBid === true) {
+              // once lowest bid is found, compare its bidAmoutn to new bid's bidAmount
+              if (newBid.bidAmount < bid.bidAmount) {
+                // if true, set newBid's isLowestBid to true and old lowest bid's isLowestBid to false
+                newBid.isLowestBid = true;
+                currentBids[i].isLowestBid = false;
+              }
+            }
+          });
+        }
+
         // push new bid to array of bids
         currentBids.push(newBid);
         // save updated list of bids

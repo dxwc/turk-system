@@ -7,7 +7,8 @@ const bidSchema = Schema({
   email: String,
   name: String,
   bidAmount: Number,
-  promisedTimeline: String
+  promisedTimeline: String,
+  isLowestBid: { type: Boolean, default: false }
 });
 
 // define the schema for demand model
