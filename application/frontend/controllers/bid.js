@@ -31,10 +31,6 @@ function handleBidClick(id) {
   $('#bid-form-div-' + id).show();
 };
 
-function handleBidCancelClick(id) {
-  $('#bid-form-div-' + id).hide();
-}
-
 function handleBidOkayClick(id) {
   const demandId = id;
   const bidAmount = $('#bid-amount-' + id).val();
@@ -44,4 +40,8 @@ function handleBidOkayClick(id) {
     $('#well-' + id).hide();
     alert('Bid successful');
   });
+}
+
+function handleBidCancelClick(id) {
+  $('#bid-form-div-' + id).hide();
 }

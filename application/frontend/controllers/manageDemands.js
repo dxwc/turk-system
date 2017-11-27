@@ -80,16 +80,23 @@ function handleBidAcceptClick(paramsStr) {
   if (isLowestBid === 'false') {
     $('#justification-div-' + bidId).show();
   } else {
+    // api call to accept bid
+    $.post('/accept-bid', {  }, function(data) {
 
-    alert('Bid sucessfully accepted');
+      alert('Bid successfully accepted');
+    });
   }
+}
 
-  // const demandId = id;
-  // const bidAmount = $('#bid-amount-' + id).val();
-  // const promisedTimeline = $('#promised-timeline-' + id).val();
-  //
-  // $.post('/bid', { 'demandId': demandId, 'bidAmount': bidAmount, 'promisedTimeline': promisedTimeline }, function(data) {
-  //   $('#well-' + id).hide();
-  //   alert('Bid successful');
-  // });
+function handleJustificationOkayClick(paramsStr) {
+
+  // api call to accept bid
+  $.post('/accept-bid', {  }, function(data) {
+
+    alert('Bid successfully accepted');
+  });
+}
+
+function handleJustificationCancelClick(bidId) {
+  $('#justification-div-' + bidId).hide();
 }
