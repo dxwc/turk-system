@@ -36,6 +36,10 @@
               </p>
 
           </div>
+        <%
+        if(user.local.usertype == 'client' || user.local.usertype == 'developer')
+        {
+        %>
         <div>
             <a
                 id='quit_enter'
@@ -121,6 +125,9 @@
                 });
             });
         </script>
+        <%
+        }
+        %>
         </div>
 
       </div>
