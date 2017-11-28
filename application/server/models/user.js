@@ -17,13 +17,14 @@ const userSchema = Schema({
       picture: { type: String, default: '' },
       interests: { type: String, default: '' },
       samplework: { type: String, default: '' },
+      // dev's bids
       bidDemandIds: [Schema.Types.ObjectId]
     },
     clientDetails: {
       picture: { type: String, default: '' },
       interests: { type: String, default: '' },
       businessCredentials: { type: String, default: '' },
-      postedDemandIds: { type: [Schema.Types.ObjectId], default: [] }
+      postedDemandIds: { type: [Schema.Types.ObjectId], default: [] },
     }
   }
 });

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 let Demand = require('../models/demand.js');
 
 const bid = (app, isLoggedIn, checkUserAccess) => {
@@ -69,12 +70,39 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
 
   // client accepts bid
   const acceptBid = (req, res) => {
+    const demandId = req.body.demandId;
+    const bidId = req.body.bidId;
+    // find demand
+    Demand
+      .findOne({ '_id': demandId }) // find demand with demandId
+      .exec(function(err, demand) {
+        // find bid and set bidStatus to inReview
+        // console.log(demand);
+        const bids = demand.bids;
+        bids.forEach((bid, i) => {
+          if (bid._id.toString() === bidId) {
+            bids[i].bidStatus = 'inReview';
+          }
+        });
+        console.log(bids);
+        // save updated bid back to db document
+        demand.bids = bids;
+        // change demandStatus to inReview
+        demand.demandStatus = 'bidInReview';
+        demand.save((err) => {
+          if (err) {
+            throw err;
+          }
+          res.redirect('/manage-demands');
+        });
+      });
 
   };
 
   app.get('/bid', isLoggedIn, checkUserAccess, renderBid);
   app.post('/bid', isLoggedIn, checkUserAccess, postBid);
-  app.post('./accept-bid', isLoggedIn, checkUserAccess, acceptBid);
+  app.post('/accept-bid', isLoggedIn, checkUserAccess, acceptBid);
+
 
   return app;
 }
