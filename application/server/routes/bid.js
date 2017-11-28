@@ -1,6 +1,6 @@
 let Demand = require('../models/demand.js');
 
-const bid = (app, isLoggedIn) => {
+const bid = (app, isLoggedIn, checkUserAccess) => {
   const renderBid = (req, res) => {
     // render bid.ejs
     res.render('bid.ejs', {
@@ -69,12 +69,12 @@ const bid = (app, isLoggedIn) => {
 
   // client accepts bid
   const acceptBid = (req, res) => {
-    
+
   };
 
-  app.get('/bid', isLoggedIn, renderBid);
-  app.post('/bid', isLoggedIn, postBid);
-  app.post('./accept-bid', isLoggedIn, acceptBid);
+  app.get('/bid', isLoggedIn, checkUserAccess, renderBid);
+  app.post('/bid', isLoggedIn, checkUserAccess, postBid);
+  app.post('./accept-bid', isLoggedIn, checkUserAccess, acceptBid);
 
   return app;
 }

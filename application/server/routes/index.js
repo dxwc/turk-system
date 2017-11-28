@@ -41,39 +41,41 @@ const isSuperuser = (req, res, next) => {
   res.redirect('/home');
 }
 
-const checkIfRejected = (req, res, next) => {
-  // If not rejected, continue
-  if (req.user.local.accountStatus !== 'rejected') {
+// check user access
+const checkUserAccess = (req, res, next) => {
+  if (req.user.local.accountStatus === 'temp') {
+    // render temp user template
+    res.render('tempUser.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
+  } else if (req.user.local.accountStatus === 'rejected') {
+    // render rejected user template
+    res.render('rejected.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
+  } else if (req.user.local.accountStatus === 'accepted') {
+    // render accepted user template
+    res.render('accepted.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
+  } else {
+    // If normal user, continue
     return next();
   }
-  // Otherwise render rejected page
-  res.render('rejected.ejs', {
-    user: req.user // get the user out of session and pass to template
-  });
 }
 
-const checkIfAccepted = (req, res, next) => {
-  // If not rejected, continue
-  if (req.user.local.accountStatus !== 'accepted') {
-    return next();
-  }
-  // Otherwise render rejected page
-  res.render('accepted.ejs', {
-    user: req.user // get the user out of session and pass to template
-  });
-}
 
 const configureRoutes = (app, passport) => {
   start(app);
-  home(app, isLoggedIn, checkIfRejected, checkIfAccepted);
+  home(app, isLoggedIn, checkUserAccess);
   authentication(app, passport);
-  profile(app, isLoggedIn, checkIfRejected, checkIfAccepted);
+  profile(app, isLoggedIn, checkUserAccess);
   charge(app);
   userApps(app, isLoggedIn, isSuperuser);
   adminOnly(app, isLoggedIn, isSuperuser);
-  normalUser(app, isLoggedIn);
-  demand(app, isLoggedIn);
-  bid(app, isLoggedIn);
+  normalUser(app, isLoggedIn, checkUserAccess);
+  demand(app, isLoggedIn, checkUserAccess);
+  bid(app, isLoggedIn, checkUserAccess);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   mostActive(app, isLoggedIn);
