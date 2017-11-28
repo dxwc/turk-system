@@ -22,7 +22,7 @@
         const name = bid.name;
         const bidAmount = bid.bidAmount;
         const promisedTimeline = bid.promisedTimeline;
-        const isLowestBid= bid.isLowestBid;
+        const isLowestBid = bid.isLowestBid;
         // create the list of bids using string accumulator
         bidsList +=
           '<div class="well" id="bid-form-div-' + bidId + '">' +
@@ -41,7 +41,7 @@
             '<div>' +
               '<p>Lowest Bid: ' + isLowestBid + '</p>' +
             '</div>' +
-            '<input id="bid-accept-button" type="button" onclick="handleBidAcceptClick(\'' + isLowestBid + ',' + bidId + '\')" value="Accept Bid" />' +
+            '<input id="bid-accept-button" type="button" onclick="handleBidAcceptClick(\'' + isLowestBid + ',' + bidId + ',' + demandId + '\')" value="Accept Bid" />' +
             '<div id="justification-div-' + bidId + '" style="display: none;">' +
               '<div class="form-group">' +
                 '<label>This is not the lowest bid. Please provide justification on why you are choosing to accept this bid</label>' +
@@ -73,28 +73,29 @@ function handleBidAcceptClick(paramsStr) {
   const paramsArr = paramsStr.split(',');
   const isLowestBid = paramsArr[0];
   const bidId = paramsArr[1];
+  const demandId = paramsArr[2];
 
   // if the bid is not the lowest bid, show the div that asks for justification
   if (isLowestBid === 'false') {
     $('#justification-div-' + bidId).show();
   } else {
     // api call to accept bid
-    $.post('/accept-bid', {  }, function(data) {
-
-      alert('Bid successfully accepted');
+    $.post('/accept-bid', { 'demandId': demandId, 'bidId': bidId }, function(data) {
+      // $('#well-' + id).hide();
+      alert('Bid sucessfully accepted');
     });
+
   }
 }
 
-function handleJustificationOkayClick(paramsStr) {
+function handleJustificationOkayClick(id) {
 
-  // api call to accept bid
-  $.post('/accept-bid', {  }, function(data) {
-
-    alert('Bid successfully accepted');
-  });
+  // $.post('/accept-bid', { 'demandId': demandId, 'bidAmount': bidAmount }, function(data) {
+  //   $('#well-' + id).hide();
+  //   alert('Bid successful');
+  // });
 }
 
-function handleJustificationCancelClick(bidId) {
-  $('#justification-div-' + bidId).hide();
+function handleJustificationCancelClick(id) {
+  $('#justification-div-' + id).hide();
 }

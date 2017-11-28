@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 let User = require('../models/user.js');
 let Demand = require('../models/demand.js');
 
