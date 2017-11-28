@@ -2,11 +2,13 @@ let Demand = require('../models/demand.js');
 
 const bid = (app, isLoggedIn) => {
   const renderBid = (req, res) => {
+    // render bid.ejs
     res.render('bid.ejs', {
       user: req.user // get the user out of session and pass to template
     });
   };
 
+  // dev post bid
   const postBid = (req, res) => {
     const demandId = req.body.demandId;
     Demand
@@ -65,8 +67,14 @@ const bid = (app, isLoggedIn) => {
       });
   };
 
+  // client accepts bid
+  const acceptBid = (req, res) => {
+    
+  };
+
   app.get('/bid', isLoggedIn, renderBid);
   app.post('/bid', isLoggedIn, postBid);
+  app.post('./accept-bid', isLoggedIn, acceptBid);
 
   return app;
 }

@@ -73,8 +73,6 @@ function handleBidAcceptClick(paramsStr) {
   const paramsArr = paramsStr.split(',');
   const isLowestBid = paramsArr[0];
   const bidId = paramsArr[1];
-  console.log(typeof isLowestBid);
-  console.log(isLowestBid);
 
   // if the bid is not the lowest bid, show the div that asks for justification
   if (isLowestBid === 'false') {
