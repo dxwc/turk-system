@@ -33,6 +33,7 @@ const configureServer = (app, passport) => {
   //   next();
   // });
 
+  app.use(express.static(__dirname + '/../frontend/static_files/'));
   app.use(morgan('dev')); // log every request to the console
   app.use(helmet());
   app.use(cookieParser()); // read cookies (needed for auth)

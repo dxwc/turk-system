@@ -4,6 +4,12 @@
   <title>Profile</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <script src='axios.min.js'></script>
+  <style>
+      .quit_textarea { width: 100%; }
+      .quit_cancel_link { margin-right: 2em; }
+      .quit_error_text { color : red; }
+  </style>
 </head>
 <body>
   <header>
@@ -30,6 +36,91 @@
               </p>
 
           </div>
+        <div>
+            <a
+                id='quit_enter'
+                href>Send quit demand</a>
+            <textarea
+                class='quit_textarea'
+                style='display: none'
+                id='quit_input'
+                placeholder='Enter information about your quit demand'
+                required></textarea>
+            <a
+                class='quit_cancel_link'
+                id='quit_cancel'
+                style='display: none'
+                href>Cancel</a>
+            <a
+                id='quit_send'
+                style='display: none'
+                href>Send</a>
+            <p
+                class='quit_error_text'
+                id='quit_error'
+                style='display : none'
+                href></p>
+        </div>
+        <script>
+            let quit_enter  = document.getElementById('quit_enter');
+            let quit_input  = document.getElementById('quit_input');
+            let quit_cancel = document.getElementById('quit_cancel');
+            let quit_send   = document.getElementById('quit_send');
+            let quit_error  = document.getElementById('quit_error');
+
+            quit_enter.addEventListener('click', (event) =>
+            {
+                event.preventDefault();
+                quit_enter.setAttribute('style', 'display : none');
+
+                quit_input.removeAttribute('style');
+                quit_cancel.removeAttribute('style');
+                quit_send.removeAttribute('style');
+            });
+
+            quit_cancel.addEventListener('click', (event) =>
+            {
+                event.preventDefault();
+                quit_input.setAttribute('style', 'display : none');
+                quit_cancel.setAttribute('style', 'display : none');
+                quit_send.setAttribute('style', 'display : none');
+                quit_error.setAttribute('style', 'display : none');
+
+                quit_enter.removeAttribute('style');
+            });
+
+            quit_send.addEventListener('click', (event) =>
+            {
+                event.preventDefault();
+                quit_error.setAttribute('style', 'display : none');
+
+                axios.post
+                (
+                    '/quit_demand',
+                    {
+                        user_id : '<%= user._id %>',
+                        demand_text : quit_input.value
+                    }
+                )
+                .then((res) =>
+                {
+                    if(res.data && res.data.sent_successful === true)
+                    {
+                        quit_enter.parentElement.innerHTML =
+                            '✔ Your quit demand has been sent to super user.';
+                    }
+                    else
+                    {
+                        throw new Error(res);
+                    }
+                })
+                .catch((err) =>
+                {
+                    quit_error.innerHTML = 'Unknown error sending quit demand';
+                    quit_error.removeAttribute('style');
+                });
+            });
+        </script>
         </div>
 
       </div>

@@ -12,6 +12,8 @@ const normalUser = require('./normalUser');
 const demand = require('./demand');
 const bid = require('./bid');
 
+const quit_demand = require('./quit_demand');
+
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const mostActive = require('./mostActive');
 const payment = require('./payment');
@@ -65,6 +67,7 @@ const checkIfAccepted = (req, res, next) => {
 
 const configureRoutes = (app, passport) => {
   start(app);
+  quit_demand(app);
   home(app, isLoggedIn, checkIfRejected, checkIfAccepted);
   authentication(app, passport);
   profile(app, isLoggedIn, checkIfRejected, checkIfAccepted);
