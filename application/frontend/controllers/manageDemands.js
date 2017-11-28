@@ -17,7 +17,7 @@
       let bidsList = "";
       // loop through all bids in this demand
       bids.forEach((bid, index) => {
-        const bidId = bid.userId;
+        const bidId = bid._id;
         const email = bid.email;
         const name = bid.name;
         const bidAmount = bid.bidAmount;
@@ -41,7 +41,15 @@
             '<div>' +
               '<p>Lowest Bid: ' + isLowestBid + '</p>' +
             '</div>' +
-            '<input type="button" onclick="handleBidAcceptClick(\'' + bidId + '\')" value="Accept Bid" />' +
+            '<input id="bid-accept-button" type="button" onclick="handleBidAcceptClick(\'' + isLowestBid + ',' + bidId + '\')" value="Accept Bid" />' +
+            '<div id="justification-div-' + bidId + '" style="display: none;">' +
+              '<div class="form-group">' +
+                '<label>This is not the lowest bid. Please provide justification on why you are choosing to accept this bid</label>' +
+                '<textarea id="justification-' + bidId + '" class="form-control"></textarea>' +
+              '</div>' +
+              '<input type="button" onclick="handleJustificationOkayClick(\'' + bidId + '\')" value="Okay" />' +
+              '<input type="button" onclick="handleJustificationCancelClick(\'' + bidId + '\')" value="Cancel" />' +
+            '</div>' +
           '</div>'
       });
 
@@ -60,13 +68,33 @@
   }, 'json' );
 })();
 
-function handleBidAcceptClick(id) {
-  // const demandId = id;
-  // const bidAmount = $('#bid-amount-' + id).val();
-  // const promisedTimeline = $('#promised-timeline-' + id).val();
-  //
-  // $.post('/bid', { 'demandId': demandId, 'bidAmount': bidAmount, 'promisedTimeline': promisedTimeline }, function(data) {
-  //   $('#well-' + id).hide();
-  //   alert('Bid successful');
-  // });
+function handleBidAcceptClick(paramsStr) {
+  // params is in string format so format it with .split to create an array with the parameters
+  const paramsArr = paramsStr.split(',');
+  const isLowestBid = paramsArr[0];
+  const bidId = paramsArr[1];
+
+  // if the bid is not the lowest bid, show the div that asks for justification
+  if (isLowestBid === 'false') {
+    $('#justification-div-' + bidId).show();
+  } else {
+    // api call to accept bid
+    $.post('/accept-bid', {  }, function(data) {
+
+      alert('Bid successfully accepted');
+    });
+  }
+}
+
+function handleJustificationOkayClick(paramsStr) {
+
+  // api call to accept bid
+  $.post('/accept-bid', {  }, function(data) {
+
+    alert('Bid successfully accepted');
+  });
+}
+
+function handleJustificationCancelClick(bidId) {
+  $('#justification-div-' + bidId).hide();
 }

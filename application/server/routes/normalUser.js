@@ -39,7 +39,7 @@ const updateUser = (req, res) => {
     });
 };
 
-const normalUser = (app, isLoggedIn) => {
+const normalUser = (app, isLoggedIn, checkUserAccess) => {
   app.post('/update-user', isLoggedIn, updateUser);
 
   return app;

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let User = require('../models/user.js');
 let Demand = require('../models/demand.js');
 
-const demand = (app, isLoggedIn) => {
+const demand = (app, isLoggedIn, checkUserAccess) => {
 
   const renderDemand = (req, res) => {
     res.render('demand.ejs', {
@@ -82,9 +82,9 @@ const demand = (app, isLoggedIn) => {
       });
   };
 
-  app.get('/demand', isLoggedIn, renderDemand);
-  app.post('/demand', isLoggedIn, postDemand);
-  app.get('/manage-demands', isLoggedIn, renderManageDemands);
+  app.get('/demand', isLoggedIn, checkUserAccess, renderDemand);
+  app.post('/demand', isLoggedIn, checkUserAccess, postDemand);
+  app.get('/manage-demands', isLoggedIn, checkUserAccess, renderManageDemands);
   app.get('/api/demands', getAllDemands);
   app.get('/api/demands/:id', isLoggedIn, getUserDemands);
 

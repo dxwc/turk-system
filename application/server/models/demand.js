@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 // define bid child schema
 const bidSchema = Schema({
+  // devloper id
   userId: Schema.Types.ObjectId,
   email: String,
   name: String,
