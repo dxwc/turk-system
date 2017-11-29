@@ -6,7 +6,7 @@
 
 const mongoose = require('mongoose');
 mongoose.Promise = Promise; // use ES6 promise for mongoose promise
-require('./models'); // defines all the data model (schema)
+require('./db/models'); // defines all the data model (schema)
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
