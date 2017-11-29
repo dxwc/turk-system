@@ -1,0 +1,27 @@
+{
+  "name": "turk-system",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "systemctl start mongodb; node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxwc/turk-system.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dxwc/turk-system/issues"
+  },
+  "homepage": "https://github.com/dxwc/turk-system#readme",
+  "dependencies": {
+    "connect-mongo": "2.0.0",
+    "ejs": "2.5.7",
+    "express": "4.16.2",
+    "express-session": "1.15.6",
+    "mongoose": "4.13.5"
+  }
+}
