@@ -188,7 +188,7 @@ mongoose.model
         {
             user_id : { type : mongoose.Schema.Types.ObjectId, required: true,
                         ref : 'users', required : true },
-            message : { type : String, required : true },
+            message : { type : String },
             time    : { type : Date, default: Date.now, required : true },
         }
     )
