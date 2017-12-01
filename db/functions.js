@@ -4,6 +4,7 @@
 
 let mongoose = require('mongoose');
 let validator = require('validator');
+let assert = require('assert');
 // require('../index'); // remove/comment after testing
 
 /**
@@ -167,4 +168,62 @@ function add_user
     });
 }
 
+/**
+ * resolve: query of a 'users' document, reject : error object
+ * @param {String} user_name
+ * @param {String} password
+ * @returns {Promise}
+ */
+function query_users(user_name, password)
+{
+    // errCode summery:
+    // 0 : invalid input, user can't possibly be in database
+    // 1 : user is in blacklist, relevent document in data field
+    // 2 : user is not in blacklist and also not in users collection
+    // 3 : unknown error occured in querying collections, error in error field
+
+    return new Promise((resolve, reject) =>
+    {
+        try
+        {
+            user_name = user_name.toLowerCase();
+            assert(user_name.length >= 3);
+            let alpha = 'abcdefghijklmnopqrstuvwxyz';
+            let alpha_numeric = 'abcdefghijklmnopqrstuvwxyz1234567890';
+            assert(alpha.indexOf(user_name[0]) !== -1);
+            for(let i = 0; i < user_name.length; ++i)
+                assert(alpha_numeric.indexOf(user_name[i]) !== -1);
+
+            assert(password.length >= 5);
+        }
+        catch(err)
+        {
+            reject({ errCode : 0, error : err });
+        }
+
+        password = validator.escape(password);
+
+        return mongoose.model('user_name_blacklists')
+        .findOne({ user_name : user_name})
+        .then((result) =>
+        {
+            if(result !== null) reject({ errCode: 1, data: result });
+
+            return mongoose.model('users')
+            .findOne({ user_name : user_name, password : password })
+        })
+
+        .then((result) =>
+        {
+            if(result === null) reject({ errCode: 2, text: 'User not found' });
+            else resolve(result);
+        })
+        .catch((err) =>
+        {
+            reject({ errCode : 3, error : err });
+        });
+    });
+}
+
 module.exports.add_user = add_user;
+module.exports.query_users = query_users;
