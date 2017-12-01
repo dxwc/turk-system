@@ -225,5 +225,21 @@ function query_users(user_name, password)
     });
 }
 
+/**
+ * Add a document in quit_demands collection
+ * @param {ObjectId} user_id -- user object ID
+ * @param {String} quit_details -- optional details if provided by user
+ */
+function record_a_quit_demand(user_id, quit_details)
+{
+    let obj_to_save = { user_id : user_id };
+
+    if(quit_details !== undefined)
+        obj_to_save.message = validator.escape(quit_details);
+
+    return new (mongoose.model('quit_demands'))(obj_to_save).save();
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
+module.exports.record_a_quit_demand = record_a_quit_demand;
