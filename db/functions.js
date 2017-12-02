@@ -229,6 +229,7 @@ function query_users(user_name, password)
  * Add a document in quit_demands collection
  * @param {ObjectId} user_id -- user object ID
  * @param {String} quit_details -- optional details if provided by user
+ * @returns {Promise}
  */
 function record_a_quit_demand(user_id, quit_details)
 {
@@ -240,6 +241,38 @@ function record_a_quit_demand(user_id, quit_details)
     return new (mongoose.model('quit_demands'))(obj_to_save).save();
 }
 
+/**
+ * Resolve with object containing users pending accept/reject decision
+ * @returns {Promise}
+ */
+function get_pending_applications()
+{
+    let black_listed_user_names;
+
+    return mongoose.model('user_name_blacklists').find()
+    .then((result) =>
+    {
+        black_listed_user_names = result;
+
+        return mongoose.model('users')
+        .find({ access_type : 0 })
+        .select('user_id user_name role amount_total creation_time');
+    })
+    .then((result) =>
+    {
+        if(black_listed_user_names === null) return result;
+
+        let filtered = []; // to collect non blacklisted names
+
+        for(let i = 0; i < result.length; ++i)
+            if(result.indexOf(result.user_name) == -1)
+                filtered.push(result[i]);
+
+        return filtered;
+    });
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
+module.exports.get_pending_applications = get_pending_applications;
