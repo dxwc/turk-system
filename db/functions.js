@@ -272,7 +272,60 @@ function get_pending_applications()
     });
 }
 
+/**
+ * Save admin decision on accept or rejection on application
+ * @param {String} user_id
+ * @param {Boolean} decision_bool -- 1 == accept, 0 == reject
+ * @param {String} reject_reason
+ * @returns {Promise}
+ */
+function save_decision(user_id, decision_bool, reject_reason)
+{
+    return new Promise((resolve, reject) =>
+    {
+        if(decision_bool === true)
+        {
+            resolve
+            (
+                mongoose.model('users')
+                .findOneAndUpdate({ user_id : user_id }, { access_type : 1 })
+            );
+        }
+        else
+        {
+            if(typeof reject_reason !== 'string' || reject_reason.length <= 4)
+                throw new Error('No rejection of adequate length reason provided');
+
+            reject_reason = validator.escape(reject_reason);
+
+            resolve
+            (
+                mongoose.model('users')
+                .findOne({ user_id : user_id })
+                .select('user_name')
+                .then((result) =>
+                {
+                    if(result === null || typeof result.user_name !== 'string')
+                        throw new Error('User not found users');
+
+                    return new (mongoose.model('user_name_blacklists'))
+                    (
+                        {
+                            user_name : result.user_name,
+                            reason : reject_reason,
+                            expires : new Date()
+                                      .setFullYear(new Date().getFullYear() + 1)
+                        }
+                    )
+                    .save();
+                })
+            );
+        }
+    })
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
 module.exports.get_pending_applications = get_pending_applications;
+module.exports.save_decision = save_decision;
