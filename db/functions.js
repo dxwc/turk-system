@@ -249,7 +249,9 @@ function get_pending_applications()
 {
     let black_listed_user_names;
 
-    return mongoose.model('user_name_blacklists').find()
+    return mongoose.model('user_name_blacklists')
+    .find()
+    .select('user_name')
     .then((result) =>
     {
         black_listed_user_names = result;
@@ -262,10 +264,19 @@ function get_pending_applications()
     {
         if(black_listed_user_names === null) return result;
 
+        // object to name array:
+        let temp = black_listed_user_names;
+        black_listed_user_names = [];
+        for(let i = 0; i < temp.length; ++i)
+            black_listed_user_names.push(temp[i].user_name);
+        temp = null;
+
+
         let filtered = []; // to collect non blacklisted names
 
+        // if user_name is NOT in blacklist, add to filtered arraay
         for(let i = 0; i < result.length; ++i)
-            if(result.indexOf(result.user_name) == -1)
+            if(black_listed_user_names.indexOf(result[i].user_name) === -1)
                 filtered.push(result[i]);
 
         return filtered;
