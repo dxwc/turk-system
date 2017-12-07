@@ -189,10 +189,10 @@ function query_users(user_name, password)
             user_name = user_name.toLowerCase();
             assert(user_name.length >= 3);
             let alpha = 'abcdefghijklmnopqrstuvwxyz';
-            let alpha_numeric = 'abcdefghijklmnopqrstuvwxyz1234567890';
+            let allowed_chars = 'abcdefghijklmnopqrstuvwxyz1234567890_';
             assert(alpha.indexOf(user_name[0]) !== -1);
             for(let i = 0; i < user_name.length; ++i)
-                assert(alpha_numeric.indexOf(user_name[i]) !== -1);
+                assert(allowed_chars.indexOf(user_name[i]) !== -1);
 
             assert(password.length >= 5);
         }
