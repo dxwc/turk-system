@@ -11,7 +11,7 @@ const adminOnly = require('./adminOnly');
 const normalUser = require('./normalUser');
 const demand = require('./demand');
 const bid = require('./bid');
-
+const grandSysStats = require('./grand_stats');
 const quit_demand = require('./quit_demand');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
@@ -70,6 +70,7 @@ const checkUserAccess = (req, res, next) => {
 const configureRoutes = (app, passport) => {
   start(app);
   quit_demand(app);
+  grandSysStats(app, isLoggedIn);
   home(app, isLoggedIn, checkUserAccess);
   authentication(app, passport);
   profile(app, isLoggedIn, checkUserAccess);
