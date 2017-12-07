@@ -186,9 +186,10 @@ mongoose.model
     new mongoose.Schema
     (
         {
-            user_id : { type : mongoose.Schema.Types.ObjectId, required: true,
+            user_id : { type : mongoose.Schema.Types.ObjectId, unique: true,
                         ref : 'users', required : true },
             message : { type : String },
+            ignore  : { type : Boolean, default : false, required : true },
             time    : { type : Date, default: Date.now, required : true },
         }
     )
