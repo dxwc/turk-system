@@ -335,8 +335,52 @@ function save_decision(user_id, decision_bool, reject_reason)
     })
 }
 
+/**
+ * Show user info for documents from quit demand
+ */
+function get_quit_demands()
+{
+    let blacklist_arr = [];
+    return get_black_listed_user_names_arr()
+    .then((blacklist) =>
+    {
+        blacklist_arr = blacklist;
+        return mongoose.model('quit_demands')
+               .find()
+               .populate('user_id', 'user_name')
+    })
+    .then((result) =>
+    {
+        let filtered_quit_demands = [];
+        for(let i = 0; i < result.length; ++i)
+        {
+            if(blacklist_arr.indexOf(result[i].user_id.user_name) === -1)
+                filtered_quit_demands.push(result[i]);
+        }
+
+        return filtered_quit_demands;
+    })
+}
+
+/**
+ * Get black listed user names
+ */
+function get_black_listed_user_names_arr()
+{
+    let blacklists = [];
+    return mongoose.model('user_name_blacklists').find()
+    .then((result) =>
+    {
+        for(let i = 0; i < result.length; ++i)
+            blacklists.push(result[i].user_name);
+
+        return blacklists;
+    });
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
 module.exports.get_pending_applications = get_pending_applications;
 module.exports.save_decision = save_decision;
+module.exports.get_quit_demands = get_quit_demands;
