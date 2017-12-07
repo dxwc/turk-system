@@ -290,7 +290,7 @@ function get_pending_applications()
  * @param {String} reject_reason
  * @returns {Promise}
  */
-function save_decision(user_id, decision_bool, reject_reason)
+function save_application_decision(user_id, decision_bool, reject_reason)
 {
     return new Promise((resolve, reject) =>
     {
@@ -305,7 +305,7 @@ function save_decision(user_id, decision_bool, reject_reason)
         else
         {
             if(typeof reject_reason !== 'string' || reject_reason.length <= 4)
-                throw new Error('No rejection of adequate length reason provided');
+                throw new Error('Rejection reason\'s length is too short');
 
             reject_reason = validator.escape(reject_reason);
 
@@ -378,9 +378,40 @@ function get_black_listed_user_names_arr()
     });
 }
 
+/**
+ * Set a quit request to ignore [deletes the quit demand]
+ * @param {String} user_id
+ * @returns {Promise}
+ */
+function ignore_quit_request(user_id)
+{
+    return mongoose.model('quit_demands').findOneAndRemove({ user_id : user_id });
+}
+
+/**
+ * Remove user's access by adding to blocklist
+ * @param {String} user_name
+ * @returns {Promise}
+ */
+function remove_access(user_name)
+{
+    return new (mongoose.model('user_name_blacklists'))
+    (
+        {
+            user_name : user_name,
+            reason : 'User requested to have access removed',
+            expires : new Date()
+                    .setFullYear(new Date().getFullYear() + 1000)
+        }
+    )
+    .save();
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
 module.exports.get_pending_applications = get_pending_applications;
-module.exports.save_decision = save_decision;
+module.exports.save_application_decision = save_application_decision;
 module.exports.get_quit_demands = get_quit_demands;
+module.exports.ignore_quit_request = ignore_quit_request;
+module.exports.remove_access = remove_access;
