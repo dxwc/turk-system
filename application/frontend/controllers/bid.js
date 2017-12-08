@@ -16,7 +16,7 @@
           '<div id="bid-form-div-' + demand._id + '" style="display: none;">' +
             '<div>' +
               '<label>Bid Amount $$$</label>' +
-              '<input type="text" id="bid-amount-' + demand._id + '"/>' +
+              '<input type="number" pattern="\d*" id="bid-amount-' + demand._id + '"/>' +
             '</div>' +
             '<div>' +
               '<label>Promised Timeline</label>' +
