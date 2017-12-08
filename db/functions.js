@@ -523,6 +523,12 @@ function not_first_use(user_id)
     .findOneAndUpdate({ user_id : user_id }, { first_use : false });
 }
 
+function query_by_user_name(user_name)
+{
+    return mongoose.model('users')
+    .find({ user_name : {'$regex': validator.escape(user_name)}});
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
@@ -540,3 +546,4 @@ module.exports.is_first_use = is_first_use;
 module.exports.save_developer_info = save_developer_info;
 module.exports.save_client_info = save_client_info;
 module.exports.not_first_use = not_first_use;
+module.exports.query_by_user_name = query_by_user_name;

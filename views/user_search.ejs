@@ -1,0 +1,26 @@
+<?- include('./partials/begin.ejs', { title : 'System Demand'}) ?>
+
+<? if(locals.top_info_text !== undefined) { ?>
+    <p style='padding: 1em; border : 1em solid #ddd'>
+        <?= top_info_text ?>
+    </p>
+<? } ?>
+
+<form action='/user' method='post'>
+    <input type='text' name='search_string' placeholder='User name to search'>
+    <button type='submit'>Search</button>
+</form>
+
+<? if(locals.result !== undefined && result.length > 0) { ?>
+<ul>
+    <? for(let i = 0; i < result.length; ++i) { ?>
+        <li><a href='/user/<?= result[i].user_id?>'><?=result[i].user_name?></a></li>
+    <? } ?>
+</ul>
+<? } ?>
+
+
+
+
+
+<?- include('./partials/end.ejs') ?>
