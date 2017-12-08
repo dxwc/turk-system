@@ -14,7 +14,9 @@ const userSchema = Schema({
     accountStatus: String,
     warningCounter: { type: Number, default: 0 },
     rejectMessage: { type: String, default: '' },
-    avgRating: {type: Number, default:0 },
+    // avgRating gives validtion error for admin login, changing Number to String fixed
+    // need to check if this breaks anything else
+    avgRating: {type: String, default:0 },
     avgRatingToOthers: {type: Number, default:0 },
     developerDetails: {
       resume: { type: String, default: '' },
