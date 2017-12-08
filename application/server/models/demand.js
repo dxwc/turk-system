@@ -23,6 +23,7 @@ const demandSchema = Schema({
   bids: [bidSchema],
   demandStatus: { type: String, default: 'open' },
   contractedDevId: Schema.Types.ObjectId,
+  finalAcceptedBidAmount: Number
 });
 
 // create the model for demand and expose it to our app

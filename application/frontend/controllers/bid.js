@@ -1,11 +1,12 @@
 'use strict';
 
 (function () {
-  // Show list of temp users
+  // Show list of possible bids
   $.get('/api/demands', function(data) {
     data.forEach((demand, index) => {
+      console.log(demand.demandStatus);
       // if demand was already accepted, skip it
-      if (demand.demandStatus === 'bidAccepted') {
+      if (demand.demandStatus !== 'open') {
         return;
       }
       $('#demands-list').append(
@@ -16,7 +17,7 @@
           '<div id="bid-form-div-' + demand._id + '" style="display: none;">' +
             '<div>' +
               '<label>Bid Amount $$$</label>' +
-              '<input type="text" id="bid-amount-' + demand._id + '"/>' +
+              '<input type="number" pattern="\d*" id="bid-amount-' + demand._id + '"/>' +
             '</div>' +
             '<div>' +
               '<label>Promised Timeline</label>' +

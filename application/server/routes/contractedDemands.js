@@ -33,11 +33,44 @@ const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
         }
         console.log(demand);
         demand.demandStatus = 'submitted';
+        const finalAcceptedBidAmount = demand.finalAcceptedBidAmount;
+        const clientID = demand.clientID;
         demand.save(function(err) {
           if (err) {
             throw err;
           }
-          res.redirect('/home');
+          console.log("finalAcceptedBidAmount: " + finalAcceptedBidAmount);
+          // send other 50% of bid price to superuser
+          // find superuser user model
+          User
+            .findOne({ 'local.accountStatus': 'superuser' })
+            .exec(function(err, superuser) {
+              if (err) { throw err; }
+              superuser.local.deposit += finalAcceptedBidAmount * 0.5;
+              superuser.save(function(err) {
+                if (err) {
+                  throw err;
+                }
+                console.log('50% of bid amount sent to superuser');
+
+                // find client who created demand and take away 50% of bidding price from his money
+                User
+                  .findOne({ '_id': clientID })
+                  .exec(function(err, client) {
+                    if (err) { throw err; }
+                    client.local.deposit -= finalAcceptedBidAmount * 0.5;
+                    client.save(function(err) {
+                      if (err) {
+                        throw err;
+                      }
+                      console.log('50% of bid amount taken from client');
+                    })
+                  });
+              });
+
+            });
+
+          // res.redirect('/home');
         });
       });
   }

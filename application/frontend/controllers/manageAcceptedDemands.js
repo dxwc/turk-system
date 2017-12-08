@@ -15,7 +15,7 @@
       // get array of bids from data
       const bids = demand.bids;
       const systemStatus = demand.demandStatus;
-      const bidderId = 
+      const bidderId =
       // create a string that will hold the list of bids in string format
       // append demand well to demands-list
       $('#demands-list').append(
@@ -30,14 +30,14 @@
                 '<div id="justification-div-' + demandId + '" style="display: none;">' +
                   '<label>Enter your justification for lower rating: </label>' +
                   '<textarea id="justify-rating-' + demandId + '" class="form-control"></textarea>' +
-                '</div>' + 
+                '</div>' +
               '</div>' +
               '<input type="button" onclick="handleRateSystemClick(\'' + systemStatus + ',' + demandId + '\')" value="Okay" />' +
           '</div>' +
         '</div>'
       );
 
-      if (systemStatus == 'bidAccepted') {
+      if (systemStatus == 'submitted') {
         $('#rateSystem-div-' + demandId).show();
       }
 

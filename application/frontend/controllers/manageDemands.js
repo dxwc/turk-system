@@ -13,7 +13,7 @@
       const biddingTimeline = demand.biddingTimeline;
       const demandStatus = demand.demandStatus;
       // skip this demand if a bid of the demand was already accepted
-      if (demandStatus === 'bidAccepted') {
+      if (demand.demandStatus !== 'open') {
         return;
       }
       // get array of bids from data
@@ -87,7 +87,13 @@ function handleBidAcceptClick(paramsStr) {
     // api call to accept bid
     $.post('/accept-bid', { 'demandId': demandId, 'bidId': bidId }, function(data) {
       // $('#well-' + id).hide();
-      alert('Bid sucessfully accepted');
+      console.log("###");
+      console.log(data);
+      if (data === 'No money') {
+        alert('You dont have enough money in your account');
+      } else {
+        alert('Bid sucessfully accepted');
+      }
     });
 
   }
@@ -103,7 +109,14 @@ function handleJustificationOkayClick(paramsStr) {
   // api call to accept bid
   $.post('/accept-bid', { 'demandId': demandId, 'bidId': bidId }, function(data) {
     // $('#well-' + id).hide();
-    alert('Bid sucessfully accepted');
+    console.log("###");
+    console.log(data);
+    if (data === 'No money') {
+      alert('You dont have enough money in your account');
+    } else {
+      alert('Bid sucessfully accepted');
+    }
+
   });
 
 }

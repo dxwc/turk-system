@@ -35,13 +35,45 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
         // grab params sent over with post request
         const ratingValue = req.body.rating;
         const fromUserId = req.user.id;
-        
+        const finalAcceptedBidAmount = data.finalAcceptedBidAmount;
+        const contractedDevId = data.contractedDevId;
+
         let newRating = new Rating();
         newRating.fromUserId = fromUserId;
         newRating.rating = ratingValue;
         newRating.postId = req.body.systemId;
         if (ratingValue < 3) {
           newRating.ratingText = req.body.ratingText;
+        } else {
+          // if rating >=3, the money helf by superuser account is xferred to dev
+          const transactionAmount = finalAcceptedBidAmount * 0.45;
+          User
+            .findOne({ 'local.accountStatus': 'superuser' })
+            .exec(function(err, superuser) {
+              if (err) { throw err; }
+              superuser.local.deposit -= transactionAmount;
+              superuser.save(function(err) {
+                if (err) {
+                  throw err;
+                }
+                // console.log('50% of bid amount sent to superuser');
+
+                // send money to dev
+                User
+                  .findOne({ '_id': contractedDevId })
+                  .exec(function(err, dev) {
+                    if (err) { throw err; }
+                    dev.local.deposit += transactionAmount;
+                    dev.save(function(err) {
+                      if (err) {
+                        throw err;
+                      }
+                      // console.log('50% of bid amount taken from client');
+                    })
+                  });
+              });
+
+            });
         }
         // Get all the bids from the demand
         // If any of the demand has the isAccepted get that
@@ -55,35 +87,25 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
             console.log(bid.bidStatus);
             newRating.toUserId = bid.userId;
             break;
-          } 
+          }
         }
-        
+
         newRating.save(function(err) {
-          if (err) { throw err; }
-          Rating
-          .find({ 'toUserId' : req.user._id })
-          .exec(function(err, allRatingsForUser) {
-            if(err) { throw err; }
-            //Loop through all the rating and get the sum and avg
-            if (allRatingsForUser.length >= 5) {
-              let sum = 0;
-              allRatingsForUser.forEach((ratingObj, i) => {
-                sum += ratingObj.rating;
-              });
-              let avgRating = sum/allRatingsForUser.length;
-              User
-                .findOne({ '_id' : req.user._id})
-                .exec(function(err2, setUserStatus) {
-                  setUserStatus.local.avgRating == avgRating;
-                  setUserStatus.save(function(err) {
-                        if (err) { throw err; }
-                  });
-                })   
-            }
-          });
+          if (err) {
+            throw err;
+          }
+            Rating
+              .find()
+              .exec(function(err1, ratingss) {
+                console.log(ratingss);
+                res.redirect('/');
+              })
+
         });
-    });
-  }
+
+      });
+  };
+
 
   app.post('/send-rate', isLoggedIn, checkUserAccess, postRating);
   app.get('/manage-accepted-demands', isLoggedIn, checkUserAccess, renderManageDemands);

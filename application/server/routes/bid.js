@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 let Demand = require('../models/demand.js');
+let User = require('../models/user.js');
 
 const bid = (app, isLoggedIn, checkUserAccess) => {
   const renderBid = (req, res) => {
@@ -82,22 +83,69 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
         // get id of dev who bid on demands
         let devId;
         bids.forEach((bid, i) => {
+          devId = bid.userId;
           if (bid._id.toString() === bidId) {
-            bids[i].bidStatus = 'accepted';
-            devId = bid.userId;
+            const bidAmount = bid.bidAmount;
+            const clientMoney = req.user.local.deposit;
+            // check if current user (client) has enough money to accept bid
+            if (clientMoney >= bidAmount) {
+              const bidAmount = bids[i].bidAmount;
+              bids[i].bidStatus = 'accepted';
+              demand.demandStatus = 'bidAccepted';
+              demand.finalAcceptedBidAmount = bidAmount;
+
+              // find contracdted dev and send 50% of bidding price to him
+              User
+                .findOne({ '_id': devId })
+                .exec(function(err, dev) {
+                  if (err) { throw err; }
+                  dev.local.deposit += bidAmount * 0.5;
+                  dev.save(function(err) {
+                    if (err) {
+                      throw err;
+                    }
+                    console.log('50% of bid amount sent to dev');
+
+                    // find currently logged in client and take away 50% of bidding price
+                    User
+                      .findOne({ '_id': req.user.id })
+                      .exec(function(err, client) {
+                        if (err) { throw err; }
+                        client.local.deposit -= bidAmount * 0.5;
+                        client.save(function(err) {
+                          if (err) {
+                            throw err;
+                          }
+                          console.log('50% of bid amount taken from client');
+                        })
+                      });
+                  });
+
+                });
+
+            } else {
+              demand.demandStatus = 'clientNoMoney';
+            }
+
           }
         });
-        console.log(bids);
+
         // save updated bid back to db document
         demand.bids = bids;
-        // change demandStatus to inReview
-        demand.demandStatus = 'bidAccepted';
+
+        // final contracted dev id
         demand.contractedDevId = devId;
-        demand.save((err) => {
+        console.log(demand);
+        demand.save((err, savedDemand) => {
           if (err) {
             throw err;
           }
-          res.redirect('/manage-demands');
+          if (savedDemand.demandStatus === 'clientNoMoney') {
+            res.send('No money');
+          } else {
+            res.send('Bid accepted');
+          }
+
         });
       });
 
