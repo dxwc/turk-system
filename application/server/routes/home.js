@@ -12,19 +12,26 @@ const home = (app, isLoggedIn, checkUserAccess) => {
   	  	if(err) { throw err; }
   	  	//Loop through all the rating and get the sum and avg
   	  	if (allRatingsForUser.length >= 5) {
-	  	  const sum = 0;
-	  	  allRatingsForUser.forEach((rating, i) => {
-	  	  	sum += rating;
+	  	  let sum = 0;
+	  	  allRatingsForUser.forEach((ratingObj, i) => {
+	  	  	sum += ratingObj.rating;
 	  	  });
-	  	  const avgRating = sum/allRatingsForUser.length;
+	  	  let avgRating = sum/allRatingsForUser.length;
 	  	  if (avgRating <= 2) {
-	  	  	req.user.accountStatus = 'poorperformance';
-	  	  	req.user.warningCounter += 1;
+	  	  	User
+	  	  	 .findOne({ '_id' : req.user._id})
+	  	  	 .exec(function(err2, setUserStatus) {
+	  	  	 	setUserStatus.local.accountStatus = 'poorperformance';
+	  	  	 	setUserStatus.local.warningCounter += 1;
+	  	  	 	setUserStatus.save(function(err) {
+          			if (err) { throw err; }
+          			res.render('home.ejs', {
+      	 				user: req.user // get the user out of session and pass to template
+    				});
+        		});
+	  	  	 })	
 	  	  }
-  	    }
-  	  	res.render('home.ejs', {
-      	 user: req.user // get the user out of session and pass to template
-    	});	
+  	    }	
   	  })
   };
 
