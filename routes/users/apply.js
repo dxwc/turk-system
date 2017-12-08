@@ -66,7 +66,13 @@ router.post('/apply', (req, res) =>
             return res.redirect(301, '/');
         }
 
-        db_func.add_user(user_name, password_1, role, deposit_amount)
+        db_func.add_user
+        (
+            user_name,
+            password_1,
+            role === 'developer' ? false : true,
+            deposit_amount
+        )
         .then((user_id) =>
         {
             if(typeof(user_id) === 'object')
