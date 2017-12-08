@@ -22,6 +22,7 @@ mongoose.model
             access_type     : { type : Boolean, default : false, required : true },
             role            : { type : Boolean, required : true },
             amount_total    : { type : Number, required : true },
+            first_use       : { type : Boolean, default : true, required : true },
             warning_counter : { type : Number, default : 0, required : true },
             creation_time   : { type: Date, default: Date.now, required : true }
         }
@@ -81,8 +82,9 @@ mongoose.model
         {
             user_id         : { type : mongoose.Schema.Types.ObjectId, required: true,
                                 ref : 'users', unique: true, required : true },
-            interrest       : { type : String, required: true },
-            prev_work_info  : { type : String, required : true }
+            interest       : { type : String, required: true },
+            resume_link     : { type : String, required : true },
+            pic_link        : { type : String, require: true }
         }
     )
 );
@@ -95,8 +97,9 @@ mongoose.model
         {
             user_id   : { type : mongoose.Schema.Types.ObjectId, required: true,
                           ref : 'users', unique: true, required : true },
-            interrest : { type : String, required: true },
-            biz_cred  : { type : String, required : true }
+            interest : { type : String, required: true },
+            biz_cred  : { type : String, required : true },
+            pic_link : { type : String, require : true }
         }
     )
 );

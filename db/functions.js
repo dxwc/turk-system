@@ -484,6 +484,45 @@ function get_system_demands()
     .populate('client_id', 'user_name');
 }
 
+function is_first_use(user_id)
+{
+    return mongoose.model('users').findOne({ user_id : user_id }).select('first_use');
+}
+
+function save_client_info(user_id, interest, biz_cred_link, pic_link)
+{
+    return new (mongoose.model('clients'))
+    (
+        {
+            user_id : user_id,
+            interest : validator.escape(interest),
+            biz_cred : validator.escape(biz_cred_link),
+            pic_link : validator.escape(pic_link)
+        }
+    )
+    .save();
+}
+
+function save_developer_info(user_id, interest, resume_link, pic_link)
+{
+    return new (mongoose.model('developers'))
+    (
+        {
+            user_id : user_id,
+            interest : validator.escape(interest),
+            resume_link : validator.escape(resume_link),
+            pic_link : validator.escape(pic_link)
+        }
+    )
+    .save();
+}
+
+function not_first_use(user_id)
+{
+    return mongoose.model('users')
+    .findOneAndUpdate({ user_id : user_id }, { first_use : false });
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
@@ -497,3 +536,7 @@ module.exports.system_demand_post_info = system_demand_post_info;
 module.exports.get_user = get_user;
 module.exports.get_system_demands = get_system_demands;
 module.exports.get_all_active_users = get_all_active_users;
+module.exports.is_first_use = is_first_use;
+module.exports.save_developer_info = save_developer_info;
+module.exports.save_client_info = save_client_info;
+module.exports.not_first_use = not_first_use;

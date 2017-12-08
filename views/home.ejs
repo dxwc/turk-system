@@ -91,12 +91,40 @@
     <button
         type='submit'>Login</button>
 </form>
-
 <? } else { ?>
+    <? if(locals.promt_add_info == true) { ?>
+        <h1>Welcome to Turk System</h1>
+        <h3>Please fill out the following info</h3>
+        <form action='/save_user_info' method='post'>
+            Intrest info:
+            <input
+                type='text'
+                name='interest'
+                placeholder='Interests'
+                required><br>
+            Link to Resume/Business Credential:
+            <input
+                type='text'
+                name='cred'
+                placeholder='eg: https://www.example.com'
+                required>
+            <br>
+            Image link:
+            <input
+                type='text'
+                name='pic'
+                placeholder='eg: https://www.example.com/img.png'
+                required>
+            <br><br>
+            <button type='submit'>Save</button>
+        </form>
+        <hr>
+    <? } else { ?>
+    <? } ?>
     <ul>
-        <li><a href='/profile'>Profile</a></li>
+        <li><a href='/user/<?= user_id ?>'>Profile</a></li>
         <li><a href='/account'>Account</a></li>
-        <? if(locals.role === true) { ?>
+        <? if(locals.role === true && locals.access_type == true) { ?>
             <li><a href='/add_system_demand'>Post a System Demand</a></li>
         <? } ?>
     </ul>
@@ -104,7 +132,8 @@
 
 <hr>
 <ul>
-    <li><a href='/browse_system_demands'>Browse System Demands</li>
+    <li><a href='/browse_system_demands'>Browse System Demands</a></li>
+    <li><a href='/browse_users'>Browse Regular Users</a></li>
 </ul>
 
 <?- include('./partials/end.ejs') ?>
