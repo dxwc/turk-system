@@ -1,0 +1,70 @@
+<?- include('./partials/begin.ejs', { title : 'System Demand'}) ?>
+
+<? if(locals.top_info_text !== undefined) { ?>
+    <p style='padding: 1em; border : 1em solid #ddd'>
+        <?= top_info_text ?>
+    </p>
+<? } ?>
+<style>
+    .deadline { display : inline }
+    .description { margin-right : 1% }
+</style>
+<form
+    style='padding : 1%; border : 0.2em solid #ddd'
+    action='/add_system_demand'
+    method='post'>
+    System Spec: <br>
+    <textarea
+        style='width: 75%'
+        col=200
+        name='system_spec'
+        minlength='5'
+        required>
+    </textarea><br>
+    <br>
+    Description, Duedate : Timeline<br>
+    <input
+        class='description'
+        name='description'
+        type='text'
+        placeholder='What is due at this date?'
+        required>
+    <input
+        class='deadline'
+        name='deadline'
+        type='date'
+        required><br>
+
+    <a id='add_more' href>+ Add more description and deadline</a><br><br>
+    <button type='submit'>Publish</button>
+</form>
+<br>
+
+<script>
+    let add_more = document.getElementById('add_more');
+
+    add_more.addEventListener('click', (event) =>
+    {
+        event.preventDefault();
+
+        let newInput1 = document.createElement("input");
+        newInput1.name='description';
+        newInput1.className='description';
+        newInput1.type='text';
+        newInput1.placeholder='What is due at this date?';
+        newInput1.setAttribute('required', '');
+
+        let newInput2 = document.createElement("input");
+        newInput2.className='deadline';
+        newInput2.name='deadline';
+        newInput2.type='date';
+        newInput2.setAttribute('required', '');
+
+        add_more.parentNode.insertBefore(newInput1, add_more);
+        add_more.parentNode.insertBefore(newInput2, add_more);
+        add_more.parentNode.insertBefore(document.createElement('br'), add_more);
+    });
+</script>
+
+
+<?- include('./partials/end.ejs') ?>

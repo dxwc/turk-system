@@ -407,6 +407,48 @@ function remove_access(user_name)
     .save();
 }
 
+/**
+ * Add a system demand
+ * @param {String} client_id
+ * @param {String} system_spec
+ * @param {Array} descriptions
+ * @param {Array} deadlines
+ */
+function add_system_demand
+(
+    client_id,
+    system_spec,
+    descriptions,
+    deadlines
+)
+{
+    let timeline_arr = [];
+    for(let i = 0; i < deadlines.length; ++i)
+    {
+        timeline_arr.push
+        (
+            {
+                deadline :  new Date(deadlines[i]),
+                description : validator.escape(descriptions[i])
+            }
+        );
+    }
+
+    let post_id = mongoose.Types.ObjectId();
+
+    return new (mongoose.model('system_demands'))
+    (
+        {
+            _id : post_id,
+            post_id : post_id,
+            client_id : client_id,
+            syst_spec : validator.escape(system_spec),
+            timeline : timeline_arr
+        }
+    )
+    .save();
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
@@ -415,3 +457,4 @@ module.exports.save_application_decision = save_application_decision;
 module.exports.get_quit_demands = get_quit_demands;
 module.exports.ignore_quit_request = ignore_quit_request;
 module.exports.remove_access = remove_access;
+module.exports.add_system_demand = add_system_demand;
