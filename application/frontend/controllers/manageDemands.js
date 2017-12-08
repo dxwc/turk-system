@@ -99,3 +99,21 @@ function handleJustificationOkayClick(id) {
 function handleJustificationCancelClick(id) {
   $('#justification-div-' + id).hide();
 }
+
+function handleRateSystemClick(paramsStr) {
+  const paramsArr = paramsStr.split(',');
+  const systemStatus = paramsArr[0];
+  const bidderId = paramsArr[1];
+  const systemId = paramsArr[2];
+
+  // if the systemStatus is submitted
+  if (systemStatus === 'submitted') {
+    $('#rateSystem-div-' + systemId).show();
+    // api call to send the rate
+    $.post('/send-rate', { 'systemId': systemId, '' })
+  } else {
+    // the system has not yet been submitted, you can't rate input
+    alert('System has not yet been submitted, you can not rate it!');
+  }
+
+}
