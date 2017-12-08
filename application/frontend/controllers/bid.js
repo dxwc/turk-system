@@ -1,11 +1,12 @@
 'use strict';
 
 (function () {
-  // Show list of temp users
+  // Show list of possible bids
   $.get('/api/demands', function(data) {
     data.forEach((demand, index) => {
+      console.log(demand.demandStatus);
       // if demand was already accepted, skip it
-      if (demand.demandStatus === 'bidAccepted') {
+      if (demand.demandStatus !== 'open') {
         return;
       }
       $('#demands-list').append(

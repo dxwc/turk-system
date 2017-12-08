@@ -83,21 +83,35 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
         let devId;
         bids.forEach((bid, i) => {
           if (bid._id.toString() === bidId) {
-            bids[i].bidStatus = 'accepted';
+            const bidAmount = bid.bidAmount;
+            const clientMoney = req.user.local.deposit;
+            // check if current user (client) has enough money to accept bid
+            if (clientMoney >= bidAmount) {
+              bids[i].bidStatus = 'accepted';
+              demand.demandStatus = 'bidAccepted';
+            } else {
+              demand.demandStatus = 'clientNoMoney';
+            }
             devId = bid.userId;
           }
         });
-        console.log(bids);
+
         // save updated bid back to db document
         demand.bids = bids;
-        // change demandStatus to inReview
-        demand.demandStatus = 'bidAccepted';
+
+
         demand.contractedDevId = devId;
-        demand.save((err) => {
+        console.log(demand);
+        demand.save((err, savedDemand) => {
           if (err) {
             throw err;
           }
-          res.redirect('/manage-demands');
+          if (savedDemand.demandStatus === 'clientNoMoney') {
+            res.send('No money');
+          } else {
+            res.send('Bid accepted');
+          }
+
         });
       });
 
