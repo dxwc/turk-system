@@ -27,3 +27,4 @@ const demandSchema = Schema({
 
 // create the model for demand and expose it to our app
 module.exports = mongoose.model('Demand', demandSchema);
+//module.exports = mongoose.model('Bid', bidSchema);

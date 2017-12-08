@@ -55,7 +55,7 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
 
   const getAllDemands = (req, res) => {
     Demand
-      .find()
+      .find( {'demandStatus': 'open'})
       .exec(function(err, demands) {
         if (err) {
           throw err;

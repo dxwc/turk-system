@@ -48,9 +48,11 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
         // get array of all bids for current demand
         let currentBids = data.bids;
         // check if the new bid is accepted
+        console.log(currentBids);
         for (var bid of currentBids) {
-          if (bid.bidStatus === 'isAccepted') {
+          if (bid.bidStatus === 'accepted') {
             // once accepted bid is found
+            console.log(bid.bidStatus);
             newRating.toUserId = bid.userId;
             break;
           } 
