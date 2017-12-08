@@ -45,6 +45,14 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
         newRating.postId = req.body.systemId;
         if (ratingValue < 3) {
           newRating.ratingText = req.body.ratingText;
+          // set demand status to 'lowRating'
+          data.demandStatus = 'lowRating';
+          data.save(function(err) {
+            if (err) {
+              throw err;
+            }
+          });
+
         } else {
           // if rating >=3, the money helf by superuser account is xferred to dev
           const transactionAmount = finalAcceptedBidAmount * 0.45;
@@ -69,6 +77,13 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
                       if (err) {
                         throw err;
                       }
+                      // set demand status to 'completed'
+                      data.demandStatus = 'completed'
+                      data.save(function(err) {
+                        if (err) {
+                          throw err;
+                        }
+                      });
                       // console.log('50% of bid amount taken from client');
                     })
                   });

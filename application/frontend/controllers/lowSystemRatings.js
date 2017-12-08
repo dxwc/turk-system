@@ -37,7 +37,7 @@
               '<label>Justification</label>' +
               '<input type="text" id="justication-' + demandId + '"/>' +
             '</div>' +
-          '<input type="button" onclick="handleFinishDemandClick(\'' + 'asdf' + '\')" value="Finish Demand" />' +
+          '<input type="button" onclick="handleSubmitClick(\'' + demandId + '\')" value="Finish Demand" />' +
         '</div>'
       );
 
@@ -45,7 +45,7 @@
   }, 'json' );
 })();
 
-function handleFinishDemandClick(demandId) {
+function handleSubmitClick(demandId) {
 
   // api call to accept bid
   $.post('/api/finish-demand', { 'demandId': demandId }, function(data) {
