@@ -9,22 +9,22 @@ const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
     });
   };
 
-  // const getUserAcceptedDemands = (req, res) => {
-  //   Demand
-  //     .find({ 'clientID': req.params.id, 'demandStatus' : 'bidAccepted' })
-  //     .exec(function(err, demands) {
-  //       if (err) {
-  //         throw err;
-  //       } else if (demands) {
-  //         res.json(demands);
-  //       } else {
-  //         res.send('No demands found');
-  //       }
-  //     });
-  // };
+  const getContractedDemands = (req, res) => {
+    Demand
+      .find({ 'contractedDevId': req.user.id })
+      .exec(function(err, demands) {
+        if (err) {
+          throw err;
+        } else if (demands) {
+          res.json(demands);
+        } else {
+          res.send('No demands found');
+        }
+      });
+  };
 
   app.get('/contracted-demands', isLoggedIn, checkUserAccess, renderContractedDemands);
-  // app.get('/api/acceptedDemands/:id', isLoggedIn, getUserAcceptedDemands);
+  app.get('/api/contracted-demands', isLoggedIn, getContractedDemands);
 
   return app;
 }

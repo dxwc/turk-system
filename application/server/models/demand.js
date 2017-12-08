@@ -21,7 +21,8 @@ const demandSchema = Schema({
   spec: String,
   biddingTimeline: String,
   bids: [bidSchema],
-  demandStatus: { type: String, default: 'open' }
+  demandStatus: { type: String, default: 'open' },
+  contractedDevId: Schema.Types.ObjectId,
 });
 
 // create the model for demand and expose it to our app
