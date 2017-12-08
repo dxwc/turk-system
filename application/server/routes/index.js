@@ -13,6 +13,7 @@ const demand = require('./demand');
 const bid = require('./bid');
 const grandSysStats = require('./grand_stats');
 const quit_demand = require('./quit_demand');
+const accepted_demands = require('./acceptedDemands.js')
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const mostActive = require('./mostActive');
@@ -80,7 +81,7 @@ const configureRoutes = (app, passport) => {
   normalUser(app, isLoggedIn, checkUserAccess);
   demand(app, isLoggedIn, checkUserAccess);
   bid(app, isLoggedIn, checkUserAccess);
-
+  accepted_demands(app, isLoggedIn, checkUserAccess);
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   mostActive(app, isLoggedIn);
   payment(app, isLoggedIn);
