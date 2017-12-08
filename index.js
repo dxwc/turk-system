@@ -38,6 +38,21 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 app.use(require('body-parser').json()); // For parsing application/json content type
 
 //>>>>>---Routes--->>>>>
+
+let all_admin_modules = require('fs').readdirSync('./routes/admin');
+let all_users_modules = require('fs').readdirSync('./routes/users');
+
+all_admin_modules.forEach((module_name) =>
+{
+    app.use(require('./routes/admin/' + module_name));
+});
+
+all_users_modules.forEach((module_name) =>
+{
+    app.use(require('./routes/users/' + module_name));
+});
+
+app.use(require('./routes/logout'));
 app.use(require('./routes/404')); // should be last one in order of routes
 //<<<<<---Routes---<<<<<
 
