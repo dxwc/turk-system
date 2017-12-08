@@ -1,0 +1,35 @@
+<?- include('./partials/begin.ejs', { title : title}) ?>
+Your
+<ul>
+    <li>User name : <?= user_name ?></li>
+    <li>Role : <?= role ? 'Client' : 'Developer' ?></li>
+    <li>Access type: <?= access_type ? 'Full' : 'Temporary' ?></li>
+</ul>
+
+<? if(locals.quit_demand_sent === undefined) { ?>
+
+<hr>
+If you wish to quit from Coding Turk System, fill out details (optional) and/or submit
+<form action='/quit_demand' method='post'>
+    <textarea
+        style='width: 75%'
+        col=200
+        name='quit_details'>
+    </textarea><br>
+    <? if(locals.quit_demand_error) { ?>
+        <p class='error' style='color: red'><?= quit_demand_error ?></p>
+    <? } ?>
+    <button
+        type='submit'>Submit a quit demand</button>
+</form>
+
+<br>
+
+<? } else { ?>
+<p>
+    Your quit demand was sent and recorded. Super user will review and act on the
+    demand.
+</p>
+<? } ?>
+
+<?- include('./partials/end.ejs') ?>
