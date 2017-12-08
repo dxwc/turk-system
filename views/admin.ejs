@@ -1,0 +1,19 @@
+<?- include('./partials/begin.ejs', { title : title}) ?>
+<? if(locals.logged_in === false) { ?>
+<form action='/admin' method='post'>
+    <input type='password' placeholder='super user access code' name='admin_password'>
+    <? if(locals.admin_login_error) { ?>
+        <p class='error' style='color: red'><?= admin_login_error ?></p>
+    <? } ?>
+    <button type='submit'>Login as Super User</button>
+</form>
+<? } else { ?>
+    <ul>
+        <li><a href='/view_applications'>View Applications</a></li>
+        <li><a href='/view_quit_demands'>View Quit Demands</a></li>
+        <li><a href='/view_rating_issues'>View Rating Issues</a></li>
+        <li><a href='/view_warning_protest'>View Warning Protest</a></li>
+        <li><a href='/view_system_transactions'>View System Transactions</a></li>
+    </ul>
+<? } ?>
+<?- include('./partials/end.ejs') ?>
