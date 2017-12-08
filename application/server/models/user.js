@@ -9,8 +9,10 @@ const userSchema = Schema({
     password: String,
     usertype: String,
     realname: String,
+    // Use deposit for amount
     deposit: { type: Number, default: 0 },
     accountStatus: String,
+    warningCounter: { type: Number, default: 0 },
     rejectMessage: { type: String, default: '' },
     developerDetails: {
       resume: { type: String, default: '' },

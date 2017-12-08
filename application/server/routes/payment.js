@@ -1,4 +1,3 @@
-
 const payment = (app, isLoggedIn) => {
   app.get('/payment', isLoggedIn, function(req, res) {
     res.render('payment.ejs', {
