@@ -16,6 +16,18 @@
     <div class="container">
       <strong>Number of Clients</strong>: <%= clients %><br>
       <strong>Number of Developers</strong>: <%= developers %><br>
+      <strong>Most Paid Developers</strong> <br>
+      <% for (var key in mostPaidDevelopers) { %>
+	    Name: <%= mostPaidDevelopers[key].local.realname %><br>
+	    Deposit: <%= mostPaidDevelopers[key].local.deposit %>
+	    <br><br>
+	  <% } %>
+	  <strong>Clients With Most Projects</strong> <br>
+      <% for (var key in mostProjectClients) { %>
+	    Name: <%= mostProjectClients[key].local.realname %><br>
+	    # of Projects: <%= mostProjectClients[key].__v %>
+	    <br><br>
+	  <% } %>
     </div>
   </main>
 </body>

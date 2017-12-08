@@ -16,14 +16,33 @@ const grandstats = (app, isLoggedIn) => {
   	  	  .exec(function(err2, devCount) {
   	  	  	if (err2) { throw err2; }
   	  	  	numberOfDevelopers = devCount;
-  	  	  	res.render('grandstats.ejs', {
-	      	  user: req.user,
-	      	  clients: numberOfClients,
-	      	  developers: numberOfDevelopers
-    		});
+  	  	  	User
+  	  	  	  .find({ 'local.usertype': 'developer'})
+  	  	  	  .sort('-local.deposit')
+  	  	  	  .limit(10)
+  	  	  	  .select('local.realname local.deposit')
+  	  	  	  .exec(function(err3, mostPaidDevs) {
+  	  	  	  	//console.log(mostPaidDevs);
+  	  	  	  	User
+  	  	  	  	  .find({ 'local.usertype': 'client' })
+  	  	  	  	  .sort({ 'local.clientDetails.postedDemandIds':-1})
+  	  	  	  	  .limit(10)
+  	  	  	  	  .select('local.realname __v')
+  	  	  	  	  .exec(function(err4, mostProjectClients) {
+  	  	  	  	  	if (err4) { throw err4; }
+  	  	  	  	  	console.log(mostProjectClients);
+  	  	  		  	res.render('grandstats.ejs', {
+			      	  user: req.user,
+			      	  clients: numberOfClients,
+			      	  developers: numberOfDevelopers,
+			      	  mostPaidDevelopers: mostPaidDevs,
+			      	  mostProjectClients: mostProjectClients
+		    		}); 
+  	  	  	  	  })
+  	  	  	})
   	  	})
   	}) 
-  };
+};
 
   app.get('/grandstats', isLoggedIn, getNumberOfClients);
 

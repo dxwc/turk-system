@@ -21,7 +21,7 @@ const demandSchema = Schema({
   spec: String,
   biddingTimeline: String,
   bids: [bidSchema],
-  demandStatus: String
+  demandStatus: String,
 });
 
 // create the model for demand and expose it to our app
