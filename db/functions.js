@@ -5,7 +5,7 @@
 let mongoose = require('mongoose');
 let validator = require('validator');
 let assert = require('assert');
-// require('../index'); // remove/comment after testing
+require('../index'); // remove/comment after testing
 
 /**
  * Add a temporary user if add-able,
@@ -457,8 +457,25 @@ function system_demand_post_info(post_id)
 
 function get_user(user_id)
 {
-    return mongoose.model('users')
-           .findOne({ user_id : user_id });
+    return get_black_listed_user_names_arr()
+    .then((result) =>
+    {
+        return mongoose.model('users')
+        .findOne({ user_id : user_id })
+        .where('user_name').nin(result);
+    });
+
+}
+
+function get_all_active_users()
+{
+    return get_black_listed_user_names_arr()
+    .then((result) =>
+    {
+        return mongoose.model('users')
+        .find().where('user_name').nin(result)
+        .where('access_type', true);
+    });
 }
 
 function get_system_demands()
@@ -479,3 +496,4 @@ module.exports.add_system_demand = add_system_demand;
 module.exports.system_demand_post_info = system_demand_post_info;
 module.exports.get_user = get_user;
 module.exports.get_system_demands = get_system_demands;
+module.exports.get_all_active_users = get_all_active_users;

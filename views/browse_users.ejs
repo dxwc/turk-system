@@ -1,0 +1,22 @@
+<?- include('./partials/begin.ejs', { title : 'Browse Users'}) ?>
+
+<? if(locals.top_info_text !== undefined) { ?>
+<p style='padding: 1em; border : 1em solid #ddd'>
+    <?= top_info_text ?>
+</p>
+<? } ?>
+
+<? if(locals.data && locals.data.length > 0) { ?>
+    <? for(let i = 0; i < data.length; ++i) { ?>
+        <ul style='border: 0.2em solid #ddd; margin: 1%'>
+            <li><b>User name: </b><?= data[i].user_name ?></li>
+            <li><b>Role: </b><?= data[i].role == false ? 'Developer' : 'Client' ?></li>
+            <li><b>Amount total: </b>$<?= data[i].amount_total ?></li>
+            <li><a href='/user/<?= data[i].user_id ?>'>More info</a></li>
+        </ul>
+    <? } ?>
+<? } else { ?>
+    No system demands found
+<? } ?>
+
+<?- include('./partials/end.ejs') ?>
