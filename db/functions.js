@@ -449,6 +449,19 @@ function add_system_demand
     .save();
 }
 
+function system_demand_post_info(post_id)
+{
+    return mongoose.model('system_demands')
+           .findOne({ post_id : validator.escape(post_id) })
+           .populate('user_id', 'user_name');
+}
+
+function get_user(user_id)
+{
+    return mongoose.model('users')
+           .findOne({ user_id : user_id });
+}
+
 module.exports.add_user = add_user;
 module.exports.query_users = query_users;
 module.exports.record_a_quit_demand = record_a_quit_demand;
@@ -458,3 +471,5 @@ module.exports.get_quit_demands = get_quit_demands;
 module.exports.ignore_quit_request = ignore_quit_request;
 module.exports.remove_access = remove_access;
 module.exports.add_system_demand = add_system_demand;
+module.exports.system_demand_post_info = system_demand_post_info;
+module.exports.get_user = get_user;

@@ -1,0 +1,41 @@
+<?- include('./partials/begin.ejs', { title : 'System Demand'}) ?>
+
+<? if(locals.top_info_text !== undefined) { ?>
+    <p style='padding: 1em; border : 1em solid #ddd'>
+        <?= top_info_text ?>
+    </p>
+<? } else { ?>
+    <? if
+        (
+            locals.post_data !== undefined &&
+            locals.client_data !== undefined
+        )
+       { ?>
+        <ul>
+            <li><b>System Spec:</b> <?= post_data.syst_spec ?></li>
+            <li><b>Posted by:</b> <?= client_data.user_name ?></li>
+            <li><b>Timeline:</b></li>
+            <ul>
+            <? for(let i = 0; i < post_data.timeline.length; ++i) { ?>
+                <li>Due: <?= post_data.timeline[i].deadline ?> --
+                <?= post_data.timeline[i].description ?></li>
+            <? } ?>
+            </ul>
+            <li><b>System Spec:</b> <?= post_data.syst_spec ?></li>
+        </ul>
+    <? } else { ?>
+        No system demand exists with the id
+    <? } ?>
+    <? if(locals.logged_in === true) { ?>
+        <? if(locals.role === flase) { ?>
+            <a href='/rate/<?=post_data.post_id?>'>
+                Rate on this project
+            </a>
+        <? } ?>
+    <? } ?>
+<? } ?>
+
+
+
+
+<?- include('./partials/end.ejs') ?>
