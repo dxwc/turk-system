@@ -29,7 +29,7 @@ const home = (app, isLoggedIn, checkUserAccess) => {
 
   	  	 		setUserStatus.local.accountStatus = 'poorperformance';
   	  	 		if (oldAvgRating > avgRating) {
-  	  	 			// the warning was already sent 
+  	  	 			// the warning was already sent
   	  	 			setUserStatus.local.warningCounter += 1;
   	  	 		}
   	  	 		if (setUserStatus.local.warningCounter == 0) {
@@ -57,14 +57,14 @@ const home = (app, isLoggedIn, checkUserAccess) => {
       					if ((avgRating < 2 || avgRating > 4) && allRatingByUser.length >= 8) {
       						setUserStatus.local.accountStatus = 'irresponsibleevaluations';
       						if (oldAvgRatingToOthers > avgRating) {
-			  	  	 			// the warning was already sent 
+			  	  	 			// the warning was already sent
 			  	  	 			setUserStatus.local.warningCounter += 1;
-			  	  	 		} 
+			  	  	 		}
 			  	  	 		if (setUserStatus.local.warningCounter == 0) {
 			  	  	 			setUserStatus.local.warningCounter = 1;
 			  	  	 		}
       					}
-  						setUserStatus.save(function(err, setUserStatus) { 
+  						setUserStatus.save(function(err, setUserStatus) {
   							Blacklist
   							.findOne({'userId' : setUserStatus._id })
   							.exec(function(err5, blackListUser) {
@@ -86,7 +86,7 @@ const home = (app, isLoggedIn, checkUserAccess) => {
 										});
       								}
   								} else {
-  									// Found user in blacklist - increment the login counter to +1 
+  									// Found user in blacklist - increment the login counter to +1
   									if (blackListUser.loggedOnce) {
   										// user has already loggedin now make status as blacklist
   										console.log(setUserStatus);
@@ -105,23 +105,24 @@ const home = (app, isLoggedIn, checkUserAccess) => {
   	 											user: req.user // get the user out of session and pass to template
 											});
   										})
-  										
-  									}  									
+
+  									}
   								}
 
   							})
-      					})	
+      					})
       					})
 
 
   	  	 			 })
   	  	 			})
-      				
+
   	  			})
-      			
+
     		});
-  	   	 
+
   };
+
 
   app.get('/home', isLoggedIn, checkUserAccess, renderHomeAndCalculateStatus);
 
