@@ -4,6 +4,10 @@
   // Show list of temp users
   $.get('/api/demands', function(data) {
     data.forEach((demand, index) => {
+      // if demand was already accepted, skip it
+      if (demand.demandStatus === 'bidAccepted') {
+        return;
+      }
       $('#demands-list').append(
         '<div class="well" id="well-' + demand._id +'">' +
           '<p>Spec: ' + demand.spec + '</p>' +

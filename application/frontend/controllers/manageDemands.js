@@ -52,7 +52,7 @@
                 '<label>This is not the lowest bid. Please provide justification on why you are choosing to accept this bid</label>' +
                 '<textarea id="justification-' + bidId + '" class="form-control"></textarea>' +
               '</div>' +
-              '<input type="button" onclick="handleBidAcceptClick(\'' + isLowestBid + ',' + bidId + ',' + demandId + '\')" value="Okay" />' +
+              '<input type="button" onclick="handleJustificationOkayClick(\'' + isLowestBid + ',' + bidId + ',' + demandId + '\')" value="Okay" />' +
               '<input type="button" onclick="handleJustificationCancelClick(\'' + bidId + '\')" value="Cancel" />' +
             '</div>' +
           '</div>'
@@ -91,6 +91,21 @@ function handleBidAcceptClick(paramsStr) {
     });
 
   }
+}
+
+function handleJustificationOkayClick(paramsStr) {
+  // params is in string format so format it with .split to create an array with the parameters
+  const paramsArr = paramsStr.split(',');
+
+  const bidId = paramsArr[1];
+  const demandId = paramsArr[2];
+
+  // api call to accept bid
+  $.post('/accept-bid', { 'demandId': demandId, 'bidId': bidId }, function(data) {
+    // $('#well-' + id).hide();
+    alert('Bid sucessfully accepted');
+  });
+
 }
 
 
