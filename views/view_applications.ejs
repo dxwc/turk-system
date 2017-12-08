@@ -1,0 +1,65 @@
+<?- include('./partials/begin.ejs', { title : 'View Applications'}) ?>
+
+<? if(locals.logged_in && locals.applications) { ?>
+    <? if(locals.top_info_text !== undefined) { ?>
+        <p style='padding: 1em; border : 1em solid #ddd'>
+            <?= top_info_text ?>
+        </p>
+    <? } ?>
+<style>
+    .application
+    {
+        margin: 0.1em;
+        padding: 0.3em;
+        border: 0.3em solid #ddd;
+        border-radius: 0.3em;
+    }
+</style>
+
+<form method='post' action='/application_decision'>
+<? for(let i = 0; i < applications.length; ++i) { ?>
+<div class='application'>
+    <ul>
+        <li>User name : <?= applications[i].user_name ?></li>
+        <li>Role : <?= applications[i].role ? 'Client' : 'Developer' ?></li>
+        <li>Deposit amount : $<?= applications[i].amount_total ?></li>
+        <li>Time : <?= new Date(applications[i].creation_time).toDateString() ?></li>
+    </ul>
+
+    <select name='<?= applications[i].user_id ?>'>
+            <option value='later'>Decide Later</option>
+            <option value="accept">Accept</option>
+            <option value="reject">Reject</option>
+    </select>
+    <input
+        type='text'
+        name='<?= applications[i].user_id ?>'
+        placeholder='reason for rejecion'>
+</div>
+<br>
+    <? } ?>
+    <button type='submit'>Save Decisions</button>
+</form>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) =>
+    {
+        let options = document.getElementsByTagName('option')
+        for(let i = 0; i < options.length; ++i)
+        {
+            let dom = options[i];
+
+            dom.addEventListener('click', (event) =>
+            {
+                if(dom.value === 'reject')
+                    dom.parentElement.nextElementSibling.setAttribute('required', '');
+                else
+                    dom.parentElement.nextElementSibling.removeAttribute('required');
+            })
+        }
+    });
+</script>
+<br>
+
+<? } ?>
+
+<?- include('./partials/end.ejs') ?>
