@@ -17,7 +17,7 @@ const userSchema = Schema({
     // avgRating gives validtion error for admin login, changing Number to String fixed
     // need to check if this breaks anything else
     avgRating: {type: String, default:0 },
-    avgRatingToOthers: {type: Number, default:0 },
+    avgRatingToOthers: {type: String, default:0 },
     developerDetails: {
       resume: { type: String, default: '' },
       picture: { type: String, default: '' },
