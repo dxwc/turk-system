@@ -92,11 +92,11 @@
         type='submit'>Login</button>
 </form>
 
-<? } else { // logged in ?>
+<? } else { ?>
     <ul>
         <li><a href='/profile'>Profile</a></li>
         <li><a href='/account'>Account</a></li>
-        <? if(locals.access_type === true) { ?>
+        <? if(locals.role === true) { ?>
             <li><a href='/add_system_demand'>Post a System Demand</a></li>
         <? } ?>
     </ul>
