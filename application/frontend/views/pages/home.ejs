@@ -10,11 +10,31 @@
     <% include ../partials/navbar %>
     <div class="page-header text-center">
       <h1>Home Page</h1>
+
     </div>
   </header>
   <main>
     <div class="container">
-
+      <%if (user.local.accountStatus == 'poorperformance') {%>
+        <h2>You have received a warning due to poor performance. </h2> 
+        <form action="/send-protest" method="post" onSubmit="alert('Sucessfully Sent the Protesting Message');">
+          <div class="form-group">
+            <label>Send your Protest Message </label>
+            <textarea class="form-control" name="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Send</button>
+        </form>
+      <%} %>
+       <%if (user.local.accountStatus == 'irresponsibleevaluations') {%>
+        <h2>You have received a warning due to irresponsible evaluations. </h2> 
+        <form action="/send-protest" method="post" onSubmit="alert('Sucessfully Sent the Protesting Message');">
+          <div class="form-group">
+            <label>Message: </label>
+            <textarea class="form-control" name="message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Send</button>
+        </form>
+      <%} %>
     </div>
   </main>
 </body>

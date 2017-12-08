@@ -107,6 +107,7 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
       });
   };
 
+
   app.post('/send-rate', isLoggedIn, checkUserAccess, postRating);
   app.get('/manage-accepted-demands', isLoggedIn, checkUserAccess, renderManageDemands);
   app.get('/api/acceptedDemands/:id', isLoggedIn, getUserAcceptedDemands);
