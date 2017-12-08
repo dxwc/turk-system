@@ -23,12 +23,22 @@ const grandstats = (app, isLoggedIn) => {
   	  	  	  .select('local.realname local.deposit')
   	  	  	  .exec(function(err3, mostPaidDevs) {
   	  	  	  	//console.log(mostPaidDevs);
-	  	  	  	res.render('grandstats.ejs', {
-		      	  user: req.user,
-		      	  clients: numberOfClients,
-		      	  developers: numberOfDevelopers,
-		      	  mostPaidDevelopers: mostPaidDevs
-	    		});  	  	  	  	
+  	  	  	  	User
+  	  	  	  	  .find({ 'local.usertype': 'client' })
+  	  	  	  	  .sort({ 'local.clientDetails.postedDemandIds':-1})
+  	  	  	  	  .limit(10)
+  	  	  	  	  .select('local.realname __v')
+  	  	  	  	  .exec(function(err4, mostProjectClients) {
+  	  	  	  	  	if (err4) { throw err4; }
+  	  	  	  	  	console.log(mostProjectClients);
+  	  	  		  	res.render('grandstats.ejs', {
+			      	  user: req.user,
+			      	  clients: numberOfClients,
+			      	  developers: numberOfDevelopers,
+			      	  mostPaidDevelopers: mostPaidDevs,
+			      	  mostProjectClients: mostProjectClients
+		    		}); 
+  	  	  	  	  })
   	  	  	})
   	  	})
   	}) 
