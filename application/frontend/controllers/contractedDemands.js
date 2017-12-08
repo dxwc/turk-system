@@ -11,13 +11,13 @@
     data.forEach((demand, index) => {
       const demandId = demand._id;
       const spec = demand.spec;
-      const biddingTimeline = demand.biddingTimeline;
+      const demandStatus = demand.demandStatus;
 
       $('#demands-list').append(
         '<div class="well" id="well-' + demandId +'">' +
           '<p>Spec: ' + spec + '</p>' +
-          '<p>Bidding Timeline: ' + biddingTimeline + '</p>' +
-
+          '<p>Demand Status: ' + demandStatus + '</p>' +
+          '<input type="button" onclick="handleFinishDemandClick(\'' + demandId + '\')" value="Finish Demand" />' +
         '</div>'
       );
 
@@ -25,3 +25,13 @@
     });
   }, 'json' );
 })();
+
+function handleFinishDemandClick(demandId) {
+
+  // api call to accept bid
+  $.post('/api/finish-demand', { 'demandId': demandId }, function(data) {
+    // $('#well-' + id).hide();
+    alert('Demand sucessfully finished.');
+  });
+
+}

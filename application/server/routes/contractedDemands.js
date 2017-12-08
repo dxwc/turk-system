@@ -23,8 +23,28 @@ const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
       });
   };
 
+  const finishDemand = (req, res) => {
+    console.log(req.params);
+    Demand
+      .findOne({ '_id': req.body.demandId })
+      .exec(function(err, demand) {
+        if (err) {
+          throw err;
+        }
+        console.log(demand);
+        demand.demandStatus = 'submitted';
+        demand.save(function(err) {
+          if (err) {
+            throw err;
+          }
+          res.redirect('/home');
+        });
+      });
+  }
+
   app.get('/contracted-demands', isLoggedIn, checkUserAccess, renderContractedDemands);
   app.get('/api/contracted-demands', isLoggedIn, getContractedDemands);
+  app.post('/api/finish-demand', isLoggedIn, checkUserAccess, finishDemand)
 
   return app;
 }
