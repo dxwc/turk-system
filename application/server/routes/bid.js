@@ -81,14 +81,14 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
         const bids = demand.bids;
         bids.forEach((bid, i) => {
           if (bid._id.toString() === bidId) {
-            bids[i].bidStatus = 'inReview';
+            bids[i].bidStatus = 'accepted';
           }
         });
         console.log(bids);
         // save updated bid back to db document
         demand.bids = bids;
         // change demandStatus to inReview
-        demand.demandStatus = 'bidInReview';
+        demand.demandStatus = 'bidAccepted';
         demand.save((err) => {
           if (err) {
             throw err;
