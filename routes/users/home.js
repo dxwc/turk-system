@@ -1,5 +1,6 @@
 let router = require('express').Router();
 let router_func = require('../functions');
+let db_func = require('../../db/functions');
 
 router.get('/', (req, res) =>
 {
@@ -7,7 +8,22 @@ router.get('/', (req, res) =>
     {
         let obj = router_func.login_render_object(req, 'Home');
 
-        res.render('home', obj);
+        if(req.session.access_type == false) return res.render('home', obj);
+
+        db_func.is_first_use(req.session.user_id)
+        .then((result) =>
+        {
+            if(result.first_use == true)
+            {
+                obj.promt_add_info = true;
+                res.render('home', obj);
+            }
+            else
+            {
+                res.render('home', obj);
+            }
+        })
+
     }
     else // not logged in
     {
