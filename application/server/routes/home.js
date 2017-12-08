@@ -2,6 +2,7 @@ let User = require('../models/user.js');
 let Demand = require('../models/demand.js');
 let Rating = require('../models/rating.js');
 let Blacklist = require('../models/blacklist.js');
+let Protest = require('../models/protest.js');
 
 const home = (app, isLoggedIn, checkUserAccess) => {
   // we will want this protected so you have to be logged in to visit
@@ -123,6 +124,20 @@ const home = (app, isLoggedIn, checkUserAccess) => {
   	   	 
   };
 
+  const postProtest = (req, res) => {
+  	let protest = new Protest();
+
+  	protest.userId = req.body.userId;
+  	protest.protestMessage = req.body.protestMessage;
+
+  	protest.save(function(err) {
+      	if (err) { throw err; }
+      	res.redirect('/');
+  	})
+  };
+
+
+  app.post('/send-protest', isLoggedIn, checkUserAccess, postProtest);
   app.get('/home', isLoggedIn, checkUserAccess, renderHomeAndCalculateStatus);
 
   return app;

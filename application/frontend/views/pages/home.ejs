@@ -27,7 +27,7 @@
       <%} %>
        <%if (user.local.accountStatus == 'irresponsibleevaluations') {%>
         <h2>You have received a warning due to irresponsible evaluations. </h2> 
-        <form action="/send-protest" method="post" onSubmit="alert('Sucessfully Sent the Protesting Message');">
+        <form action="/send-protest" method="post" onSubmit="handleProtestSend()">
           <div class="form-group">
             <label>Message: </label>
             <textarea class="form-control" name="message"></textarea>
@@ -35,7 +35,9 @@
           <button type="submit" class="btn btn-warning btn-lg">Send</button>
         </form>
       <%} %>
+      <div id="user-id" style="display: none;"><%= user._id %></div>
     </div>
   </main>
+  <script type="text/javascript" src="/controllers/manageProtest.js"></script>
 </body>
 </html>
