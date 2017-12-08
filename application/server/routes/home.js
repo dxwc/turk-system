@@ -1,6 +1,7 @@
 let User = require('../models/user.js');
 let Demand = require('../models/demand.js');
 let Rating = require('../models/rating.js');
+let Blacklist = require('../models/blacklist.js');
 
 const home = (app, isLoggedIn, checkUserAccess) => {
   // we will want this protected so you have to be logged in to visit
@@ -35,7 +36,7 @@ const home = (app, isLoggedIn, checkUserAccess) => {
 			  	  	setUserStatus.local.warningCounter = 1;
 			  	}
   	  	 	}
-  	  	 	setUserStatus.save(function(err) {
+  	  	 	setUserStatus.save(function(err, setUserStatus) {
       			if (err) { throw err; }
       			Rating
   	  			.find({ 'fromUserId' : req.user._id })
@@ -63,7 +64,7 @@ const home = (app, isLoggedIn, checkUserAccess) => {
 			  	  	 			setUserStatus.local.warningCounter = 1;
 			  	  	 		}
       					}
-  						setUserStatus.save(function(err) { 
+  						setUserStatus.save(function(err, setUserStatus) { 
   							Blacklist
   							.findOne({'userId' : setUserStatus._id })
   							.exec(function(err5, blackListUser) {
@@ -79,23 +80,32 @@ const home = (app, isLoggedIn, checkUserAccess) => {
       									})
       								} else {
       									// warning counter is not 2
+      									console.log("Inside warning counter not 2");
       									res.render('home.ejs', {
   	 										user: req.user // get the user out of session and pass to template
 										});
       								}
   								} else {
   									// Found user in blacklist - increment the login counter to +1 
-  									if (blackListUser.loginCount == 1) {
-  										// user has already loggedin now make status as rejected
-  										res.render('home.ejs', {
-  	 										user: req.user // get the user out of session and pass to template
-										});
+  									if (blackListUser.loggedOnce) {
+  										// user has already loggedin now make status as blacklist
+  										console.log(setUserStatus);
+  										setUserStatus.local.accountStatus = 'blacklist';
+  										setUserStatus.save(function(err) {
+  											res.render('home.ejs', {
+  	 											user: req.user // get the user out of session and pass to template
+											});
+  										})
   									} else {
-  										blackListUser.loginCount += 1;
+  										blackListUser.loggedOnce = true;
   										// one last login for the user
-  										res.render('home.ejs', {
-  	 										user: req.user // get the user out of session and pass to template
-										});
+  										console.log(blackListUser);
+  										blackListUser.save(function(err) {
+  											res.render('home.ejs', {
+  	 											user: req.user // get the user out of session and pass to template
+											});
+  										})
+  										
   									}  									
   								}
 
@@ -110,9 +120,7 @@ const home = (app, isLoggedIn, checkUserAccess) => {
   	  			})
       			
     		});
-  	 
-
-  	 
+  	   	 
   };
 
   app.get('/home', isLoggedIn, checkUserAccess, renderHomeAndCalculateStatus);

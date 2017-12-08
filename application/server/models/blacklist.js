@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // define the schema for demand model
 const blacklistSchema = Schema({
   userId: Schema.Types.ObjectId,
-  loginCount: {type: String, default:0 }
+  loggedOnce: {type: Boolean, default:false }
 });
 
 // create the model for demand and expose it to our app
