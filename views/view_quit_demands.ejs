@@ -1,0 +1,45 @@
+<?- include('./partials/begin.ejs', { title : 'View Applications'}) ?>
+
+<? if(locals.logged_in && locals.demands) { ?>
+    <? if(locals.top_info_text !== undefined) { ?>
+        <p style='padding: 1em; border : 1em solid #ddd'>
+            <?= top_info_text ?>
+        </p>
+    <? } ?>
+<style>
+    .demands
+    {
+        margin: 0.1em;
+        padding: 0.3em;
+        border: 0.3em solid #ddd;
+        border-radius: 0.3em;
+    }
+</style>
+
+<form method='post' action='/quit_demand_decision'>
+<? for(let i = 0; i < demands.length; ++i) { ?>
+<div class='demands'>
+    <ul>
+        <li><b>User name:</b> <?= demands[i].user_id.user_name ?></li>
+        <li><b>Details:</b> <?= demands[i].message ?></li>
+        <li><b>Time posted:</b> <?= demands[i].time ?></li>
+    </ul>
+    <select name='<?= demands[i].user_id._id ?>'>
+        <option value='later'>Decide Later</option>
+        <option value='ignore'>Ignore Demand</option>
+        <option value='remove_access'>Remove access</option>
+    </select>
+    <input
+        name='<?= demands[i].user_id._id ?>'
+        type='hidden'
+        value='<?= demands[i].user_id.user_name ?>'>
+</div>
+<br>
+<? } ?>
+<button type='submit'>Save Decisions</button>
+</form>
+<br>
+
+<? } ?>
+
+<?- include('./partials/end.ejs') ?>
