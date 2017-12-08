@@ -59,6 +59,11 @@ const checkUserAccess = (req, res, next) => {
     res.render('rejected.ejs', {
       user: req.user // get the user out of session and pass to template
     });
+  } else if (req.user.local.accountStatus === 'blacklist') {
+    // render rejected user template
+    res.render('blacklist.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
   } else if (req.user.local.accountStatus === 'accepted') {
     // render accepted user template
     res.render('accepted.ejs', {
