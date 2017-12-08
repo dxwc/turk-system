@@ -79,9 +79,12 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
         // find bid and set bidStatus to inReview
         // console.log(demand);
         const bids = demand.bids;
+        // get id of dev who bid on demands
+        let devId;
         bids.forEach((bid, i) => {
           if (bid._id.toString() === bidId) {
             bids[i].bidStatus = 'accepted';
+            devId = bid.userId;
           }
         });
         console.log(bids);
@@ -89,6 +92,7 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
         demand.bids = bids;
         // change demandStatus to inReview
         demand.demandStatus = 'bidAccepted';
+        demand.contractedDevId = devId;
         demand.save((err) => {
           if (err) {
             throw err;
