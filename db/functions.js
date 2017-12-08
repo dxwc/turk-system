@@ -453,13 +453,18 @@ function system_demand_post_info(post_id)
 {
     return mongoose.model('system_demands')
            .findOne({ post_id : validator.escape(post_id) })
-           .populate('user_id', 'user_name');
 }
 
 function get_user(user_id)
 {
     return mongoose.model('users')
            .findOne({ user_id : user_id });
+}
+
+function get_system_demands()
+{
+    return mongoose.model('system_demands').find()
+    .populate('client_id', 'user_name');
 }
 
 module.exports.add_user = add_user;
@@ -473,3 +478,4 @@ module.exports.remove_access = remove_access;
 module.exports.add_system_demand = add_system_demand;
 module.exports.system_demand_post_info = system_demand_post_info;
 module.exports.get_user = get_user;
+module.exports.get_system_demands = get_system_demands;

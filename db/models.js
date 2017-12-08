@@ -128,7 +128,7 @@ mongoose.model
             post_id   : { type : mongoose.Schema.Types.ObjectId, unique : true,
                           index : true, required : true },
             client_id : { type : mongoose.Schema.Types.ObjectId, required: true,
-                          ref : 'clients', required : true },
+                          ref : 'users', required : true },
             syst_spec : { type : String, required : true },
             timeline  : [ { deadline : { type : Date},
                           description : { type : String } } ],

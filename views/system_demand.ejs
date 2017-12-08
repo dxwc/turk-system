@@ -13,7 +13,10 @@
        { ?>
         <ul>
             <li><b>System Spec:</b> <?= post_data.syst_spec ?></li>
-            <li><b>Posted by:</b> <?= client_data.user_name ?></li>
+            <li><b>Posted by:</b>
+            <a href='/user/<?=client_data.user_id?>'>
+                <?= client_data.user_name ?></li>
+            </a>
             <li><b>Timeline:</b></li>
             <ul>
             <? for(let i = 0; i < post_data.timeline.length; ++i) { ?>
@@ -21,7 +24,7 @@
                 <?= post_data.timeline[i].description ?></li>
             <? } ?>
             </ul>
-            <li><b>System Spec:</b> <?= post_data.syst_spec ?></li>
+            <li><b>Time posted:</b> <?= post_data.created_t ?></li>
         </ul>
     <? } else { ?>
         No system demand exists with the id

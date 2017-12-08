@@ -1,0 +1,28 @@
+<?- include('./partials/begin.ejs', { title : 'Browse System Demands'}) ?>
+
+<? if(locals.top_info_text !== undefined) { ?>
+<p style='padding: 1em; border : 1em solid #ddd'>
+    <?= top_info_text ?>
+</p>
+<? } ?>
+
+<? if(locals.data && locals.data.length > 0) { ?>
+    <? for(let i = 0; i < data.length; ++i) { ?>
+        <ul style='border: 0.2em solid #ddd; margin: 1%'>
+            <li><b>System Spec</b> <?=data[i].syst_spec?></li>
+            <!-- <li><b>Posted By</b> <?=data[i].client_id.user_name ?></li> -->
+            <li><b>Timelne:</b></li>
+            <ul>
+                <? for(let k = 0; k < data[i].timeline.length; ++k) { ?>
+                    <li>Due: <?= data[i].timeline[k].deadline ?> --
+                        <?= data[i].timeline[k].description ?></li>
+                <? } ?>
+            </ul>
+            <li><a href='/system_demand/<?=data[i].post_id?>'>More options</a></li>
+        </ul>
+    <? } ?>
+<? } else { ?>
+    No system demands found
+<? } ?>
+
+<?- include('./partials/end.ejs') ?>
