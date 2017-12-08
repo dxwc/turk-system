@@ -41,6 +41,7 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
         let newRating = new Rating();
         newRating.fromUserId = fromUserId;
         newRating.rating = ratingValue;
+        // postId/systemId is demand id
         newRating.postId = req.body.systemId;
         if (ratingValue < 3) {
           newRating.ratingText = req.body.ratingText;

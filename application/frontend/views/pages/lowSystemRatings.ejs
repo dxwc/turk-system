@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <title>Low System Ratings</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+</head>
+<body>
+  <header>
+    <% include ../partials/navbar %>
+    <div class="page-header text-center">
+      <h1>Manage low system demand ratings here</h1>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div id="ratings-list"></div>
+    </div>
+    <div id="user-id" style="display: none;"><%= user._id %></div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/controllers/lowSystemRatings.js"></script>
+</body>
+</html>
