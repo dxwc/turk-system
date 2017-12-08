@@ -134,8 +134,7 @@ mongoose.model
                           description : { type : String } } ],
             bidders   : [ { type: mongoose.Schema.Types.ObjectId,
                           ref : 'developer' } ],
-            chosen_id : { type : mongoose.Schema.Types.ObjectId, required: true,
-                          ref : 'developer' },
+            chosen_id : { type : mongoose.Schema.Types.ObjectId, ref : 'developer' },
             reason    : { type : String },
             created_t : { type: Date, default: Date.now, required : true },
             deliver_t : { type : Date }
