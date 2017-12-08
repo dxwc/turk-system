@@ -5,6 +5,8 @@ let admin_password = router_func.admin_password;
 
 router.get('/admin', (req, res) =>
 {
+    router_func.remove_additional_sessions_prop(req);
+
     if(req.session && req.session.admin_password === admin_password)
     {
         return res.render('admin', { title : 'Admin Panel', logged_in : true });
