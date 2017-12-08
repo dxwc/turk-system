@@ -10,28 +10,41 @@ const home = (app, isLoggedIn, checkUserAccess) => {
   	  .find({ 'toUserId' : req.user._id })
   	  .exec(function(err, allRatingsForUser) {
   	  	if(err) { throw err; }
+  	  	let sum = 0;
+	  	allRatingsForUser.forEach((ratingObj, i) => {
+	  	  	sum += ratingObj.rating;
+	  	});
+	  	let avgRating = sum/allRatingsForUser.length;
+
   	  	//Loop through all the rating and get the sum and avg
   	  	if (allRatingsForUser.length >= 5) {
-	  	  let sum = 0;
-	  	  allRatingsForUser.forEach((ratingObj, i) => {
-	  	  	sum += ratingObj.rating;
-	  	  });
-	  	  let avgRating = sum/allRatingsForUser.length;
-	  	  if (avgRating <= 2) {
 	  	  	User
 	  	  	 .findOne({ '_id' : req.user._id})
 	  	  	 .exec(function(err2, setUserStatus) {
-	  	  	 	setUserStatus.local.accountStatus = 'poorperformance';
-	  	  	 	setUserStatus.local.warningCounter += 1;
+	  	  	 	let oldAvgRating = setUserStatus.local.avgRating;
+	  	  	 	if (avgRating <= 2) {
+	  	  	 		setUserStatus.local.accountStatus = 'poorperformance';
+	  	  	 		if (oldAvgRating > avgRating) {
+	  	  	 			// the warning was already sent 
+	  	  	 			setUserStatus.local.warningCounter += 1;
+	  	  	 		}
+	  	  	 	}
 	  	  	 	setUserStatus.save(function(err) {
           			if (err) { throw err; }
+
           			res.render('home.ejs', {
       	 				user: req.user // get the user out of session and pass to template
     				});
         		});
 	  	  	 })	
-	  	  }
-  	    }	
+	  	   
+
+  	    }
+  	    else {
+	  	    res.render('home.ejs', {
+	      	 				user: req.user // get the user out of session and pass to template
+	    	});
+    	}	
   	  })
   };
 

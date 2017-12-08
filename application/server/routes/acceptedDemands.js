@@ -59,20 +59,31 @@ const demand = (app, isLoggedIn, checkUserAccess) => {
         }
         
         newRating.save(function(err) {
-          if (err) {
-            throw err;
-          }
-            Rating
-              .find()
-              .exec(function(err1, ratingss) {
-                console.log(ratingss);
-                res.redirect('/');
-              })
-            
+          if (err) { throw err; }
+          Rating
+          .find({ 'toUserId' : req.user._id })
+          .exec(function(err, allRatingsForUser) {
+            if(err) { throw err; }
+            //Loop through all the rating and get the sum and avg
+            if (allRatingsForUser.length >= 5) {
+              let sum = 0;
+              allRatingsForUser.forEach((ratingObj, i) => {
+                sum += ratingObj.rating;
+              });
+              let avgRating = sum/allRatingsForUser.length;
+              User
+                .findOne({ '_id' : req.user._id})
+                .exec(function(err2, setUserStatus) {
+                  setUserStatus.local.avgRating == avgRating;
+                  setUserStatus.save(function(err) {
+                        if (err) { throw err; }
+                  });
+                })   
+            }
+          });
         });
-      
-      });
-  };
+    });
+  }
 
   app.post('/send-rate', isLoggedIn, checkUserAccess, postRating);
   app.get('/manage-accepted-demands', isLoggedIn, checkUserAccess, renderManageDemands);
