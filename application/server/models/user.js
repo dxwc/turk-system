@@ -15,6 +15,7 @@ const userSchema = Schema({
     warningCounter: { type: Number, default: 0 },
     rejectMessage: { type: String, default: '' },
     avgRating: {type: Number, default:0 },
+    avgRatingToOthers: {type: Number, default:0 },
     developerDetails: {
       resume: { type: String, default: '' },
       picture: { type: String, default: '' },
