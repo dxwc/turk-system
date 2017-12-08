@@ -16,6 +16,12 @@
     <div class="container">
       <strong>Number of Clients</strong>: <%= clients %><br>
       <strong>Number of Developers</strong>: <%= developers %><br>
+      <strong>Most Paid Developers</strong> <br>
+      <% for (var key in mostPaidDevelopers) { %>
+	    Name: <%= mostPaidDevelopers[key].local.realname %><br>
+	    Deposit: <%= mostPaidDevelopers[key].local.deposit %>
+	    <br><br>
+	  <% } %>
     </div>
   </main>
 </body>

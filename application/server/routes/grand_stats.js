@@ -16,14 +16,23 @@ const grandstats = (app, isLoggedIn) => {
   	  	  .exec(function(err2, devCount) {
   	  	  	if (err2) { throw err2; }
   	  	  	numberOfDevelopers = devCount;
-  	  	  	res.render('grandstats.ejs', {
-	      	  user: req.user,
-	      	  clients: numberOfClients,
-	      	  developers: numberOfDevelopers
-    		});
+  	  	  	User
+  	  	  	  .find({ 'local.usertype': 'developer'})
+  	  	  	  .sort('-local.deposit')
+  	  	  	  .limit(10)
+  	  	  	  .select('local.realname local.deposit')
+  	  	  	  .exec(function(err3, mostPaidDevs) {
+  	  	  	  	//console.log(mostPaidDevs);
+	  	  	  	res.render('grandstats.ejs', {
+		      	  user: req.user,
+		      	  clients: numberOfClients,
+		      	  developers: numberOfDevelopers,
+		      	  mostPaidDevelopers: mostPaidDevs
+	    		});  	  	  	  	
+  	  	  	})
   	  	})
   	}) 
-  };
+};
 
   app.get('/grandstats', isLoggedIn, getNumberOfClients);
 
