@@ -14,7 +14,7 @@ CREATE TABLE users
 
 CREATE TABLE regular_users
 (
-    user_id     BIGSERIAL PRIMARY KEY REFERENCES users(user_id),
+    user_id     BIGINT PRIMARY KEY REFERENCES users(user_id),
     interest    TEXT NOT NULL,
     cred_link   TEXT NOT NULL,
     pic_link    TEXT NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE user_name_blacklists
 
 CREATE TABLE system_transactions
 (
-    from_user   BIGSERIAL REFERENCES users(user_id),
+    from_user   BIGINT REFERENCES users(user_id),
     amount      NUMERIC(100, 2),
     time        TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
     is_verified BOOLEAN NOT NULL DEFAULT FALSE
@@ -40,8 +40,8 @@ CREATE TABLE system_transactions
 
 CREATE TABLE user_transactions
 (
-    to_user     BIGSERIAL REFERENCES users(user_id),
-    from_user   BIGSERIAL REFERENCES users(user_id),
+    to_user     BIGINT REFERENCES users(user_id),
+    from_user   BIGINT REFERENCES users(user_id),
     amount      NUMERIC(100, 2),
     time        TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
     is_verified BOOLEAN NOT NULL DEFAULT FALSE
@@ -50,36 +50,36 @@ CREATE TABLE user_transactions
 CREATE TABLE system_demands
 (
     post_id BIGSERIAL PRIMARY KEY,
-    poster_id BIGSERIAL REFERENCES regular_users(user_id),
+    poster_id BIGINT REFERENCES regular_users(user_id),
     system_spec TEXT NOT NULL,
     deadline TIMESTAMP NOT NULL
 );
 
 CREATE TABLE demand_bids
 (
-    post_id   BIGSERIAL REFERENCES system_demands(post_id),
-    bidder_id BIGSERIAL REFERENCES regular_users(user_id),
+    post_id   BIGINT REFERENCES system_demands(post_id),
+    bidder_id BIGINT REFERENCES regular_users(user_id),
     bid_price NUMERIC(100, 2) NOT NULL
 );
 
 CREATE TABLE bid_winners
 (
-    post_id   BIGSERIAL PRIMARY KEY REFERENCES system_demands(post_id),
-    winner_id BIGSERIAL REFERENCES regular_users(user_id),
+    post_id   BIGINT PRIMARY KEY REFERENCES system_demands(post_id),
+    winner_id BIGINT REFERENCES regular_users(user_id),
     choice_reason TEXT
 );
 
 CREATE TABLE deliverables
 (
-    post_id       BIGSERIAL PRIMARY KEY REFERENCES system_demands(post_id),
-    developer_id  BIGSERIAL REFERENCES regular_users(user_id),
+    post_id       BIGINT PRIMARY KEY REFERENCES system_demands(post_id),
+    developer_id  BIGINT REFERENCES regular_users(user_id),
     delivery_link TEXT NOT NULL
 );
 
 CREATE table ratings
 (
-    post_id      BIGSERIAL PRIMARY KEY REFERENCES system_demands(post_id),
-    poster_id    BIGSERIAL REFERENCES regular_users(user_id),
+    post_id      BIGINT PRIMARY KEY REFERENCES system_demands(post_id),
+    poster_id    BIGINT REFERENCES regular_users(user_id),
     rating_type  BOOLEAN NOT NULL,
     rating_text  TEXT,
     time         TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
@@ -87,14 +87,14 @@ CREATE table ratings
 
 CREATE TABLE warning_protests
 (
-    user_id BIGSERIAL REFERENCES regular_users(user_id),
+    user_id BIGINT REFERENCES regular_users(user_id),
     message TEXT NOT NULL,
     time    TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
 );
 
 CREATE TABLE quit_demands
 (
-    user_id BIGSERIAL PRIMARY KEY REFERENCES regular_users(user_id),
+    user_id BIGINT PRIMARY KEY REFERENCES regular_users(user_id),
     message TEXT,
     ignored BOOLEAN DEFAULT FALSE,
     time    TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
