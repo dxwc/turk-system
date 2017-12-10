@@ -12,16 +12,30 @@ const start = (app) => {
 
   const getAllUsers = (req, res) => {
     User
-    .find()
-    .exec(function(err, users) {
-      if(err) { throw err; }
-      console.log(users);
-      res.json(users);
-    });
+      .find()
+      .exec(function(err, users) {
+        if(err) { throw err; }
+        console.log(users);
+        res.json(users);
+      });
+  }
+
+  const searchUserByEmail = (req, res) => {
+    const email = req.params.email;
+    console.log(email);
+    User
+      .findOne({ 'local.email': email })
+      .exec(function(err, user) {
+        if(err) { throw err; }
+        console.log(user);
+        res.json(users);
+      });
+
   }
 
   app.get('/', renderStart);
   app.get('/api/getallusers', getAllUsers);
+  app.get('/api/search/email/:email', searchUserByEmail);
 
   return app;
 }

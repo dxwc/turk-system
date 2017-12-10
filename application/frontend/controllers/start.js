@@ -21,9 +21,19 @@
           '<p>rating: ' + rating + '</p>' +
           '<p>accuntStatus: ' + accuntStatus + '</p>' +
           '<p>money: ' + money + '</p>' +
+
         '</div>'
       );
 
     });
   }, 'json' );
 })();
+
+function handleSearchUserClick() {
+  const email = $('#searched-user').val();
+  $.get('/api/search/email/' + email, function(data) {
+    console.log(email);
+
+  });
+
+}
