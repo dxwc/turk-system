@@ -22,13 +22,14 @@ const start = (app) => {
 
   const searchUserByEmail = (req, res) => {
     const email = req.params.email;
-    console.log(email);
+    const emailRe = new RegExp('^' + email + '$', 'i');
+    // console.log(email);
     User
-      .findOne({ 'local.email': email })
+      .findOne({ 'local.email': emailRe })
       .exec(function(err, user) {
         if(err) { throw err; }
         console.log(user);
-        res.json(users);
+        res.json(user);
       });
 
   }
