@@ -7,7 +7,7 @@ CREATE TABLE users
     password        TEXT NOT NULL,
     access_type     BOOLEAN NOT NULL DEFAULT FALSE,
     role            BOOLEAN NOT NULL,
-    amount_total    NUMERIC(100, 2),
+    amount_total    NUMERIC(100, 2) NOT NULL,
     first_use       BOOLEAN NOT NULL DEFAULT TRUE,
     creation_time   TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW()
 );
@@ -32,7 +32,7 @@ CREATE TABLE user_name_blacklists
 CREATE TABLE system_transactions
 (
     from_user   BIGINT REFERENCES users(user_id),
-    amount      NUMERIC(100, 2),
+    amount      NUMERIC(100, 2) NOT NULL,
     time        TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
     is_verified BOOLEAN NOT NULL DEFAULT FALSE
 );
@@ -40,9 +40,9 @@ CREATE TABLE system_transactions
 
 CREATE TABLE user_transactions
 (
-    to_user     BIGINT REFERENCES users(user_id),
-    from_user   BIGINT REFERENCES users(user_id),
-    amount      NUMERIC(100, 2),
+    to_user     BIGINT REFERENCES regular_users(user_id),
+    from_user   BIGINT REFERENCES regular_users(user_id),
+    amount      NUMERIC(100, 2) NOT NULL,
     time        TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
     is_verified BOOLEAN NOT NULL DEFAULT FALSE
 );

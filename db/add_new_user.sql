@@ -44,7 +44,7 @@ BEGIN
                 _user_name,
                 _password,
                 _role,
-                _deposit_amount
+                _deposit_amount - (_deposit_amount * 0.05)
             )
             RETURNING users.user_id INTO _user_id;
 
