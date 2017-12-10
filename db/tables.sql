@@ -52,7 +52,7 @@ CREATE TABLE system_demands
     post_id BIGSERIAL PRIMARY KEY,
     poster_id BIGINT REFERENCES regular_users(user_id),
     system_spec TEXT NOT NULL,
-    deadline TIMESTAMP NOT NULL
+    deadline TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
 CREATE TABLE demand_bids
