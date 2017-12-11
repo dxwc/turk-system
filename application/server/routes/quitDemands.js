@@ -9,35 +9,35 @@ const quitDemand = (app, isLoggedIn, checkUserAccess) => {
     });
   };
 
-  // const sendQuitDemand = (req, res) => {
-  //   // find logged in user and set accountStatus to 'quitRequested'
-  //   const userId = req.user.id;
-  //   User
-  //     .findOne({ '_id': userId })
-  //     .exec(function(err, user) {
-  //       if (err) { throw err; }
-  //       user.local.accountStatus = 'quitRequested';
-  //       user.save(function(err) {
-  //         if (err) {
-  //           throw err;
-  //         }
-  //         console.log('quit demand sent');
-  //       })
-  //     });
-  // };
-
   const quitRequestedUsers = (req, res) => {
     User
-      .find({ 'local.accountStatus': 'quitRequested' })
+      .find({ 'local.accountDeleteStatus': 'quitRequested' })
       .exec(function(err, users) {
         if (err) { throw err; }
         res.send(users);
       });
   }
 
+  const approveQuitDemand = (req, res) => {
+    const userId = req.params.userid;
+    User
+      .findOne({ '_id': userId })
+      .exec(function(err, user) {
+        if (err) { throw err; }
+        user.local.accountDeleteStatus = 'quitApproved';
+        user.save(function(err) {
+          if (err) {
+            throw err;
+          }
+          console.log('quit demand approved');
+          res.send('quit demand approved');
+        })
+      });
+  }
+
   app.get('/quit-demands', isLoggedIn, checkUserAccess, renderQuitDemands);
-  // app.get('/api/send-quit-demand', isLoggedIn, checkUserAccess, sendQuitDemand);
   app.get('/api/quit-req-users', quitRequestedUsers);
+  app.get('/api/approve-quit-demand/:userid', approveQuitDemand);
 
   return app;
 }

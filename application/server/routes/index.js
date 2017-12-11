@@ -66,6 +66,11 @@ const checkUserAccess = (req, res, next) => {
     res.render('blacklist.ejs', {
       user: req.user // get the user out of session and pass to template
     });
+  } else if (req.user.local.accountDeleteStatus === 'quitApproved') {
+    // render quit apporved  template
+    res.render('quitApproved.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
   } else if (req.user.local.accountStatus === 'accepted') {
     // render accepted user template
     res.render('accepted.ejs', {

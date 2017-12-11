@@ -27,28 +27,12 @@
   }, 'json' );
 })();
 
-function handleBidAcceptClick(paramsStr) {
-  // params is in string format so format it with .split to create an array with the parameters
-  const paramsArr = paramsStr.split(',');
-  const isLowestBid = paramsArr[0];
-  const bidId = paramsArr[1];
-  const demandId = paramsArr[2];
+function handleApproveQuitDemandClick(userId) {
+  console.log(userId);
+  $.get('/api/approve-quit-demand/' + userId, function(data) {
+    console.log(data);
+    $('#well-' + userId).hide();
 
-  // if the bid is not the lowest bid, show the div that asks for justification
-  if (isLowestBid === 'false') {
-    $('#justification-div-' + bidId).show();
-  } else {
-    // api call to accept bid
-    $.post('/accept-bid', { 'demandId': demandId, 'bidId': bidId }, function(data) {
-      // $('#well-' + id).hide();
-      console.log("###");
-      console.log(data);
-      if (data === 'No money') {
-        alert('You dont have enough money in your account');
-      } else {
-        alert('Bid sucessfully accepted');
-      }
-    });
+  });
 
-  }
 }

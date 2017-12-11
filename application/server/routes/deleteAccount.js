@@ -16,7 +16,7 @@ const deleteAccount = (app, isLoggedIn, checkUserAccess) => {
       .findOne({ '_id': userId })
       .exec(function(err, user) {
         if (err) { throw err; }
-        user.local.accountStatus = 'quitRequested';
+        user.local.accountDeleteStatus = 'quitRequested';
         user.save(function(err) {
           if (err) {
             throw err;

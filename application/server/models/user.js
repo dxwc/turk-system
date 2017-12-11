@@ -12,6 +12,7 @@ const userSchema = Schema({
     // Use deposit for amount
     deposit: { type: Number, default: 0 },
     accountStatus: String,
+    accountDeleteStatus: { type: String, default: 'none' },
     warningCounter: { type: Number, default: 0 },
     rejectMessage: { type: String, default: '' },
     // avgRating gives validtion error for admin login, changing Number to String fixed
