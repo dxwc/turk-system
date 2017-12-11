@@ -15,7 +15,7 @@ const start = (app) => {
       .find()
       .exec(function(err, users) {
         if(err) { throw err; }
-        console.log(users);
+        //console.log(users);
         res.json(users);
       });
   }
@@ -28,7 +28,7 @@ const start = (app) => {
       .findOne({ 'local.email': emailRe })
       .exec(function(err, user) {
         if(err) { throw err; }
-        console.log(user);
+        //console.log(user);
         res.json(user);
       });
 
