@@ -1,5 +1,6 @@
 let User = require('../models/user.js');
 let Demand = require('../models/demand.js');
+let Rating = require('../models/rating.js');
 
 const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
 
@@ -24,7 +25,7 @@ const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
   };
 
   const finishDemand = (req, res) => {
-    console.log(req.params);
+    // console.log(req.body);
     Demand
       .findOne({ '_id': req.body.demandId })
       .exec(function(err, demand) {
@@ -64,7 +65,34 @@ const contractedDemands = (app, isLoggedIn, checkUserAccess) => {
                         throw err;
                       }
                       console.log('50% of bid amount taken from client');
-                    })
+
+                      // create new rating
+                      const rateValue = req.body.rateValue;
+                      console.log("req.body...");
+                      console.log(req.body);
+                      console.log("rateValue: " + rateValue);
+                      const fromUserId = req.user.id;
+                      // use clientID from above
+                      const toUserId = clientID;
+
+                      let newRating = new Rating();
+                      newRating.fromUserId = fromUserId;
+                      newRating.toUserId = toUserId;
+                      newRating.rating = rateValue;
+                      // postId/systemId is demand id
+                      newRating.postId = req.body.systemId;
+                      if (rateValue < 3) {
+                        newRating.ratingText = req.body.ratingText;
+                      }
+                      console.log(newRating);
+                      newRating.save(function(err) {
+                        if (err) {
+                          throw err;
+                        }
+                        res.redirect('/');
+                      });
+
+                    });
                   });
               });
 
