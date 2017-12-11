@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <title>Top Users</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+</head>
+<body>
+  <header>
+    <% include ../partials/navbar %>
+    <div class="page-header text-center">
+      <h1>Top and similar Users</h1>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <% if (type == 'Old') { %>
+        <% for (var key in otherUsers) { %>
+          Name: <%= otherUsers[key].local.realname %><br>
+          <% if (otherUsers[key].local.developerDetails) { %>
+            Interests: <%= otherUsers[key].local.developerDetails.interests %><br>
+          <% } else { %>
+            Interests: <%= otherUsers[key].local.clientDetails.interests %><br>
+          <% } %>
+          <br><br>
+        <% } %>
+      <% } else { %>
+      <% console.log(type)%>
+
+        Most Active Users : <br>
+        <% for (var key in otherUsers) { %>
+          Name: <%= otherUsers[key].local.realname %><br>
+          <br><br>
+        <% } %>
+      <% } %>
+    </div>
+  </main>
+</body>
+</html>

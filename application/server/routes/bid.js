@@ -63,7 +63,18 @@ const bid = (app, isLoggedIn, checkUserAccess) => {
           if (err) {
             throw err;
           }
-          res.redirect('/bid');
+          User
+          .findOne({ '_id': req.user.id })
+          .exec(function(err, user) {
+            let postedBidIds = user.local.developerDetails.bidDemandIds;
+            // push new demand id to list of demand ids
+            postedBidIds.push(newBid.id);
+            // save updated list of demand ids
+            user.local.developerDetails.bidDemandIds = postedBidIds
+            user.save(function(errr) {
+              res.redirect('/bid');
+            })
+          })
         });
 
       });
