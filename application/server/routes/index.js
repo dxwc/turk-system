@@ -18,6 +18,9 @@ const contractedDemands = require('./contractedDemands');
 const depositMoney = require('./depositMoney');
 const lowSystemRatings = require('./lowSystemRatings');
 const topUsers = require('./topUsers');
+const deleteAccount = require('./deleteAccount');
+const quitDemands = require('./quitDemands');
+
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const payment = require('./payment');
@@ -64,6 +67,11 @@ const checkUserAccess = (req, res, next) => {
     res.render('blacklist.ejs', {
       user: req.user // get the user out of session and pass to template
     });
+  } else if (req.user.local.accountDeleteStatus === 'quitApproved') {
+    // render quit apporved  template
+    res.render('quitApproved.ejs', {
+      user: req.user // get the user out of session and pass to template
+    });
   } else if (req.user.local.accountStatus === 'accepted') {
     // render accepted user template
     res.render('accepted.ejs', {
@@ -94,6 +102,8 @@ const configureRoutes = (app, passport) => {
   depositMoney(app, isLoggedIn, checkUserAccess);
   lowSystemRatings(app, isLoggedIn, checkUserAccess);
   topUsers(app, isLoggedIn, checkUserAccess);
+  deleteAccount(app, isLoggedIn, checkUserAccess);
+  quitDemands(app, isLoggedIn, checkUserAccess);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   

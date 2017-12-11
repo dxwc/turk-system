@@ -14,16 +14,19 @@
       <% if (user.local.usertype === 'superuser') { %>
         <li><a href="/user-apps">User Applications</a></li>
         <li><a href="/low-system-ratings">Low System Ratings</a></li>
+        <li><a href="/quit-demands">Quit Demands</a></li>
       <% } %>
       <% if (user.local.usertype === 'client') { %>
         <li><a href="/demand">Post Demand</a></li>
         <li><a href="/manage-accepted-demands">Manage Accepted Demands</a></li>
 
         <li><a href="/manage-demands">Manage Demands</a></li>
+        <li><a href="/delete-account">Delete Account</a></li>
       <% } %>
       <% if (user.local.usertype === 'developer') { %>
         <li><a href="/bid">Bid on Demand</a></li>
         <li><a href="/contracted-demands">Contracted Demands</a></li>
+        <li><a href="/delete-account">Delete Account</a></li>
       <% } %>
       <li><a href="/deposit-money">Deposit Money</a></li>
       <li><a href="/logout">Logout</a></li>
