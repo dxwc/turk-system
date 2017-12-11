@@ -14,20 +14,25 @@
   </header>
   <main>
     <div class="container">
-      <strong>Number of Clients</strong>: <%= clients %><br>
-      <strong>Number of Developers</strong>: <%= developers %><br>
-      <strong>Most Paid Developers</strong> <br>
-      <% for (var key in mostPaidDevelopers) { %>
-	    Name: <%= mostPaidDevelopers[key].local.realname %><br>
-	    Deposit: <%= mostPaidDevelopers[key].local.deposit %>
-	    <br><br>
-	  <% } %>
-	  <strong>Clients With Most Projects</strong> <br>
-      <% for (var key in mostProjectClients) { %>
-	    Name: <%= mostProjectClients[key].local.realname %><br>
-	    # of Projects: <%= mostProjectClients[key].__v %>
-	    <br><br>
-	  <% } %>
+      <% if (type == 'Old') { %>
+        <% for (var key in otherUsers) { %>
+          Name: <%= otherUsers[key].local.realname %><br>
+          <% if (otherUsers[key].local.developerDetails) { %>
+            Interests: <%= otherUsers[key].local.developerDetails.interests %><br>
+          <% } else { %>
+            Interests: <%= otherUsers[key].local.clientDetails.interests %><br>
+          <% } %>
+          <br><br>
+        <% } %>
+      <% } else { %>
+      <% console.log(type)%>
+
+        Most Active Users : <br>
+        <% for (var key in otherUsers) { %>
+          Name: <%= otherUsers[key].local.realname %><br>
+          <br><br>
+        <% } %>
+      <% } %>
     </div>
   </main>
 </body>

@@ -24,7 +24,7 @@ const userSchema = Schema({
       interests: { type: String, default: '' },
       samplework: { type: String, default: '' },
       // dev's bids
-      bidDemandIds: [Schema.Types.ObjectId]
+      bidDemandIds: { type: [Schema.Types.ObjectId], default: [] }
     },
     clientDetails: {
       picture: { type: String, default: '' },
