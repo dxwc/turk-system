@@ -1,0 +1,19 @@
+{
+  "name": "csc322-software-engineering-turk-system",
+  "version": "1.0.0",
+  "description": "https://turk-system.herokuapp.com/",
+  "scripts": {
+    "start": "cd application && npm start",
+    "postinstall": "cd application && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tshin7/csc322-software-engineering-turk-system.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tshin7/csc322-software-engineering-turk-system/issues"
+  },
+  "homepage": "https://github.com/tshin7/csc322-software-engineering-turk-system#readme"
+}
