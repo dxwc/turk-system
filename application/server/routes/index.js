@@ -18,9 +18,10 @@ const contractedDemands = require('./contractedDemands');
 const depositMoney = require('./depositMoney');
 const lowSystemRatings = require('./lowSystemRatings');
 const topUsers = require('./topUsers');
+const Blacklist = require('../models/blacklist.js');
+
 const deleteAccount = require('./deleteAccount');
 const quitDemands = require('./quitDemands');
-
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const payment = require('./payment');
@@ -64,9 +65,21 @@ const checkUserAccess = (req, res, next) => {
     });
   } else if (req.user.local.accountStatus === 'blacklist') {
     // render rejected user template
-    res.render('blacklist.ejs', {
-      user: req.user // get the user out of session and pass to template
-    });
+    Blacklist
+    .findOne({'userId' : req.user._id })
+    .exec(function(err5, blackListUser) {
+      let currentDate = new Date();
+      if (currentDate > blackListUser.expiresOn) {
+        // blacklist period expired
+         res.render('accepted.ejs', {
+          user: req.user // get the user out of session and pass to template
+         });
+      } else {
+        res.render('blacklist.ejs', {
+          user: req.user // get the user out of session and pass to template
+         });
+      }
+    })
   } else if (req.user.local.accountDeleteStatus === 'quitApproved') {
     // render quit apporved  template
     res.render('quitApproved.ejs', {
