@@ -1,8 +1,7 @@
-<!-- views/signup.ejs -->
 <!doctype html>
 <html>
 <head>
-  <title>Delete Account</title>
+  <title>Manage Quit Requests</title>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
 </head>
@@ -10,16 +9,16 @@
   <header>
     <% include ../partials/navbar %>
     <div class="page-header text-center">
-      <h1>Click button below to send quit demand to admin if you want to delete your account</h1>
+      <h1>Manage quit requests here</h1>
     </div>
   </header>
   <main>
     <div class="container">
-      <form action="/api/send-quit-demand" method="get">
-        <button type="submit" class="btn btn-warning btn-lg">Send Quit Demand</button>
-      </form>
+      <div id="quits-list"></div>
     </div>
+  <div id="user-id" style="display: none;"><%= user._id %></div>
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/controllers/manageQuitReqs.js"></script>
 </body>
 </html>

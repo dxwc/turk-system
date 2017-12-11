@@ -18,6 +18,7 @@ const contractedDemands = require('./contractedDemands');
 const depositMoney = require('./depositMoney');
 const lowSystemRatings = require('./lowSystemRatings');
 const deleteAccount = require('./deleteAccount');
+const quitDemands = require('./quitDemands');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
 const mostActive = require('./mostActive');
@@ -95,7 +96,7 @@ const configureRoutes = (app, passport) => {
   depositMoney(app, isLoggedIn, checkUserAccess);
   lowSystemRatings(app, isLoggedIn, checkUserAccess);
   deleteAccount(app, isLoggedIn, checkUserAccess);
-
+  quitDemands(app, isLoggedIn, checkUserAccess);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
   mostActive(app, isLoggedIn);
