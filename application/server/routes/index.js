@@ -17,9 +17,9 @@ const accepted_demands = require('./acceptedDemands.js')
 const contractedDemands = require('./contractedDemands');
 const depositMoney = require('./depositMoney');
 const lowSystemRatings = require('./lowSystemRatings');
+const topUsers = require('./topUsers');
 
 // these are for gui ss purposes. they should be moved/fixed/edited for real app
-const mostActive = require('./mostActive');
 const payment = require('./payment');
 
 const stripeExample = require('./stripeExample');
@@ -93,10 +93,10 @@ const configureRoutes = (app, passport) => {
   contractedDemands(app, isLoggedIn, checkUserAccess);
   depositMoney(app, isLoggedIn, checkUserAccess);
   lowSystemRatings(app, isLoggedIn, checkUserAccess);
-
+  topUsers(app, isLoggedIn, checkUserAccess);
 
   // these are for gui ss purposes. they should be moved/fixed/edited for real app
-  mostActive(app, isLoggedIn);
+  
   payment(app, isLoggedIn);
 
   stripeExample(app);
