@@ -59,7 +59,8 @@ CREATE TABLE demand_bids
 (
     post_id   BIGINT REFERENCES system_demands(post_id),
     bidder_id BIGINT REFERENCES regular_users(user_id),
-    bid_price NUMERIC(100, 2) NOT NULL
+    bid_price NUMERIC(100, 2) NOT NULL,
+    PRIMARY KEY(post_id, bidder_id)
 );
 
 CREATE TABLE bid_winners
