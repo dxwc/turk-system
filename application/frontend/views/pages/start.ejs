@@ -17,6 +17,20 @@
       <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
       <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
     </div>
+    <div>
+      <div class="form-group non-superuser-only">
+        <label>Search For User By Email/User ID</label>
+        <input id="search-email" type="text" class="form-control" name="searchEmail">
+      </div>
+      <button
+        id="search-button"
+        type="submit"
+        class="btn btn-warning btn-lg"
+        onclick="handleSearchUserClick()"
+      >Search</button>
+      <div id="searched-user"></div>
+    </div>
+    <h1>All users</h1>
     <div id="public-info"></div>
   </div>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
